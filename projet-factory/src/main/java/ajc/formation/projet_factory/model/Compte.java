@@ -3,6 +3,8 @@ package ajc.formation.projet_factory.model;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,13 +22,14 @@ public class Compte {
 
 	private String password;
 	
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	public Compte() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Compte(Integer id, String login, String password, String role) {
+	public Compte(Integer id, String login, String password, Role role) {
 		this.id = id;
 		this.login = login;
 		this.password = password;
@@ -57,11 +60,11 @@ public class Compte {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
