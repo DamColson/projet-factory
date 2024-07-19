@@ -2,12 +2,18 @@ package ajc.formation.projet_factory.dto.response;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import ajc.formation.projet_factory.model.Compte;
+
 
 public class CompteResponse {
 
+	@JsonView(CustomJsonViews.Common.class)
 	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String login;
+	@JsonView(CustomJsonViews.Common.class)
 	private String role;
 	
 	public CompteResponse() {
