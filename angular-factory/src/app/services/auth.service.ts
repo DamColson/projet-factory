@@ -11,8 +11,11 @@ export class AuthService {
 
   public connect(login: string, password: string): Observable<Compte> {
     let auth = 'Basic ' + window.btoa(login + ':' + password);
-    return this.httpClient.get<Compte>('http://localhost:8080/factory/auth', {
-      headers: { Authorization: auth },
-    });
+    return this.httpClient.get<Compte>(
+      'http://localhost:8080/factory/api/auth',
+      {
+        headers: { Authorization: auth },
+      }
+    );
   }
 }

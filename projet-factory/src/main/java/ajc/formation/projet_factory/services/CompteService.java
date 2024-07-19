@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOCompte;
 import ajc.formation.projet_factory.exceptions.CompteException;
@@ -12,7 +13,7 @@ import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Role;
 
 
-
+@Service
 public class CompteService implements UserDetailsService{
 
 	@Autowired
