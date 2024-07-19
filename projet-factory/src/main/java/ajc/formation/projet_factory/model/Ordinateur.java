@@ -2,6 +2,7 @@ package ajc.formation.projet_factory.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +21,10 @@ public class Ordinateur {
 	
 	private String libelle;
 	
+	@Column(name="adresse_mac")
 	private String adresseMac;
 
+	@Column(name="date_achat")
 	private String dateAchat;
 	
 	@ManyToOne
