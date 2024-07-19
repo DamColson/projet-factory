@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Inscription</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <form (ngSubmit)="submit()" [formGroup]="form">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="login">Login :</label>
+                <input
+                  id="login"
+                  class="form-control"
+                  formControlName="login"
+                />
+                @if(form.get('login')?.dirty && form.get('login')?.invalid){
+                <div class="text-danger fst-italic">*obligatoire</div>
+                }
+              </div>
+
+              <div formGroupName="passwordGroup">
+                <div class="form-group mb-3">
+                  <label class="mb-2" for="password">Password :</label>
+                  <input
+                    id="password"
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                  />
+                  @if(form.get('passwordGroup.password')?.dirty &&
+                  form.get('passwordGroup.password')?.invalid){
+                  <div class="text-danger fst-italic">*obligatoire</div>
+                  }
+                </div>
+                <div class="form-group mb-3">
+                  <label class="mb-2" for="confirmation"
+                    >Confirmation de Password :</label
+                  >
+                  <input
+                    id="confirmation"
+                    type="password"
+                    class="form-control"
+                    formControlName="confirmation"
+                  />
+                </div>
+                @if(form.get('passwordGroup')?.hasError('passwordEtConfirmationNotEquals')){
+                <div class="text-danger fst-italic">
+                  Les Mots de passes ne sont pas identifiques
+                </div>
+                }
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-outline-primary"
+                  [disabled]="form.invalid"
+                >
+                  Envoyer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
