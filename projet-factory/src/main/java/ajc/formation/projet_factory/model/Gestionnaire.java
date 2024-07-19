@@ -29,7 +29,7 @@ public class Gestionnaire {
 	
 	private String mail;
 	
-	@ManyToOne
+	@OneToOne
 	private Compte compte;
 	
 	@OneToOne(mappedBy = "gestionnaire")

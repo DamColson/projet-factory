@@ -22,7 +22,7 @@ public class Stagiaire {
     private String telephone;
     private String mail;
     
-    @ManyToOne
+    @OneToOne
     private Compte compte;
     
     @OneToOne(mappedBy="stagiaire")

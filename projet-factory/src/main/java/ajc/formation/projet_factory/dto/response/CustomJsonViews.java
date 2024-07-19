@@ -21,4 +21,12 @@ public class CustomJsonViews {
 	public static class StagiaireWithOrdinateur extends StagiaireWithFiliere {
 
 	}
+	
+	public static class TechnicienWithOrdinateur extends Common{
+		
+	}
+	
+	public static class OrdinateurWithTechnicien extends Common{
+		
+	}
 }

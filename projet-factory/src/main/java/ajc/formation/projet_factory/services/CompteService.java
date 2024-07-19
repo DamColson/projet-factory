@@ -38,7 +38,7 @@ public class CompteService implements UserDetailsService{
 		}
 		
 		compte.setPassword(passwordEncoder.encode(compte.getPassword()));
-		compte.setRole(Role.ROLE_USER);
+		compte.setRole(Role.ROLE_STAGIAIRE);
 		
 		return daoCompte.save(compte);
 	}

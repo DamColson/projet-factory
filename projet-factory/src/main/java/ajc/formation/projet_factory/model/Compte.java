@@ -15,7 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,32 +33,32 @@ public class Compte implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@OneToMany(mappedBy="compte")
-	List<Technicien> techniciens;
+	@OneToOne(mappedBy="compte")
+	Technicien technicien;
 	
-	@OneToMany(mappedBy="compte")
-	List<Formateur> formateurs;
+	@OneToOne(mappedBy="compte")
+	Formateur formateur;
 	
-	@OneToMany(mappedBy="compte")
-	List<Stagiaire> stagiaires;
+	@OneToOne(mappedBy="compte")
+	Stagiaire stagiaire;
 	
-	@OneToMany(mappedBy="compte")
-	List<Gestionnaire> gestionnaires;
+	@OneToOne(mappedBy="compte")
+	Gestionnaire gestionnaire;
 	
 	public Compte() {
 	}
 
-	public Compte(Integer id, String login, String password, Role role, List<Technicien> techniciens,
-			List<Formateur> formateurs, List<Stagiaire> stagiaires, List<Gestionnaire> gestionnaires) {
+	public Compte(Integer id, String login, String password, Role role, Technicien technicien, Formateur formateur,
+			Stagiaire stagiaire, Gestionnaire gestionnaire) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.role = role;
-		this.techniciens = techniciens;
-		this.formateurs = formateurs;
-		this.stagiaires = stagiaires;
-		this.gestionnaires = gestionnaires;
+		this.technicien = technicien;
+		this.formateur = formateur;
+		this.stagiaire = stagiaire;
+		this.gestionnaire = gestionnaire;
 	}
 
 	public Integer getId() {
@@ -93,36 +93,36 @@ public class Compte implements UserDetails{
 		this.role = role;
 	}
 
-	public List<Technicien> getTechniciens() {
-		return techniciens;
+	public Technicien getTechnicien() {
+		return technicien;
 	}
 
-	public void setTechniciens(List<Technicien> techniciens) {
-		this.techniciens = techniciens;
+	public void setTechnicien(Technicien technicien) {
+		this.technicien = technicien;
 	}
 
-	public List<Formateur> getFormateurs() {
-		return formateurs;
+	public Formateur getFormateur() {
+		return formateur;
 	}
 
-	public void setFormateurs(List<Formateur> formateurs) {
-		this.formateurs = formateurs;
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
 	}
 
-	public List<Stagiaire> getStagiaires() {
-		return stagiaires;
+	public Stagiaire getStagiaire() {
+		return stagiaire;
 	}
 
-	public void setStagiaires(List<Stagiaire> stagiaires) {
-		this.stagiaires = stagiaires;
+	public void setStagiaire(Stagiaire stagiaire) {
+		this.stagiaire = stagiaire;
 	}
 
-	public List<Gestionnaire> getGestionnaires() {
-		return gestionnaires;
+	public Gestionnaire getGestionnaire() {
+		return gestionnaire;
 	}
 
-	public void setGestionnaires(List<Gestionnaire> gestionnaires) {
-		this.gestionnaires = gestionnaires;
+	public void setGestionnaire(Gestionnaire gestionnaire) {
+		this.gestionnaire = gestionnaire;
 	}
 
 	@Override

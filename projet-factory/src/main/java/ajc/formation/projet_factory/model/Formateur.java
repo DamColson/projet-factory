@@ -27,7 +27,7 @@ public class Formateur {
     private String telephone;
     private String mail;
     
-    @ManyToOne
+    @OneToOne
     private Compte compte;
     
     @OneToOne(mappedBy = "formateur")
