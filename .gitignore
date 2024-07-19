@@ -3,5 +3,6 @@ target/
 .project
 .settings/
 .vscode/
+resources/
 
 
