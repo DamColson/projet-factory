@@ -25,4 +25,6 @@ export class MenuComponent {
   get logged(): boolean {
     return localStorage.getItem('token') != null;
   }
+
+  cheminImage: any = './assets/images/logo-texte.png';
 }

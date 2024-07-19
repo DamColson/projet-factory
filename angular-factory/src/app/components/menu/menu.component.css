@@ -1,0 +1,31 @@
+nav {
+  background-color: #f28c1c !important;
+  color: white;
+  padding: 0;
+}
+a,
+button {
+  margin-top: 10px;
+  transition: 2s;
+  color: white;
+}
+
+a:hover,
+button:hover {
+  color: white;
+  text-decoration: underline;
+  transform: scale(1.1);
+}
+
+.logo {
+  margin-top: 0px;
+}
+
+img {
+  max-height: 50px;
+  transition: 2s;
+}
+
+img:hover {
+  transform: scale(1.2);
+}
