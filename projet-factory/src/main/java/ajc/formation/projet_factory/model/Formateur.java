@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -25,7 +26,9 @@ public class Formateur {
     private String prenom;
     private String telephone;
     private String mail;
-    private String password;
+    
+    @ManyToOne
+    private Compte compte;
     
     @OneToOne(mappedBy = "formateur")
     private Ordinateur ordinateur;
@@ -41,24 +44,26 @@ public class Formateur {
 
     public Formateur(){}
     
-
-    public Formateur(Integer id, String nom, String prenom, String telephone, String mail, String password,
-            Ordinateur ordinateur, List<Bloc> blocs, VideoProjecteur emprunt, Set<Competence> competences) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.mail = mail;
-        this.password = password;
-        this.ordinateur = ordinateur;
-        this.blocs = blocs;
-        this.emprunt = emprunt;
-        this.competences = competences;
-    }
-
     
 
-    public Integer getId() {
+    public Formateur(Integer id, String nom, String prenom, String telephone, String mail, Compte compte,
+			Ordinateur ordinateur, List<Bloc> blocs, VideoProjecteur emprunt, Set<Competence> competences) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.mail = mail;
+		this.compte = compte;
+		this.ordinateur = ordinateur;
+		this.blocs = blocs;
+		this.emprunt = emprunt;
+		this.competences = competences;
+	}
+
+
+
+	public Integer getId() {
         return id;
     }
 
@@ -98,15 +103,15 @@ public class Formateur {
         this.mail = mail;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public Compte getCompte() {
+		return compte;
+	}
+    
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Ordinateur getOrdinateur() {
+	public Ordinateur getOrdinateur() {
         return ordinateur;
     }
 

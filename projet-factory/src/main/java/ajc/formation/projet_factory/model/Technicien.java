@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -20,25 +21,30 @@ public class Technicien {
     private String prenom;
     private String telephone;
     private String mail;
-    private String password;
+    
+    @ManyToOne
+    private Compte compte;
     
     @OneToOne(mappedBy="technicien")
     private Ordinateur ordinateur;
 
     public Technicien(){}
 
-    public Technicien(Integer id, String nom, String prenom, String telephone, String mail, String password,
-            Ordinateur ordinateur) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.mail = mail;
-        this.password = password;
-        this.ordinateur = ordinateur;
-    }
     
-    public Integer getId() {
+    
+    public Technicien(Integer id, String nom, String prenom, String telephone, String mail, Compte compte,
+			Ordinateur ordinateur) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.mail = mail;
+		this.compte = compte;
+		this.ordinateur = ordinateur;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -78,15 +84,17 @@ public class Technicien {
         this.mail = mail;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public Compte getCompte() {
+		return compte;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
 
-    public Ordinateur getOrdinateur() {
+
+
+	public Ordinateur getOrdinateur() {
         return ordinateur;
     }
 

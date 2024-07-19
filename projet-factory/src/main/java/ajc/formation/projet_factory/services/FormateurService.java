@@ -50,8 +50,7 @@ public class FormateurService {
 	}
 	
 	public void delete(Formateur formateur) {
-		
-		
+			
 		daoVideoProjecteur.cascadeNull(formateur);
 		daoOrdinateur.cascadeNull(formateur);
 		daoBloc.cascadeNull(formateur);
@@ -59,12 +58,7 @@ public class FormateurService {
 		competences = competences.stream().peek(competence->competence.getFormateurs().remove(formateur)).collect(Collectors.toList());
 		daoCompetence.saveAll(competences);
 		daoFormateur.delete(formateur);
-		
-		
-		
-		// Trouver le videoprojecteur associé au formateur => select v from VideoProjecteur v 
-		// Modifier le video projecteur pour retirer le formateur
-		// Supprimer le formateur
+
 	}
 	
 	

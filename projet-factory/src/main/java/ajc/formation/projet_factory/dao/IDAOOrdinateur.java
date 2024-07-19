@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import ajc.formation.projet_factory.model.Formateur;
 import ajc.formation.projet_factory.model.Ordinateur;
+import ajc.formation.projet_factory.model.Technicien;
 import jakarta.transaction.Transactional;
 
 public interface IDAOOrdinateur extends JpaRepository<Ordinateur, Integer>{
@@ -15,4 +16,9 @@ public interface IDAOOrdinateur extends JpaRepository<Ordinateur, Integer>{
 	@Modifying
 	@Transactional
 	public void cascadeNull(@Param("formateur") Formateur formateur);
+	
+	@Query("update Ordinateur o set o.technicien=null where o.technicien = :technicien")
+	@Modifying
+	@Transactional
+	public void cascadeTechNull(@Param("technicien") Technicien technicien);
 }

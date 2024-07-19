@@ -2,6 +2,7 @@ package ajc.formation.projet_factory.model;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,14 +33,32 @@ public class Compte implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
+	@OneToMany(mappedBy="compte")
+	List<Technicien> techniciens;
+	
+	@OneToMany(mappedBy="compte")
+	List<Formateur> formateurs;
+	
+	@OneToMany(mappedBy="compte")
+	List<Stagiaire> stagiaires;
+	
+	@OneToMany(mappedBy="compte")
+	List<Gestionnaire> gestionnaires;
+	
 	public Compte() {
 	}
 
-	public Compte(Integer id, String login, String password, Role role) {
+	public Compte(Integer id, String login, String password, Role role, List<Technicien> techniciens,
+			List<Formateur> formateurs, List<Stagiaire> stagiaires, List<Gestionnaire> gestionnaires) {
+		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.role = role;
+		this.techniciens = techniciens;
+		this.formateurs = formateurs;
+		this.stagiaires = stagiaires;
+		this.gestionnaires = gestionnaires;
 	}
 
 	public Integer getId() {
@@ -71,6 +91,38 @@ public class Compte implements UserDetails{
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public List<Technicien> getTechniciens() {
+		return techniciens;
+	}
+
+	public void setTechniciens(List<Technicien> techniciens) {
+		this.techniciens = techniciens;
+	}
+
+	public List<Formateur> getFormateurs() {
+		return formateurs;
+	}
+
+	public void setFormateurs(List<Formateur> formateurs) {
+		this.formateurs = formateurs;
+	}
+
+	public List<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+	public void setStagiaires(List<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+
+	public List<Gestionnaire> getGestionnaires() {
+		return gestionnaires;
+	}
+
+	public void setGestionnaires(List<Gestionnaire> gestionnaires) {
+		this.gestionnaires = gestionnaires;
 	}
 
 	@Override

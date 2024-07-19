@@ -21,7 +21,9 @@ public class Stagiaire {
     private String prenom;
     private String telephone;
     private String mail;
-    private String password;
+    
+    @ManyToOne
+    private Compte compte;
     
     @OneToOne(mappedBy="stagiaire")
     private Ordinateur ordinateur;
@@ -31,19 +33,20 @@ public class Stagiaire {
 
     public Stagiaire(){}
 
-    public Stagiaire(Integer id, String nom, String prenom, String telephone, String mail, String password,
-            Ordinateur ordinateur, Formation formation) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.mail = mail;
-        this.password = password;
-        this.ordinateur = ordinateur;
-        this.formation = formation;
-    }
+    public Stagiaire(Integer id, String nom, String prenom, String telephone, String mail, Compte compte,
+			Ordinateur ordinateur, Formation formation) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.mail = mail;
+		this.compte = compte;
+		this.ordinateur = ordinateur;
+		this.formation = formation;
+	}
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 
@@ -83,15 +86,15 @@ public class Stagiaire {
         this.mail = mail;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public Compte getCompte() {
+		return compte;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
 
-    public Ordinateur getOrdinateur() {
+	public Ordinateur getOrdinateur() {
         return ordinateur;
     }
 
