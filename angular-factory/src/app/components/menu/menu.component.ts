@@ -26,5 +26,5 @@ export class MenuComponent {
     return localStorage.getItem('token') != null;
   }
 
-  cheminImage: any = './assets/images/logo-texte.png';
+  cheminImage: any = '../assets/images/logo-texte.png';
 }

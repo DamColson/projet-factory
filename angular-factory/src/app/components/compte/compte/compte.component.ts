@@ -8,17 +8,17 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { CompteService } from '../../services/compte.service';
+import { CompteService } from '../../../services/compte.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-inscription',
+  selector: 'app-compte',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './inscription.component.html',
-  styleUrl: './inscription.component.css',
+  templateUrl: './compte.component.html',
+  styleUrl: './compte.component.css',
 })
-export class InscriptionComponent {
+export class CompteComponent {
   form!: FormGroup;
 
   constructor(private compteSrv: CompteService, private router: Router) {
