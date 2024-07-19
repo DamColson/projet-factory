@@ -20,15 +20,15 @@ export class LoginComponent {
   connect() {
     this.authSrv.connect(this.login, this.password).subscribe({
       //next=>on a une reponse
-      next: (utilisateur) => {
+      next: (compte) => {
         //on est sur que le couple login/password est correct
         //je stocke le couple dans le localStorage
         localStorage.setItem(
           'token',
           window.btoa(this.login + ':' + this.password)
         );
-        localStorage.setItem('utilisateur', JSON.stringify(utilisateur));
-        console.log(localStorage.getItem('utilisateur') + this.login);
+        localStorage.setItem('compte', JSON.stringify(compte));
+        console.log(localStorage.getItem('compte') + this.login);
         this.router.navigateByUrl('/home');
       },
       error: (err) => {
