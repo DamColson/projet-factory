@@ -28,7 +28,7 @@ public class CompteService implements UserDetailsService{
 			});
 	}
 	
-	public Compte create(Compte compte) {
+	public Compte insert(Compte compte) {
 		if(compte.getLogin()==null||compte.getLogin().isBlank()||daoCompte.findByLogin(compte.getLogin()).isPresent()) {
 			throw new CompteException("probleme login");
 		}
@@ -41,5 +41,12 @@ public class CompteService implements UserDetailsService{
 		compte.setRole(Role.ROLE_STAGIAIRE);
 		
 		return daoCompte.save(compte);
+	}
+	
+	public Compte getById(Integer id) {
+		if(id==null) {
+			throw new RuntimeException("id inexistant");
+		}
+		return daoCompte.findById(id).orElseThrow(()->new RuntimeException("Compte inexistant"));
 	}
 }

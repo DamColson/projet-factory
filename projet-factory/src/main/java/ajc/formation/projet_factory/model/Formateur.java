@@ -30,13 +30,13 @@ public class Formateur {
     @OneToOne
     private Compte compte;
     
-    @OneToOne(mappedBy = "formateur")
+    @OneToOne
     private Ordinateur ordinateur;
     
     @OneToMany(mappedBy="formateur")
     private List<Bloc> blocs;
     
-    @OneToOne(mappedBy="formateur")
+    @OneToOne
     private VideoProjecteur emprunt;
     
     @ManyToMany(mappedBy = "formateurs")

@@ -21,13 +21,14 @@ public class TechnicienResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String mail;
 	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
-	private Ordinateur ordinateur;
+	private OrdinateurResponse ordinateurResponse;
 	
 	public TechnicienResponse() {
 	}
 	
 	public TechnicienResponse(Technicien technicien) {
 		BeanUtils.copyProperties(technicien, this);
+		this.ordinateurResponse = new OrdinateurResponse(technicien.getOrdinateur());
 	}
 
 	public Integer getId() {
@@ -70,13 +71,15 @@ public class TechnicienResponse {
 		this.mail = mail;
 	}
 
-	public Ordinateur getOrdinateur() {
-		return ordinateur;
+	public OrdinateurResponse getOrdinateurResponse() {
+		return ordinateurResponse;
 	}
 
-	public void setOrdinateur(Ordinateur ordinateur) {
-		this.ordinateur = ordinateur;
+	public void setOrdinateurResponse(OrdinateurResponse ordinateurResponse) {
+		this.ordinateurResponse = ordinateurResponse;
 	}
+
+
 	
 	
 }

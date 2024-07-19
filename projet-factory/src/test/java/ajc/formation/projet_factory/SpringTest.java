@@ -1,5 +1,9 @@
 package ajc.formation.projet_factory;
 
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ajc.formation.projet_factory.dao.IDAOBloc;
 import ajc.formation.projet_factory.dao.IDAOCompetence;
-import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOVideoProjecteur;
+import ajc.formation.projet_factory.model.Compte;
+import ajc.formation.projet_factory.model.Ordinateur;
+import ajc.formation.projet_factory.model.Role;
+import ajc.formation.projet_factory.model.Salle;
+import ajc.formation.projet_factory.model.Technicien;
+import ajc.formation.projet_factory.services.CompteService;
 import ajc.formation.projet_factory.services.FormateurService;
+import ajc.formation.projet_factory.services.OrdinateurService;
+import ajc.formation.projet_factory.services.SalleService;
+import ajc.formation.projet_factory.services.TechnicienService;
 
 @SpringBootTest
 public class SpringTest {
@@ -20,19 +32,60 @@ public class SpringTest {
 	@Autowired
 	FormateurService formateurSrv;
 	@Autowired
-	IDAOOrdinateur daoOrdinateur;
-	@Autowired
 	IDAOBloc daoBloc;
 	@Autowired
 	IDAOVideoProjecteur daoVideoProjecteur;
 	@Autowired
 	IDAOCompetence daoCompetence;
+	@Autowired
+	CompteService compteSrv;
+	@Autowired
+	TechnicienService technicienSrv;
+	@Autowired
+	OrdinateurService ordinateurSrv;
+	@Autowired
+	SalleService salleSrv;
 	
 	@Test
-	@Transactional
+	@Transactional()
 	@Commit
 	@Disabled
 	public void test() {
+		
+	Salle salle = new Salle();	
+	Ordinateur ordinateur = new Ordinateur();
+	Compte compte = new Compte();
+	Technicien technicien = new Technicien();
+	Set<Ordinateur> ordinateurs = new HashSet<Ordinateur>();
+
+	
+	
+	
+	salle.setLibelle("une salle");
+	salle.setSuperficie(12);
+	
+	ordinateur.setAdresseMac("mac");
+	ordinateur.setDateAchat(LocalDate.now().toString());	
+	ordinateurs.add(ordinateur);
+	ordinateur.setEmplacemeht(salle);
+	
+	technicien.setMail("noah@gmail.com");
+	technicien.setNom("Fiquet");
+	technicien.setPrenom("Noah");
+	technicien.setOrdinateur(ordinateur);
+	technicien.setTelephone("06XXXXXXXX");
+
+	compte.setLogin("nfiquet");
+	compte.setPassword("nfiquet");
+	compte.setRole(Role.ROLE_TECHNICIEN);
+	
+	technicien.setCompte(compte);
+	
+	salleSrv.insert(salle);
+	ordinateurSrv.insert(ordinateur);
+	compteSrv.insert(compte);
+	technicienSrv.insert(technicien);
+	
 	
 //	Ordinateur ordinateur = new Ordinateur();
 //	Bloc bloc = new Bloc();	

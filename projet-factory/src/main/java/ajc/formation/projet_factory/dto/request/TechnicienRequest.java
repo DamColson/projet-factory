@@ -1,6 +1,7 @@
 package ajc.formation.projet_factory.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 public class TechnicienRequest {
@@ -12,20 +13,23 @@ public class TechnicienRequest {
 	private String telephone;
 	@NotBlank
 	private String mail;	
-	@NotBlank
+	@NotNull
 	private Integer ordinateurId;
+	@NotNull
+	private Integer compteId;
 	
 	public TechnicienRequest() {
-		// TODO Auto-generated constructor stub
 	}
-
-	public TechnicienRequest(String nom, String prenom, String telephone, String mail, Integer ordinateurId) {
+	
+	public TechnicienRequest(@NotBlank String nom, @NotBlank String prenom, String telephone, @NotBlank String mail,
+			@NotNull Integer ordinateurId, @NotNull Integer compteId) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
 		this.mail = mail;
 		this.ordinateurId = ordinateurId;
+		this.compteId = compteId;
 	}
 
 	public String getNom() {
@@ -67,6 +71,16 @@ public class TechnicienRequest {
 	public void setOrdinateurId(Integer ordinateurId) {
 		this.ordinateurId = ordinateurId;
 	}
+
+	public Integer getCompteId() {
+		return compteId;
+	}
+
+	public void setCompteId(Integer compteId) {
+		this.compteId = compteId;
+	}
+	
+	
 	
 	
 }

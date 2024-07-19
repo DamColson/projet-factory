@@ -25,7 +25,7 @@ public class Stagiaire {
     @OneToOne
     private Compte compte;
     
-    @OneToOne(mappedBy="stagiaire")
+    @OneToOne
     private Ordinateur ordinateur;
     
     @ManyToOne

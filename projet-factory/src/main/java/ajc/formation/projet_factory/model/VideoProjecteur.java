@@ -28,7 +28,7 @@ public class VideoProjecteur {
 	@OneToOne
 	private Salle emplacement;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "emprunt")
 	private Formateur formateur;
 	
 	private String status;

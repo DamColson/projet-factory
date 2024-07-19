@@ -24,7 +24,7 @@ public class Technicien {
     @OneToOne
     private Compte compte;
     
-    @OneToOne(mappedBy="technicien")
+    @OneToOne
     private Ordinateur ordinateur;
 
     public Technicien(){}

@@ -32,7 +32,7 @@ public class Gestionnaire {
 	@OneToOne
 	private Compte compte;
 	
-	@OneToOne(mappedBy = "gestionnaire")
+	@OneToOne
 	private Ordinateur ordinateur;
 	
 	@OneToMany(mappedBy="gestionnaire")

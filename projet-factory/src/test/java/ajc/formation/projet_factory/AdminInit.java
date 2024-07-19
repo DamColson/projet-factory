@@ -34,7 +34,7 @@ class AdminInit {
 	@Disabled
 	void initUser() {
 		Compte user=daoCompte.findById(2).get();
-		user.setPassword( passwordEncoder.encode("user"));
+		user.setPassword( passwordEncoder.encode("technicien"));
 		daoCompte.save(user);
 	}
 }

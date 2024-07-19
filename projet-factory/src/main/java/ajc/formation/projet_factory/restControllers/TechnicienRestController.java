@@ -21,12 +21,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dto.request.TechnicienRequest;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.dto.response.TechnicienResponse;
+import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Technicien;
+import ajc.formation.projet_factory.services.CompteService;
+import ajc.formation.projet_factory.services.OrdinateurService;
 import ajc.formation.projet_factory.services.TechnicienService;
 import jakarta.validation.Valid;
 
@@ -38,7 +40,9 @@ public class TechnicienRestController {
 	@Autowired
 	TechnicienService technicienSrv;
 	@Autowired
-	IDAOOrdinateur daoOrdinateur;
+	OrdinateurService ordinateurSrv;
+	@Autowired
+	CompteService compteSrv;
 
 	@GetMapping("")
 	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
@@ -49,7 +53,7 @@ public class TechnicienRestController {
 	@GetMapping("/{id}")
 	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
 	public TechnicienResponse getById(@PathVariable("id") Integer id) {
-		return new TechnicienResponse(technicienSrv.getById(id));
+		return new TechnicienResponse(technicienSrv.getByIdWithOrdinateur(id));
 	}
 	
 	@PostMapping("")
@@ -61,10 +65,11 @@ public class TechnicienRestController {
 		}
 		Technicien technicien = new Technicien();
 		BeanUtils.copyProperties(technicienRequest, technicien);
-		Ordinateur ordinateur = daoOrdinateur.findById(technicienRequest.getOrdinateurId())
-				.orElseThrow(()->new RuntimeException("Id incorrect"));
+		Ordinateur ordinateur = ordinateurSrv.getById(technicienRequest.getOrdinateurId());
 		technicien.setOrdinateur(ordinateur);
-		return new TechnicienResponse(technicien);	
+		Compte compte = compteSrv.getById(technicienRequest.getCompteId());
+		technicien.setCompte(compte);
+		return new TechnicienResponse(technicienSrv.insert(technicien));	
 	}
 	
 	@PutMapping("/{id}")
@@ -75,10 +80,11 @@ public class TechnicienRestController {
 		}
 		Technicien technicien = new Technicien();
 		BeanUtils.copyProperties(technicienRequest, technicien);
-		Ordinateur ordinateur = daoOrdinateur.findById(technicienRequest.getOrdinateurId())
-				.orElseThrow(()->new RuntimeException("Id incorrect"));
+		Ordinateur ordinateur = ordinateurSrv.getById(technicienRequest.getOrdinateurId());				
 		technicien.setOrdinateur(ordinateur);
 		technicien.setId(id);
+		Compte compte = compteSrv.getById(technicienRequest.getCompteId());
+		technicien.setCompte(compte);
 		return new TechnicienResponse(technicienSrv.update(technicien));
 	}
 	

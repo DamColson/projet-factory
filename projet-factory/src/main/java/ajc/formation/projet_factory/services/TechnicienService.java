@@ -35,6 +35,13 @@ public class TechnicienService {
 		return daoTechnicien.findById(id).orElseThrow(()->new RuntimeException("Aucun technicien avec cet id existe"));
 	}
 	
+	public Technicien getByIdWithOrdinateur(Integer id) {
+		if(id==null) {
+			throw new RuntimeException("Aucun technicien avec cet id existe");
+		}
+		return daoTechnicien.findByIdFetchOrdinateur(id).orElseThrow(()->new RuntimeException("Aucun technicien avec cet id existe"));
+	}
+	
 	public Technicien insert(Technicien technicien) {
 		return daoTechnicien.save(technicien);
 	}

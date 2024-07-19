@@ -32,16 +32,16 @@ public class Ordinateur {
 	
 	private String status;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "ordinateur")
 	private Formateur formateur;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "ordinateur")
 	private Stagiaire stagiaire;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "ordinateur")
 	private Gestionnaire gestionnaire;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "ordinateur")
 	private Technicien technicien;
 	
 	private String os;
