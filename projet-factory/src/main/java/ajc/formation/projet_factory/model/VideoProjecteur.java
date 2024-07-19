@@ -11,7 +11,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "video-projecteur")
+@Table(name = "video_projecteur")
 public class VideoProjecteur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class VideoProjecteur {
 	
 	private String libelle;
 	
-	@Column(name="adresse-mac")
+	@Column(name="adresse_mac")
 	private String adresseMac;
 	
-	@Column(name="date-achat")
+	@Column(name="date_achat")
 	private String dateAchat;
 	
 	@OneToOne

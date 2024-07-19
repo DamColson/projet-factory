@@ -1,6 +1,12 @@
 package ajc.formation.projet_factory.model;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="compte")
-public class Compte {
+public class Compte implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +32,6 @@ public class Compte {
 	private Role role;
 	
 	public Compte() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Compte(Integer id, String login, String password, Role role) {
@@ -83,6 +88,36 @@ public class Compte {
 			return false;
 		Compte other = (Compte) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority(role.toString()));
+	}
+
+	@Override
+	public String getUsername() {
+		return login;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 	
 	
