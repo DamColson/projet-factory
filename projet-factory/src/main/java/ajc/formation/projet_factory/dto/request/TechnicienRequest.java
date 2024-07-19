@@ -1,11 +1,7 @@
 package ajc.formation.projet_factory.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import ajc.formation.projet_factory.dto.response.CustomJsonViews;
-import ajc.formation.projet_factory.model.Ordinateur;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 
 public class TechnicienRequest {
 
