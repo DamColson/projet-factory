@@ -21,7 +21,7 @@ public interface IDAOFormateur extends JpaRepository<Formateur, Integer> {
 	@Modifying
 	public void cascadeCompteNull(@Param("compte") Compte compte);
 
-	@Query("update Formateur f set f.video_projecteur=null where f.video_projecteur=:videoProjecteur")
+	@Query("update Formateur f set f.videoProjecteur=null where f.videoProjecteur=:videoProjecteur")
 	@Transactional
 	@Modifying
 	public void cascadevideoProjecteurNull(@Param("videoProjecteur") VideoProjecteur videoProjecteur);
