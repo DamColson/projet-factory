@@ -26,8 +26,11 @@ public class VideoProjecteurResponse {
 	
 	public VideoProjecteurResponse(VideoProjecteur videoProjecteur) {
 		BeanUtils.copyProperties(videoProjecteur, this);
-		this.salleResponse = new SalleResponse(videoProjecteur.getSalle());
-		this.formateurResponse = new FormateurResponse(videoProjecteur.getFormateur());
+		if(videoProjecteur.getSalle()!=null) {
+			this.salleResponse = new SalleResponse(videoProjecteur.getSalle());
+		}
+		
+		
 	}
 
 	public String getLibelle() {

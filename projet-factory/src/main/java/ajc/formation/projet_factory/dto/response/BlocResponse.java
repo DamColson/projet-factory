@@ -36,12 +36,22 @@ public class BlocResponse {
 	
 	public BlocResponse(Bloc bloc) {
 		BeanUtils.copyProperties(bloc, this);
-		this.formateurResponse = new FormateurResponse(bloc.getFormateur());
-		this.matiereResponse = new MatiereResponse(bloc.getMatiere());
-		this.salleResponse = new SalleResponse(bloc.getSalle());
-		this.formationsResponse = bloc.getFormations().stream().map(formation->{
-			return new FormationResponse(formation);
-		}).collect(Collectors.toSet());
+		if(bloc.getFormateur()!=null) {
+			this.formateurResponse = new FormateurResponse(bloc.getFormateur());
+		}
+		if(bloc.getMatiere()!=null) {
+			this.matiereResponse = new MatiereResponse(bloc.getMatiere());
+		}
+		if(bloc.getSalle()!=null) {
+			this.salleResponse = new SalleResponse(bloc.getSalle());
+		}
+		
+		if(bloc.getFormations()!=null) {
+			this.formationsResponse = bloc.getFormations().stream().map(formation->{
+				return new FormationResponse(formation);
+			}).collect(Collectors.toSet());
+		}
+		
 	}
 
 	public LocalDate getDateDebut() {

@@ -33,11 +33,18 @@ public class GestionnaireResponse {
 
 	public GestionnaireResponse(Gestionnaire gestionnaire) {
 		BeanUtils.copyProperties(gestionnaire, this);
-		this.compteResponse = new CompteResponse(gestionnaire.getCompte());
-		this.ordinateurResponse = new OrdinateurResponse(gestionnaire.getOrdinateur());
-		this.formationsResponse = gestionnaire.getFormations().stream().map(formation->{
-			return new FormationResponse(formation);
-		}).collect(Collectors.toSet());
+		if(gestionnaire.getCompte()!=null) {
+			this.compteResponse = new CompteResponse(gestionnaire.getCompte());
+		}
+		if(gestionnaire.getOrdinateur()!=null) {
+			this.ordinateurResponse = new OrdinateurResponse(gestionnaire.getOrdinateur());
+		}
+		if(gestionnaire.getFormations()!=null) {
+			this.formationsResponse = gestionnaire.getFormations().stream().map(formation->{
+				return new FormationResponse(formation);
+			}).collect(Collectors.toSet());
+		}
+		
 	}
 
 	public String getNom() {
