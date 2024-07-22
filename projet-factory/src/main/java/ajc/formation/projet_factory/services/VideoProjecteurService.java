@@ -38,7 +38,6 @@ public class VideoProjecteurService {
 	}
 
     public void delete(VideoProjecteur videoProjecteur){
-        daoSalle.cascadeVideoProjecteurNull(videoProjecteur);
         daoFormateur.cascadevideoProjecteurNull(videoProjecteur);
 
         daoVideoProjecteur.delete(videoProjecteur);
