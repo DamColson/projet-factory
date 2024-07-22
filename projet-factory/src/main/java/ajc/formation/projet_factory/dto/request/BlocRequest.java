@@ -19,7 +19,16 @@ public class BlocRequest {
 	private Integer formateurId;
 	@NotNull
 	private Integer matiereId;
+	private Integer salleId;
 	
+	public Integer getSalleId() {
+		return salleId;
+	}
+
+	public void setSalleId(Integer salleId) {
+		this.salleId = salleId;
+	}
+
 	public BlocRequest() {
 	}
 

@@ -3,9 +3,6 @@ package ajc.formation.projet_factory.dto.response;
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonView;
-
-import ajc.formation.projet_factory.model.Compte;
-import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Technicien;
 
 public class TechnicienResponse {
