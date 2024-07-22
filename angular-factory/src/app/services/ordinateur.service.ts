@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Ordinateur } from '../model/ordinateur';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrdinateurService {
-
   url = 'http://localhost:8080/factory/api/ordinateur';
   constructor(private httpClient: HttpClient) {}
 
@@ -13,23 +15,23 @@ export class OrdinateurService {
   }
 
   public delete(id: number): Observable<void> {
-    return this.httpClient.delete<void>(${this.url}/${id});
+    return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
 
   public create(ordinateur: Ordinateur): Observable<Ordinateur> {
     return this.httpClient.post<Ordinateur>(
       this.url,
-      this.ordinateurToordinateurRequest(ordinateur)
+      this.ordinateurToOrdinateurRequest(ordinateur)
     );
   }
 
   public getById(id: number): Observable<Ordinateur> {
-    return this.httpClient.get<Ordinateur>(${this.url}/${id});
+    return this.httpClient.get<Ordinateur>(`${this.url}/${id}`);
   }
 
   public update(ordinateur: Ordinateur): Observable<Ordinateur> {
     return this.httpClient.put<Ordinateur>(
-      ${this.url}/${ordinateur.id},
+      `${this.url}/${ordinateur.id}`,
       this.ordinateurToOrdinateurRequest(ordinateur)
     );
   }
@@ -37,11 +39,11 @@ export class OrdinateurService {
   private ordinateurToOrdinateurRequest(ordinateur: Ordinateur): any {
     let obj = {
       id: ordinateur.id,
-      adresse mac: ordinateur.adresse_mac,
-      date achat: ordinateur.date_achat,
+      adresse_mac: ordinateur.adresse_mac,
+      date_achat: ordinateur.date_achat,
       libelle: ordinateur.libelle,
       OS: ordinateur.os,
-      Status : ordinateur.status,
+      Status: ordinateur.status,
     };
     return obj;
   }
