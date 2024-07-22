@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api/Competence")
+@RequestMapping("/api/competence")
 public class CompetenceRestController {
     
     @Autowired
