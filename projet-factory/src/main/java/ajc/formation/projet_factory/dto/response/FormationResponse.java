@@ -33,11 +33,6 @@ public class FormationResponse {
 		if(formation.getGestionnaire()!=null) {
 			this.gestionnaireResponse = new GestionnaireResponse(formation.getGestionnaire());
 		}
-		if(formation.getStagiaires()!=null) {
-			this.stagiairesResponse = formation.getStagiaires().stream().map(stagiaire->{
-				return new StagiaireResponse(stagiaire);
-			}).collect(Collectors.toSet());
-		}
 		if(formation.getBlocs()!=null) {
 			this.blocsResponse = formation.getBlocs().stream().map(bloc->{
 				return new BlocResponse(bloc);

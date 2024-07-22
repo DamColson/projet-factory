@@ -46,11 +46,6 @@ public class FormateurResponse {
     	if(formateur.getVideoProjecteur()!=null) {
     		this.videoProjecteurResponse = new VideoProjecteurResponse(formateur.getVideoProjecteur());
     	}
-    	if(formateur.getBlocs()!=null) {
-    		this.blocsResponse = formateur.getBlocs().stream().map(bloc->{
-        		return new BlocResponse(bloc);
-        	}).collect(Collectors.toList());
-    	}
     	if(formateur.getCompetences()!=null) {
     		this.competencesResponse = formateur.getCompetences().stream().map(competence->{
         		return new CompetenceResponse(competence);

@@ -29,7 +29,7 @@ public class CompteResponse {
 	
 	public CompteResponse(Compte compte) {
 		BeanUtils.copyProperties(compte, this,"role");
-		this.role = compte.getRole().toString();			
+		this.role = compte.getRole().toString();		
 	}
 
 	public Integer getId() {

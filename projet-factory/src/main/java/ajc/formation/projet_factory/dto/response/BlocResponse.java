@@ -46,11 +46,6 @@ public class BlocResponse {
 			this.salleResponse = new SalleResponse(bloc.getSalle());
 		}
 		
-		if(bloc.getFormations()!=null) {
-			this.formationsResponse = bloc.getFormations().stream().map(formation->{
-				return new FormationResponse(formation);
-			}).collect(Collectors.toSet());
-		}
 		
 	}
 
