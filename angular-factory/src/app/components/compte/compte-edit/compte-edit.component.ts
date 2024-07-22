@@ -9,7 +9,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { CompteService } from '../../../services/compte.service';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Compte } from '../../../model/compte';
@@ -38,7 +43,11 @@ export class CompteEditComponent {
   ];
   compte: Compte = new Compte();
 
-  constructor(private compteSrv: CompteService, private router: Router) {
+  constructor(
+    private compteSrv: CompteService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.form = new FormGroup({
       login: new FormControl('', Validators.required),
       passwordGroup: new FormGroup(
@@ -52,6 +61,20 @@ export class CompteEditComponent {
     });
   }
 
+  ngOnInit(): void {
+    // this.filiereSrv.getAll().subscribe((filieres) => {
+    //   this.filieres = filieres;
+    // });
+    //this.OrdinateurObservable = this.ordinateurSrv.getAll();
+
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id']) {
+        this.compteSrv.getById(params['id']).subscribe((compte) => {
+          this.compte = compte;
+        });
+      }
+    });
+  }
   submit() {
     let obj = {
       login: this.form.get('login')?.value,
