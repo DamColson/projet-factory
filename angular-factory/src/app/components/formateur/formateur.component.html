@@ -1,1 +1,60 @@
-<p>formateur works!</p>
+<div class="container">
+  <h1>Liste des formateurs</h1>
+  <a
+    aria-current="page"
+    routerLink="/formateur/edit"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un formateur</a
+  >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Email</td>
+        <td>Téléphone</td>
+        <td>Ordinateur</td>
+        <td>Vidéoprojecteur</td>
+        <td>Compte</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(f of formateurs; track f.id){
+      <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.prenom }}</td>
+        <td>{{ f.nom }}</td>
+        <td>{{ f.mail }}</td>
+        <td>{{ f.telephone }}</td>
+        <td>{{ f.ordinateurResponse?.id }}</td>
+        <td>{{ f.videoprojecteurResponse?.id }}</td>
+        <td>{{ f.compteResponse?.login }}</td>
+        <td>
+          <a
+            routerLink="/formateur/edit/{{ f.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(f.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
