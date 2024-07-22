@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ajc.formation.projet_factory.dao.IDAOFormation;
-import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOStagiaire;
 import ajc.formation.projet_factory.model.Stagiaire;
 
