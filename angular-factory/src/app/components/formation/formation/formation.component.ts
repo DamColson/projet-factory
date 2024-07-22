@@ -24,7 +24,7 @@ export class FormationComponent {
     });
   }
 
-  initOrdinateur() {
+  initFormation() {
     this.formationSrv.getAll().subscribe((formations) => {
       this.formations = formations;
     });
