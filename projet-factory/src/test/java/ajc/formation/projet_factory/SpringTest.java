@@ -58,9 +58,6 @@ public class SpringTest {
 	Technicien technicien = new Technicien();
 	Set<Ordinateur> ordinateurs = new HashSet<Ordinateur>();
 
-	
-	
-	
 	salle.setLibelle("une salle");
 	salle.setSuperficie(12);
 	
