@@ -38,11 +38,11 @@ import jakarta.validation.Valid;
 public class TechnicienRestController {
 	
 	@Autowired
-	TechnicienService technicienSrv;
+	private TechnicienService technicienSrv;
 	@Autowired
-	OrdinateurService ordinateurSrv;
+	private OrdinateurService ordinateurSrv;
 	@Autowired
-	CompteService compteSrv;
+	private CompteService compteSrv;
 
 	@GetMapping("")
 	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
