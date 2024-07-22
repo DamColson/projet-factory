@@ -11,6 +11,8 @@ import ajc.formation.projet_factory.model.Competence;
 public class CompetenceResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String nom;
 	@JsonView(CustomJsonViews.CompetenceWithAttributes.class)
 	private Set<MatiereResponse> matieresResponse;
@@ -23,6 +25,16 @@ public class CompetenceResponse {
 	public CompetenceResponse(Competence competence) {
 		BeanUtils.copyProperties(competence, this);
 		
+	}
+
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNom() {
