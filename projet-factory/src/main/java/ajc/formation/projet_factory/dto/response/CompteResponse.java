@@ -29,11 +29,7 @@ public class CompteResponse {
 	
 	public CompteResponse(Compte compte) {
 		BeanUtils.copyProperties(compte, this,"role");
-		this.role = compte.getRole().toString();
-		this.technicienResponse = new TechnicienResponse(compte.getTechnicien());
-		this.gestionnaireResponse = new GestionnaireResponse(compte.getGestionnaire());
-		this.formateurResponse = new FormateurResponse(compte.getFormateur());
-		this.stagiaireResponse = new StagiaireResponse(compte.getStagiaire());		
+		this.role = compte.getRole().toString();			
 	}
 
 	public Integer getId() {

@@ -36,11 +36,12 @@ public class OrdinateurResponse {
 	
 	public OrdinateurResponse(Ordinateur ordinateur) {
 		BeanUtils.copyProperties(ordinateur, this);
-		this.technicienResponse = new TechnicienResponse(ordinateur.getTechnicien());
-		this.stagiaireResponse = new StagiaireResponse(ordinateur.getStagiaire());
-		this.gestionnaireResponse = new GestionnaireResponse(ordinateur.getGestionnaire());
-		this.formateurResponse = new FormateurResponse(ordinateur.getFormateur());
-		this.salleResponse = new SalleResponse(ordinateur.getSalle());
+		if(ordinateur.getSalle()!=null) {
+			this.salleResponse = new SalleResponse(ordinateur.getSalle());
+		}
+		
+		
+		
 	}
 
 	public Integer getId() {

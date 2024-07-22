@@ -26,12 +26,18 @@ public class MatiereResponse {
 	
 	public MatiereResponse(Matiere matiere) {
 		BeanUtils.copyProperties(matiere, this);
-		this.competencesResponse = matiere.getCompetences().stream().map(competence->{
-			return new CompetenceResponse(competence);
-		}).collect(Collectors.toSet());
-		this.blocsResponse = matiere.getBlocs().stream().map(bloc->{
-			return new BlocResponse(bloc);
-		}).collect(Collectors.toSet());
+		if(matiere.getBlocs()!=null) {
+			this.blocsResponse = matiere.getBlocs().stream().map(bloc->{
+				return new BlocResponse(bloc);
+			}).collect(Collectors.toSet());
+		}
+		if(matiere.getBlocs()!=null) {
+			this.competencesResponse = matiere.getCompetences().stream().map(competence->{
+				return new CompetenceResponse(competence);
+			}).collect(Collectors.toSet());
+		}
+		
+		
 	}
 
 	public String getTitre() {

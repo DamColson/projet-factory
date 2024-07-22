@@ -28,9 +28,16 @@ public class StagiaireResponse {
 
 	public StagiaireResponse(Stagiaire stagiaire) {
 		BeanUtils.copyProperties(stagiaire, this);
-		this.compteResponse = new CompteResponse(stagiaire.getCompte());
-		this.ordinateurResponse = new OrdinateurResponse(stagiaire.getOrdinateur());
-		this.formationResponse = new FormationResponse(stagiaire.getFormation());
+		if(stagiaire.getCompte()!=null) {
+			this.compteResponse = new CompteResponse(stagiaire.getCompte());
+		}
+		if(stagiaire.getOrdinateur()!=null) {
+			this.ordinateurResponse = new OrdinateurResponse(stagiaire.getOrdinateur());
+		}
+		if(stagiaire.getFormation()!=null) {
+			this.formationResponse = new FormationResponse(stagiaire.getFormation());
+		}
+		
 	}
 
 	public String getNom() {

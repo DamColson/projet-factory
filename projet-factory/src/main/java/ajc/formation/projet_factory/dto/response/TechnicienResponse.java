@@ -30,8 +30,13 @@ public class TechnicienResponse {
 	
 	public TechnicienResponse(Technicien technicien) {
 		BeanUtils.copyProperties(technicien, this);
-		this.ordinateurResponse = new OrdinateurResponse(technicien.getOrdinateur());
-		this.compteResponse = new CompteResponse(technicien.getCompte());
+		if(technicien.getOrdinateur()!=null) {
+			this.ordinateurResponse = new OrdinateurResponse(technicien.getOrdinateur());
+		}
+		if(technicien.getCompte()!=null) {
+			this.compteResponse = new CompteResponse(technicien.getCompte());
+		}
+		
 	}
 
 	public Integer getId() {

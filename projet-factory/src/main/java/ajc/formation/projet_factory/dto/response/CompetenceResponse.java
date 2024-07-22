@@ -23,12 +23,17 @@ public class CompetenceResponse {
 	
 	public CompetenceResponse(Competence competence) {
 		BeanUtils.copyProperties(competence, this);
-		this.matieresResponse = competence.getMatieres().stream().map(matiere->{
-			return new MatiereResponse(matiere);
-		}).collect(Collectors.toSet());
-		this.formateursResponse = competence.getFormateurs().stream().map(formateur->{
-			return new FormateurResponse(formateur);
-		}).collect(Collectors.toSet());
+		if(competence.getMatieres()!=null) {
+			this.matieresResponse = competence.getMatieres().stream().map(matiere->{
+				return new MatiereResponse(matiere);
+			}).collect(Collectors.toSet());
+		}
+		if(competence.getFormateurs()!=null) {
+			this.formateursResponse = competence.getFormateurs().stream().map(formateur->{
+				return new FormateurResponse(formateur);
+			}).collect(Collectors.toSet());
+		}
+		
 	}
 
 	public String getNom() {

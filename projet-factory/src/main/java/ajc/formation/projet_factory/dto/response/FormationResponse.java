@@ -10,9 +10,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.model.Formation;
 
-
-
-
 public class FormationResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
@@ -33,13 +30,20 @@ public class FormationResponse {
 	
 	public FormationResponse(Formation formation) {
 		BeanUtils.copyProperties(formation, this);
-		this.gestionnaireResponse = new GestionnaireResponse(formation.getGestionnaire());
-		this.stagiairesResponse = formation.getStagiaires().stream().map(stagiaire->{
-			return new StagiaireResponse(stagiaire);
-		}).collect(Collectors.toSet());
-		this.blocsResponse = formation.getBlocs().stream().map(bloc->{
-			return new BlocResponse(bloc);
-		}).collect(Collectors.toSet());
+		if(formation.getGestionnaire()!=null) {
+			this.gestionnaireResponse = new GestionnaireResponse(formation.getGestionnaire());
+		}
+		if(formation.getStagiaires()!=null) {
+			this.stagiairesResponse = formation.getStagiaires().stream().map(stagiaire->{
+				return new StagiaireResponse(stagiaire);
+			}).collect(Collectors.toSet());
+		}
+		if(formation.getBlocs()!=null) {
+			this.blocsResponse = formation.getBlocs().stream().map(bloc->{
+				return new BlocResponse(bloc);
+			}).collect(Collectors.toSet());
+		}
+		
 	}
 
 	public LocalDate getDebut() {

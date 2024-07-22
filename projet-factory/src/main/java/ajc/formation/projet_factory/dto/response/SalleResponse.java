@@ -27,13 +27,20 @@ public class SalleResponse {
 
 	public SalleResponse(Salle salle) {
 		BeanUtils.copyProperties(salle, this);
-		this.videoProjecteurResponse = new VideoProjecteurResponse(salle.getVideoProjecteurs());
-		this.ordinateursResponse = salle.getOrdinateurs().stream().map(ordinateur -> {
-			return new OrdinateurResponse(ordinateur);
-		}).collect(Collectors.toSet());
-		this.blocsResponse = salle.getBlocs().stream().map(bloc -> {
-			return new BlocResponse(bloc);
-		}).collect(Collectors.toSet());
+		if(salle.getVideoProjecteurs()!=null) {
+			this.videoProjecteurResponse = new VideoProjecteurResponse(salle.getVideoProjecteurs());
+		}
+		if(salle.getOrdinateurs()!=null) {
+			this.ordinateursResponse = salle.getOrdinateurs().stream().map(ordinateur -> {
+				return new OrdinateurResponse(ordinateur);
+			}).collect(Collectors.toSet());
+		}
+		if(salle.getBlocs()!=null) {
+			this.blocsResponse = salle.getBlocs().stream().map(bloc -> {
+				return new BlocResponse(bloc);
+			}).collect(Collectors.toSet());
+		}
+		
 	}
 
 	public String getLibelle() {
