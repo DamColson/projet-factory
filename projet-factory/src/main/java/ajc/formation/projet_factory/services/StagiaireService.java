@@ -13,11 +13,6 @@ public class StagiaireService {
 
     @Autowired
     private IDAOStagiaire daoStagiaire;
-    @Autowired
-    private IDAOOrdinateur daoOrdinateur;
-    @Autowired
-    private IDAOFormation daoFormation;
-
 
     public List<Stagiaire> getAll(){
         return daoStagiaire.findAll();
