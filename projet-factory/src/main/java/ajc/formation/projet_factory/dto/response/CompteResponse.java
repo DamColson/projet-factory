@@ -15,6 +15,14 @@ public class CompteResponse {
 	private String login;
 	@JsonView(CustomJsonViews.Common.class)
 	private String role;
+	@JsonView(CustomJsonViews.CompteWithPerson.class)
+	private TechnicienResponse technicienResponse;
+	@JsonView(CustomJsonViews.CompteWithPerson.class)
+	private GestionnaireResponse gestionnaireResponse;
+	@JsonView(CustomJsonViews.CompteWithPerson.class)
+	private FormateurResponse formateurResponse;
+	@JsonView(CustomJsonViews.CompteWithPerson.class)
+	private StagiaireResponse stagiaireResponse;
 	
 	public CompteResponse() {
 	}
@@ -22,6 +30,10 @@ public class CompteResponse {
 	public CompteResponse(Compte compte) {
 		BeanUtils.copyProperties(compte, this,"role");
 		this.role = compte.getRole().toString();
+		this.technicienResponse = new TechnicienResponse(compte.getTechnicien());
+		this.gestionnaireResponse = new GestionnaireResponse(compte.getGestionnaire());
+		this.formateurResponse = new FormateurResponse(compte.getFormateur());
+		this.stagiaireResponse = new StagiaireResponse(compte.getStagiaire());		
 	}
 
 	public Integer getId() {
@@ -47,5 +59,38 @@ public class CompteResponse {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public TechnicienResponse getTechnicienResponse() {
+		return technicienResponse;
+	}
+
+	public void setTechnicienResponse(TechnicienResponse technicienResponse) {
+		this.technicienResponse = technicienResponse;
+	}
+
+	public GestionnaireResponse getGestionnaireResponse() {
+		return gestionnaireResponse;
+	}
+
+	public void setGestionnaireResponse(GestionnaireResponse gestionnaireResponse) {
+		this.gestionnaireResponse = gestionnaireResponse;
+	}
+
+	public FormateurResponse getFormateurResponse() {
+		return formateurResponse;
+	}
+
+	public void setFormateurResponse(FormateurResponse formateurResponse) {
+		this.formateurResponse = formateurResponse;
+	}
+
+	public StagiaireResponse getStagiaireResponse() {
+		return stagiaireResponse;
+	}
+
+	public void setStagiaireResponse(StagiaireResponse stagiaireResponse) {
+		this.stagiaireResponse = stagiaireResponse;
+	}
+	
 		
 }

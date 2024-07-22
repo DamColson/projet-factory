@@ -26,9 +26,9 @@ public class VideoProjecteur {
 	private String dateAchat;
 	
 	@OneToOne
-	private Salle emplacement;
+	private Salle salle;
 	
-	@OneToOne(mappedBy = "emprunt")
+	@OneToOne(mappedBy = "videoProjecteur")
 	private Formateur formateur;
 	
 	private String status;
@@ -37,14 +37,14 @@ public class VideoProjecteur {
 	}
 
 	
-	public VideoProjecteur(Integer id, String libelle, String adresseMac, String dateAchat, Salle emplacement,
+	public VideoProjecteur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle,
 			Formateur formateur, String status) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.adresseMac = adresseMac;
 		this.dateAchat = dateAchat;
-		this.emplacement = emplacement;
+		this.salle = salle;
 		this.formateur = formateur;
 		this.status = status;
 	}
@@ -73,14 +73,6 @@ public class VideoProjecteur {
 		this.dateAchat = dateAchat;
 	}
 
-	public Salle getEmplacemeht() {
-		return emplacement;
-	}
-
-	public void setEmplacemeht(Salle emplacemeht) {
-		this.emplacement = emplacemeht;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -97,12 +89,12 @@ public class VideoProjecteur {
 		this.id = id;
 	}
 
-	public Salle getEmplacement() {
-		return emplacement;
+	public Salle getSalle() {
+		return salle;
 	}
 
-	public void setEmplacement(Salle emplacement) {
-		this.emplacement = emplacement;
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
 
 	public Formateur getFormateur() {

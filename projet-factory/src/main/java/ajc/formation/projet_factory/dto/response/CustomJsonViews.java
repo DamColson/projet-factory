@@ -6,27 +6,51 @@ public class CustomJsonViews {
 
 	}
 
-	public static class StagiaireWithFiliere extends Common {
-
-	}
-
-	public static class FiliereWithStagiaire extends Common {
-
-	}
-
-	public static class OrdinateurWithStagiaire extends Common {
-
-	}
-
-	public static class StagiaireWithOrdinateur extends StagiaireWithFiliere {
+	public static class OrdinateurWithAttributes extends Common {
 
 	}
 	
-	public static class TechnicienWithOrdinateur extends Common{
+	public static class CompteWithPerson extends Common{
 		
 	}
 	
-	public static class OrdinateurWithTechnicien extends Common{
+	public static class BlocWithAttributes extends Common{
+		
+	}
+	
+	public static class CompetenceWithAttributes extends Common{
+		
+	}
+	
+	public static class FormateurWithAttributes extends Common{
+		
+	}
+	
+	public static class FormationWithAttributes extends Common{
+		
+	}
+	
+	public static class GestionnaireWithAttributes extends Common{
+		
+	}
+	
+	public static class MatiereWithAttributes extends Common{
+		
+	}
+	
+	public static class SalleWithAttributes extends Common{
+		
+	}
+	
+	public static class StagiaireWithAttributes extends Common{
+		
+	}
+	
+	public static class TechnicienWithAttributes extends Common{
+		
+	}
+	
+	public static class VideoProjecteurWithAttributes extends Common{
 		
 	}
 }
