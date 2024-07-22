@@ -57,7 +57,7 @@ export class CompteEditComponent {
         },
         this.passwordEtConfirmationEgaux
       ),
-      role: new FormControl(''),
+      role: new FormControl('', Validators.required),
     });
   }
 
@@ -79,6 +79,7 @@ export class CompteEditComponent {
     let obj = {
       login: this.form.get('login')?.value,
       password: this.form.get('passwordGroup.password')?.value,
+      role: this.form.get('role')?.value,
     };
     this.compteSrv.create(obj).subscribe((data) => {
       this.router.navigateByUrl('/login');
