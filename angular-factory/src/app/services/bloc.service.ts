@@ -37,11 +37,11 @@ export class BlocService {
   private blocToBlocRequest(bloc: Bloc): any {
     let obj = {
       id: bloc.id,
-      matiere_id: bloc.matiere_id,
-      salle_id: bloc.salle_id,
-      date_debut: bloc.date_debut,
-      date_fin: bloc.date_fin,
-      formateur: bloc.formateur,
+      date_debut: bloc.dateDebut,
+      date_fin: bloc.dateFin,
+      matiere_id: bloc.matiereResponse?.id,
+      salle_id: bloc.salleResponse?.id,
+      formateur: bloc.formateurResponse?.id,
       code: bloc.code,
       Objectif: bloc.objectif,
     };

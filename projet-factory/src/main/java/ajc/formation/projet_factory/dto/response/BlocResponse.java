@@ -13,6 +13,8 @@ import ajc.formation.projet_factory.model.Bloc;
 public class BlocResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate dateDebut;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate dateFin;
@@ -46,6 +48,15 @@ public class BlocResponse {
 		}
 		
 		
+	}
+
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public LocalDate getDateDebut() {

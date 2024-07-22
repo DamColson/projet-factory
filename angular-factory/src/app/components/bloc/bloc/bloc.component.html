@@ -12,11 +12,11 @@
     <thead>
       <tr>
         <td>Id</td>
-        <td>Salle id</td>
-        <td>Matiere id</td>
-        <td>Date début</td>
-        <td>Date fin</td>
-        <td>Formateur id</td>
+        <td>Date Début</td>
+        <td>Date Fin</td>
+        <td>Salle</td>
+        <td>Matiere</td>
+        <td>Formateur</td>
         <td>Code</td>
         <td>Objectif</td>
         <td>Editer</td>
@@ -27,11 +27,11 @@
       @for(b of blocs; track b.id){
       <tr>
         <td>{{ b.id }}</td>
-        <td>{{ b.salle_id }}</td>
-        <td>{{ b.matiere_id }}</td>
-        <td>{{ b.date_debut | date : "dd/MM/yyyy" }}</td>
-        <td>{{ b.date_fin | date : "dd/MM/yyyy" }}</td>
-        <td>{{ b.formateur }}</td>
+        <td>{{ b.dateDebut | date : "dd/MM/yyyy" }}</td>
+        <td>{{ b.dateFin | date : "dd/MM/yyyy" }}</td>
+        <td>{{ b.salleResponse?.libelle }}</td>
+        <td>{{ b.matiereResponse?.titre }}</td>
+        <td>{{ b.formateurResponse?.nom }}</td>
         <td>{{ b.code }}</td>
         <td>{{ b.objectif }}</td>
 

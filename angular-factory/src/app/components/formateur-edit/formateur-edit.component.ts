@@ -52,17 +52,7 @@ export class FormateurEditComponent {
     private compteSrv: CompteService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-    this.form = new FormGroup({
-      nom: new FormControl('', Validators.required),
-      prenom: new FormControl('', Validators.required),
-      mail: new FormControl('', Validators.required),
-      telephone: new FormControl('', Validators.required),
-      ordinateurResponse: new FormControl('', Validators.required),
-      videoprojecteurResponse: new FormControl('', Validators.required),
-      compteResponse: new FormControl('', Validators.required),
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     // this.filiereSrv.getAll().subscribe((filieres) => {
