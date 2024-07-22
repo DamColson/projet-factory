@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOBloc;
 import ajc.formation.projet_factory.dao.IDAOCompetence;
-import ajc.formation.projet_factory.dao.IDAOCompte;
 import ajc.formation.projet_factory.dao.IDAOFormateur;
-import ajc.formation.projet_factory.dao.IDAOOrdinateur;
-import ajc.formation.projet_factory.dao.IDAOVideoProjecteur;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.model.Formateur;
 
@@ -22,15 +19,10 @@ public class FormateurService {
 	@Autowired
 	private IDAOFormateur daoFormateur;
 	@Autowired
-	private IDAOOrdinateur daoOrdinateur;
-	@Autowired
 	private IDAOBloc daoBloc;
 	@Autowired
-	private IDAOVideoProjecteur daoVideoProjecteur;
-	@Autowired
 	private IDAOCompetence daoCompetence;
-	@Autowired
-	private IDAOCompte daoCompte;
+
 	
 	
 	public List<Formateur> getAll(){
@@ -53,9 +45,7 @@ public class FormateurService {
 	}
 	
 	public void delete(Formateur formateur) {
-		daoOrdinateur.cascadeFormateurNull(formateur);
 		daoBloc.cascadeFormateurNull(formateur);
-		daoCompte.cascadeFormNull(formateur);
 		List<Competence> competences = daoCompetence.findByFormateurs(formateur);
 		competences = competences.stream().peek(competence->competence.getFormateurs().remove(formateur)).collect(Collectors.toList());
 		daoCompetence.saveAll(competences);
