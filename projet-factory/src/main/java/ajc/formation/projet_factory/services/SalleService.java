@@ -2,21 +2,26 @@ package ajc.formation.projet_factory.services;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ajc.formation.projet_factory.dao.IDAOBloc;
+import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOSalle;
+import ajc.formation.projet_factory.dao.IDAOVideoProjecteur;
 import ajc.formation.projet_factory.model.Salle;
-import ajc.formation.projet_factory.model.Technicien;
 
 @Service
 public class SalleService {
 
 	@Autowired
-	IDAOSalle daoSalle;
-	
+	private IDAOSalle daoSalle;
+	@Autowired
+	private IDAOOrdinateur daoOrdinateur;
+	@Autowired
+	private IDAOBloc daoBloc;
+	@Autowired
+	private IDAOVideoProjecteur daoVideoProjecteur;
 	
 	public List<Salle> getAll(){
 		return daoSalle.findAll();
@@ -42,7 +47,11 @@ public class SalleService {
 	}
 	
 	public void delete(Salle salle) {
-		
+		daoOrdinateur.cascadeSalleNull(salle);
+		daoBloc.cascadeSalleNull(salle);
+		daoVideoProjecteur.cascadeSalleNull(salle);
+
+		daoSalle.delete(salle);
 	}
 }
 

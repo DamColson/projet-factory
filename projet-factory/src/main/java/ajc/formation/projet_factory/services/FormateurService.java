@@ -55,7 +55,7 @@ public class FormateurService {
 	
 	public void delete(Formateur formateur) {
 			
-		daoVideoProjecteur.cascadeNull(formateur);
+		daoVideoProjecteur.cascadeFormateurNull(formateur);
 		daoOrdinateur.cascadeFormateurNull(formateur);
 		daoBloc.cascadeFormateurNull(formateur);
 		daoCompte.cascadeFormNull(formateur);
