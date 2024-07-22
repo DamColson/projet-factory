@@ -3,31 +3,24 @@ package ajc.formation.projet_factory.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-
-public class TechnicienRequest {
+public class StagiaireRequest {
 
 	@NotBlank
 	private String nom;
 	@NotBlank
-	private String prenom;
-	private String telephone;
+    private String prenom;
 	@NotBlank
-	private String mail;	
-	private Integer ordinateurId;
-	@NotNull
-	private Integer compteId;
-	
-	public TechnicienRequest() {
-	}
-	
-	public TechnicienRequest(@NotBlank String nom, @NotBlank String prenom, String telephone, @NotBlank String mail,
-			@NotNull Integer ordinateurId, @NotNull Integer compteId) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-		this.mail = mail;
-		this.ordinateurId = ordinateurId;
-		this.compteId = compteId;
+    private String telephone;
+	@NotBlank
+    private String mail;
+    @NotNull
+    private Integer compteId;
+    
+    private Integer ordinateurId;
+    @NotNull
+    private Integer formationId;
+    
+    public StagiaireRequest() {
 	}
 
 	public String getNom() {
@@ -62,6 +55,14 @@ public class TechnicienRequest {
 		this.mail = mail;
 	}
 
+	public Integer getCompteId() {
+		return compteId;
+	}
+
+	public void setCompteId(Integer compteId) {
+		this.compteId = compteId;
+	}
+
 	public Integer getOrdinateurId() {
 		return ordinateurId;
 	}
@@ -70,15 +71,13 @@ public class TechnicienRequest {
 		this.ordinateurId = ordinateurId;
 	}
 
-	public Integer getCompteId() {
-		return compteId;
+	public Integer getFormationId() {
+		return formationId;
 	}
 
-	public void setCompteId(Integer compteId) {
-		this.compteId = compteId;
+	public void setFormationId(Integer formationId) {
+		this.formationId = formationId;
 	}
-	
-	
-	
-	
+    
+    
 }
