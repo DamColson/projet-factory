@@ -13,7 +13,6 @@ import ajc.formation.projet_factory.dao.IDAOFormateur;
 import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOVideoProjecteur;
 import ajc.formation.projet_factory.model.Competence;
-import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Formateur;
 
 @Service
