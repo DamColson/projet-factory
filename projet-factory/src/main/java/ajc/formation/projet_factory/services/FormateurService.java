@@ -57,7 +57,7 @@ public class FormateurService {
 			
 		daoVideoProjecteur.cascadeNull(formateur);
 		daoOrdinateur.cascadeNull(formateur);
-		daoBloc.cascadeNull(formateur);
+		daoBloc.cascadeFormateurNull(formateur);
 		daoCompte.cascadeFormNull(formateur);
 		List<Competence> competences = daoCompetence.findByFormateurs(formateur);
 		competences = competences.stream().peek(competence->competence.getFormateurs().remove(formateur)).collect(Collectors.toList());
