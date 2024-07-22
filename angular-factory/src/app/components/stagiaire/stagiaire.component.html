@@ -1,12 +1,11 @@
 <div class="container">
-  <h1>Liste des Comptes</h1>
+  <h1>Liste des stagiaires</h1>
   <a
-    class="nav-link active"
     aria-current="page"
-    routerLink="/compte/edit"
+    routerLink="/stagiaire/edit"
     routerLinkActive="router-link-active"
     class="btn btn-primary m-3"
-    >Création d'un compte</a
+    >Création d'un stagiaire</a
   >
   @if(showMessage){
   <div class="alert {{ style }}">{{ message }}</div>
@@ -15,36 +14,43 @@
     <thead>
       <tr>
         <td>Id</td>
-        <td>Login</td>
-        <td>Rôle</td>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Email</td>
+        <td>Téléphone</td>
+        <td>Ordinateur</td>
+        <td>Compte</td>
+        <td>Formation</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
     </thead>
     <tbody>
-      @for(c of comptes; track c.id){
+      @for(s of stagiaires; track s.id){
       <tr>
-        <td>{{ c.id }}</td>
-        <td>{{ c.login }}</td>
-        <td>{{ c.role }}</td>
+        <td>{{ s.id }}</td>
+        <td>{{ s.prenom }}</td>
+        <td>{{ s.nom }}</td>
+        <td>{{ s.mail }}</td>
+        <td>{{ s.telephone }}</td>
+        <td>{{ s.ordinateurResponse?.id }}</td>
+        <td>{{ s.compteResponse?.login }}</td>
         <td>
           <a
-            routerLink="/compte/edit/{{ c.id }}"
+            routerLink="/stagiaire/edit/{{ s.id }}"
             routerLinkActive="router-link-active"
             class="btn btn-outline-primary"
             >Editer</a
           >
         </td>
         <td>
-          @if(c.role=="ROLE_ADMIN"){ Aucune supression possible }@else {
           <button
             class="btn btn-outline-danger"
-            (click)="delete(c.id!)"
+            (click)="delete(s.id!)"
             value="Supprimer"
           >
             Supprimer
           </button>
-          }
         </td>
       </tr>
       }

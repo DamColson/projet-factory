@@ -1,12 +1,11 @@
 <div class="container">
-  <h1>Liste des Comptes</h1>
+  <h1>Liste des techniciens</h1>
   <a
-    class="nav-link active"
     aria-current="page"
-    routerLink="/compte/edit"
+    routerLink="/technicien/edit"
     routerLinkActive="router-link-active"
     class="btn btn-primary m-3"
-    >Création d'un compte</a
+    >Création d'un technicien</a
   >
   @if(showMessage){
   <div class="alert {{ style }}">{{ message }}</div>
@@ -15,36 +14,42 @@
     <thead>
       <tr>
         <td>Id</td>
-        <td>Login</td>
-        <td>Rôle</td>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Email</td>
+        <td>Téléphone</td>
+        <td>Ordinateur</td>
+        <td>Compte</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
     </thead>
     <tbody>
-      @for(c of comptes; track c.id){
+      @for(t of techniciens; track t.id){
       <tr>
-        <td>{{ c.id }}</td>
-        <td>{{ c.login }}</td>
-        <td>{{ c.role }}</td>
+        <td>{{ t.id }}</td>
+        <td>{{ t.prenom }}</td>
+        <td>{{ t.nom }}</td>
+        <td>{{ t.mail }}</td>
+        <td>{{ t.telephone }}</td>
+        <td>{{ t.ordinateurResponse?.id }}</td>
+        <td>{{ t.compteResponse?.login }}</td>
         <td>
           <a
-            routerLink="/compte/edit/{{ c.id }}"
+            routerLink="/technicien/edit/{{ t.id }}"
             routerLinkActive="router-link-active"
             class="btn btn-outline-primary"
             >Editer</a
           >
         </td>
         <td>
-          @if(c.role=="ROLE_ADMIN"){ Aucune supression possible }@else {
           <button
             class="btn btn-outline-danger"
-            (click)="delete(c.id!)"
+            (click)="delete(t.id!)"
             value="Supprimer"
           >
             Supprimer
           </button>
-          }
         </td>
       </tr>
       }

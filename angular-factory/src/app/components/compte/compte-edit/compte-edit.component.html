@@ -1,1 +1,72 @@
-<p>compte-edit works!</p>
+<div class="container">
+  @if(compte.id){
+  <h1>Edition du compte numéro {{ compte.id }}</h1>
+  }@else {
+  <h1>Création d'un compte</h1>
+  }
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <div class="form-group mb-3">
+      <label class="mb-2" for="login">Login :</label>
+      <input id="login" class="form-control" formControlName="login" />
+      @if(form.get('login')?.dirty && form.get('login')?.invalid){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+
+    <div formGroupName="passwordGroup">
+      <div class="form-group mb-3">
+        <label class="mb-2" for="password">Password :</label>
+        <input
+          id="password"
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        @if(form.get('passwordGroup.password')?.dirty &&
+        form.get('passwordGroup.password')?.invalid){
+        <div class="text-danger fst-italic">*obligatoire</div>
+        }
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-2" for="confirmation"
+          >Confirmation de Password :</label
+        >
+        <input
+          id="confirmation"
+          type="password"
+          class="form-control"
+          formControlName="confirmation"
+        />
+      </div>
+      @if(form.get('passwordGroup')?.hasError('passwordEtConfirmationNotEquals')){
+      <div class="text-danger fst-italic">
+        Les Mots de passes ne sont pas identifiques
+      </div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label class="mb-2" for="role">Rôle :</label>
+      <select
+        [compareWith]="compareFn"
+        formControlName="role"
+        id="role"
+        class="form-control"
+      >
+        @for (r of roles; track $index) {
+        <option [ngValue]="r">
+          {{ r }}
+        </option>
+        }
+      </select>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Envoyer
+      </button>
+    </div>
+  </form>
+</div>

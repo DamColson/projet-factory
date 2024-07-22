@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { Compte } from '../../../model/compte';
-import { CompteService } from '../../../services/compte.service';
+import { Stagiaire } from '../../model/stagiaire';
+import { StagiaireService } from '../../services/stagiaire.service';
 
 @Component({
-  selector: 'app-compte',
+  selector: 'app-stagiaire',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './compte.component.html',
-  styleUrl: './compte.component.css',
+  templateUrl: './stagiaire.component.html',
+  styleUrl: './stagiaire.component.css',
 })
-export class CompteComponent {
-  comptes: Compte[] = [];
+export class StagiaireComponent {
+  stagiaires: Stagiaire[] = [];
   message = '';
   showMessage = false;
   style = 'info';
 
   constructor(
-    private compteSrv: CompteService,
+    private stagiaireSrv: StagiaireService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initTechnicien();
+    this.initStagiaires();
     this.initMessage();
   }
 
-  initTechnicien() {
-    this.compteSrv.getAll().subscribe((comptes) => {
-      this.comptes = comptes;
+  initStagiaires() {
+    this.stagiaireSrv.getAll().subscribe((stagiaires) => {
+      this.stagiaires = stagiaires;
     });
   }
 
@@ -36,10 +36,10 @@ export class CompteComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
         if (params['q'] == 'create') {
-          this.message = `Compte ${params['id']} crée `;
+          this.message = `Stagiaire ${params['id']} crée `;
           this.style = 'alert-success';
         } else if (params['q'] == 'update') {
-          this.message = `Compte ${params['id']} mis à jour `;
+          this.message = `Stagiaire ${params['id']} mis à jour `;
           this.style = 'alert-info';
         }
       }
@@ -48,9 +48,9 @@ export class CompteComponent {
   }
 
   delete(id: number) {
-    this.compteSrv.delete(id).subscribe(() => {
-      this.initTechnicien();
-      this.message = `Compte ${id} supprimé `;
+    this.stagiaireSrv.delete(id).subscribe(() => {
+      this.initStagiaires();
+      this.message = `Stagiaire ${id} supprimé `;
       this.style = 'alert-danger';
     });
   }

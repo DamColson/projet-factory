@@ -54,3 +54,19 @@ img:hover {
   margin-top: 17px;
   text-align: center;
 }
+
+.sousmenuPersonne {
+  background-color: #f28c1c;
+  margin-top: 9px;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0 0 5% 5%;
+}
+
+.sousmenuPersonne li a:hover {
+  background-color: orange !important;
+}
+
+.dropdown-toggle:visited {
+  color: white !important;
+}

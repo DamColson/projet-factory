@@ -22,6 +22,14 @@ import { SalleEditComponent } from './components/salle/salle-edit/salle-edit.com
 import { CompteComponent } from './components/compte/compte/compte.component';
 import { CompteEditComponent } from './components/compte/compte-edit/compte-edit.component';
 import { authGuard } from './guards/auth.guard';
+import { StagiaireComponent } from './components/stagiaire/stagiaire.component';
+import { StagiaireEditComponent } from './components/stagiaire-edit/stagiaire-edit.component';
+import { FormateurComponent } from './components/formateur/formateur.component';
+import { FormateurEditComponent } from './components/formateur-edit/formateur-edit.component';
+import { TechnicienEditComponent } from './components/technicien-edit/technicien-edit.component';
+import { TechnicienComponent } from './components/technicien/technicien.component';
+import { GestionnaireEditComponent } from './components/gestionnaire-edit/gestionnaire-edit.component';
+import { GestionnaireComponent } from './components/gestionnaire/gestionnaire.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,6 +50,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'ordinateur/edit/:id',
+    component: OrdinateurEditComponent,
+    canActivate: [authGuard],
+  },
+  {
     path: 'videoprojecteur',
     component: VideoprojecteurComponent,
     canActivate: [authGuard],
@@ -51,8 +64,18 @@ export const routes: Routes = [
     component: VideoprojecteurEditComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'videoprojecteur/edit/:id',
+    component: VideoprojecteurEditComponent,
+    canActivate: [authGuard],
+  },
   { path: 'bloc', component: BlocComponent, canActivate: [authGuard] },
   { path: 'bloc/edit', component: BlocEditComponent, canActivate: [authGuard] },
+  {
+    path: 'bloc/edit/:id',
+    component: BlocEditComponent,
+    canActivate: [authGuard],
+  },
   {
     path: 'competence',
     component: CompetenceComponent,
@@ -60,6 +83,11 @@ export const routes: Routes = [
   },
   {
     path: 'competence/edit',
+    component: CompetenceEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'competence/edit/:id',
     component: CompetenceEditComponent,
     canActivate: [authGuard],
   },
@@ -73,9 +101,19 @@ export const routes: Routes = [
     component: FormationEditComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'formation/edit/:id',
+    component: FormationEditComponent,
+    canActivate: [authGuard],
+  },
   { path: 'matiere', component: MatiereComponent, canActivate: [authGuard] },
   {
     path: 'matiere/edit',
+    component: MatiereEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'matiere/edit/:id',
     component: MatiereEditComponent,
     canActivate: [authGuard],
   },
@@ -85,10 +123,80 @@ export const routes: Routes = [
     component: SalleEditComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'salle/edit/:id',
+    component: SalleEditComponent,
+    canActivate: [authGuard],
+  },
   { path: 'compte', component: CompteComponent, canActivate: [authGuard] },
   {
     path: 'compte/edit',
     component: CompteEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'compte/edit/:id',
+    component: CompteEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'stagiaire',
+    component: StagiaireComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'stagiaire/edit',
+    component: StagiaireEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'stagiaire/edit/:id',
+    component: StagiaireEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'formateur',
+    component: FormateurComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'formateur/edit',
+    component: FormateurEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'formateur/edit/:id',
+    component: FormateurEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'technicien',
+    component: TechnicienComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'technicien/edit',
+    component: TechnicienEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'technicien/edit/:id',
+    component: TechnicienEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'gestionnaire',
+    component: GestionnaireComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'gestionnaire/edit',
+    component: GestionnaireEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'gestionnaire/edit/:id',
+    component: GestionnaireEditComponent,
     canActivate: [authGuard],
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
