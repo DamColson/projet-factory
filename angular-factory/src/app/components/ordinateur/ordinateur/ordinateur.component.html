@@ -1,1 +1,55 @@
-<p>ordinateur works!</p>
+<div class="container">
+  <h1>Liste des ordinateurs</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/ordinateur/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un ordinateur</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>adresse mac</td>
+        <td>Date achat</td>
+        <td>Libelle</td>
+        <td>OS</td>
+        <td>status</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(o of ordinateurs; track o.id){
+      <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.adresse_mac }}</td>
+        <td>{{ o.date_achat | date : "dd/MM/yyyy" }}</td>
+        <td>{{ o.libelle }}</td>
+        <td>{{ o.os }}</td>
+        <td>{{ o.status }}</td>
+
+        <td>
+          <a
+            routerLink="/ordinateur/edit/{{ o.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(o.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

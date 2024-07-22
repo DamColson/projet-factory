@@ -1,1 +1,59 @@
-<p>bloc works!</p>
+<div class="container">
+  <h1>Liste des blocs</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/bloc/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un bloc</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Salle id</td>
+        <td>Matiere id</td>
+        <td>Date début</td>
+        <td>Date fin</td>
+        <td>Formateur id</td>
+        <td>Code</td>
+        <td>Objectif</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(b of blocs; track b.id){
+      <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.salle_id }}</td>
+        <td>{{ b.matiere_id }}</td>
+        <td>{{ b.date_debut | date : "dd/MM/yyyy" }}</td>
+        <td>{{ b.date_fin | date : "dd/MM/yyyy" }}</td>
+        <td>{{ b.formateur }}</td>
+        <td>{{ b.code }}</td>
+        <td>{{ b.objectif }}</td>
+
+        <td>
+          <a
+            routerLink="/bloc/edit/{{ b.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(b.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
