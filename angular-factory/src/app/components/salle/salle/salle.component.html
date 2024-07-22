@@ -1,1 +1,49 @@
-<p>salle works!</p>
+<div class="container">
+  <h1>Liste des salles</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/salle/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'une salle</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>superficie</td>
+        <td>libelle</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(s of salles; track s.id){
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.superficie }}</td>
+        <td>{{ s.libelle }}</td>
+
+        <td>
+          <a
+            routerLink="/salle/edit/{{ s.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(s.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
