@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { Compte } from '../../../model/compte';
-import { CompteService } from '../../../services/compte.service';
+import { Technicien } from '../../model/technicien';
+import { TechnicienService } from '../../services/technicien.service';
 
 @Component({
-  selector: 'app-compte',
+  selector: 'app-technicien',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './compte.component.html',
-  styleUrl: './compte.component.css',
+  templateUrl: './technicien.component.html',
+  styleUrl: './technicien.component.css',
 })
-export class CompteComponent {
-  comptes: Compte[] = [];
+export class TechnicienComponent {
+  techniciens: Technicien[] = [];
   message = '';
   showMessage = false;
   style = 'info';
 
   constructor(
-    private compteSrv: CompteService,
+    private technicienSrv: TechnicienService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initTechnicien();
+    this.initTechniciens();
     this.initMessage();
   }
 
-  initTechnicien() {
-    this.compteSrv.getAll().subscribe((comptes) => {
-      this.comptes = comptes;
+  initTechniciens() {
+    this.technicienSrv.getAll().subscribe((techniciens) => {
+      this.techniciens = techniciens;
     });
   }
 
@@ -36,10 +36,10 @@ export class CompteComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
         if (params['q'] == 'create') {
-          this.message = `Compte ${params['id']} crée `;
+          this.message = `Technicien ${params['id']} crée `;
           this.style = 'alert-success';
         } else if (params['q'] == 'update') {
-          this.message = `Compte ${params['id']} mis à jour `;
+          this.message = `Technicien ${params['id']} mis à jour `;
           this.style = 'alert-info';
         }
       }
@@ -48,9 +48,9 @@ export class CompteComponent {
   }
 
   delete(id: number) {
-    this.compteSrv.delete(id).subscribe(() => {
-      this.initTechnicien();
-      this.message = `Compte ${id} supprimé `;
+    this.technicienSrv.delete(id).subscribe(() => {
+      this.initTechniciens();
+      this.message = `Technicien ${id} supprimé `;
       this.style = 'alert-danger';
     });
   }
