@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOSalle;
 import ajc.formation.projet_factory.model.Salle;
+import ajc.formation.projet_factory.model.Technicien;
 
 @Service
 public class SalleService {
@@ -30,6 +31,18 @@ public class SalleService {
 	
 	public Salle insert(Salle salle) {
 		return daoSalle.save(salle);
+	}
+	
+	public Salle update(Salle salle) {
+		if(salle.getId()==null) {
+			throw new RuntimeException("Aucune salle avec cet id existe");
+		}
+		
+		return daoSalle.save(salle);
+	}
+	
+	public void delete(Salle salle) {
+		
 	}
 }
 
