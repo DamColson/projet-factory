@@ -3,15 +3,11 @@ package ajc.formation.projet_factory.dto.response;
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonView;
-
-import ajc.formation.projet_factory.model.Formateur;
-import ajc.formation.projet_factory.model.Gestionnaire;
 import ajc.formation.projet_factory.model.Ordinateur;
-import ajc.formation.projet_factory.model.Salle;
-import ajc.formation.projet_factory.model.Stagiaire;
-import ajc.formation.projet_factory.model.Technicien;
+
 
 public class OrdinateurResponse {
+	
 	@JsonView(CustomJsonViews.Common.class)
 	private Integer id;
 	@JsonView(CustomJsonViews.Common.class)
@@ -20,30 +16,31 @@ public class OrdinateurResponse {
 	private String adresseMac;
 	@JsonView(CustomJsonViews.Common.class)
 	private String dateAchat;
-	
-	private Salle emplacement;
-
+	@JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+	private SalleResponse salleResponse;
 	@JsonView(CustomJsonViews.Common.class)
 	private String status;
-
-	private Formateur formateur;
-
-	private Stagiaire stagiaire;
-
-	private Gestionnaire gestionnaire;
-
-	@JsonView(CustomJsonViews.OrdinateurWithTechnicien.class)
-	private Technicien technicien;
-	
+	@JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+	private FormateurResponse formateurResponse;
+	@JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+	private StagiaireResponse stagiaireResponse;
+	@JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+	private GestionnaireResponse gestionnaireResponse;
+	@JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+	private TechnicienResponse technicienResponse;
 	@JsonView(CustomJsonViews.Common.class)
 	private String os;
 
 	public OrdinateurResponse() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public OrdinateurResponse(Ordinateur ordinateur) {
 		BeanUtils.copyProperties(ordinateur, this);
+		this.technicienResponse = new TechnicienResponse(ordinateur.getTechnicien());
+		this.stagiaireResponse = new StagiaireResponse(ordinateur.getStagiaire());
+		this.gestionnaireResponse = new GestionnaireResponse(ordinateur.getGestionnaire());
+		this.formateurResponse = new FormateurResponse(ordinateur.getFormateur());
+		this.salleResponse = new SalleResponse(ordinateur.getSalle());
 	}
 
 	public Integer getId() {
@@ -78,14 +75,6 @@ public class OrdinateurResponse {
 		this.dateAchat = dateAchat;
 	}
 
-	public Salle getEmplacement() {
-		return emplacement;
-	}
-
-	public void setEmplacement(Salle emplacement) {
-		this.emplacement = emplacement;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -94,44 +83,52 @@ public class OrdinateurResponse {
 		this.status = status;
 	}
 
-	public Formateur getFormateur() {
-		return formateur;
-	}
-
-	public void setFormateur(Formateur formateur) {
-		this.formateur = formateur;
-	}
-
-	public Stagiaire getStagiaire() {
-		return stagiaire;
-	}
-
-	public void setStagiaire(Stagiaire stagiaire) {
-		this.stagiaire = stagiaire;
-	}
-
-	public Gestionnaire getGestionnaire() {
-		return gestionnaire;
-	}
-
-	public void setGestionnaire(Gestionnaire gestionnaire) {
-		this.gestionnaire = gestionnaire;
-	}
-
-	public Technicien getTechnicien() {
-		return technicien;
-	}
-
-	public void setTechnicien(Technicien technicien) {
-		this.technicien = technicien;
-	}
-
 	public String getOs() {
 		return os;
 	}
 
 	public void setOs(String os) {
 		this.os = os;
+	}
+
+	public FormateurResponse getFormateurResponse() {
+		return formateurResponse;
+	}
+
+	public void setFormateurResponse(FormateurResponse formateurResponse) {
+		this.formateurResponse = formateurResponse;
+	}
+
+	public StagiaireResponse getStagiaireResponse() {
+		return stagiaireResponse;
+	}
+
+	public void setStagiaireResponse(StagiaireResponse stagiaireResponse) {
+		this.stagiaireResponse = stagiaireResponse;
+	}
+
+	public GestionnaireResponse getGestionnaireResponse() {
+		return gestionnaireResponse;
+	}
+
+	public void setGestionnaireResponse(GestionnaireResponse gestionnaireResponse) {
+		this.gestionnaireResponse = gestionnaireResponse;
+	}
+
+	public TechnicienResponse getTechnicienResponse() {
+		return technicienResponse;
+	}
+
+	public void setTechnicienResponse(TechnicienResponse technicienResponse) {
+		this.technicienResponse = technicienResponse;
+	}
+
+	public SalleResponse getSalleResponse() {
+		return salleResponse;
+	}
+
+	public void setSalleResponse(SalleResponse salleResponse) {
+		this.salleResponse = salleResponse;
 	}
 	
 	
