@@ -77,18 +77,25 @@ export class CompteEditComponent {
   }
 
   submit() {
-    let obj = {
-      login: this.form.get('login')?.value,
-      password: this.form.get('passwordGroup.password')?.value,
-      role: this.form.get('role')?.value,
-    };
+    console.log(this.compte.id);
     if (this.compte.id) {
-      this.compteSrv.update(this.compte).subscribe((compte) => {
-        this.router.navigateByUrl('/compte?q=update&id=' + compte.id);
+      let obj = {
+        id: this.compte.id,
+        login: this.form.get('login')?.value,
+        password: this.form.get('passwordGroup.password')?.value,
+        role: this.form.get('role')?.value,
+      };
+      this.compteSrv.update(obj).subscribe((compte) => {
+        this.router.navigateByUrl('/compte?q=update&id=' + this.compte.id);
       });
     } else {
-      this.compteSrv.create(this.compte).subscribe((compte) => {
-        this.router.navigateByUrl('/compte?q=create&id=' + compte.id);
+      let obj = {
+        login: this.form.get('login')?.value,
+        password: this.form.get('passwordGroup.password')?.value,
+        role: this.form.get('role')?.value,
+      };
+      this.compteSrv.create(obj).subscribe((compte) => {
+        this.router.navigateByUrl('/compte?q=create&id=' + this.compte.id);
       });
     }
   }

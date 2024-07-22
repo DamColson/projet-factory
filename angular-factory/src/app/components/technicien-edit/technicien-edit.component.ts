@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 import { Ordinateur } from '../../model/ordinateur';
 import { Technicien } from '../../model/technicien';
 import { TechnicienService } from '../../services/technicien.service';
+import { OrdinateurService } from '../../services/ordinateur.service';
 
 @Component({
   selector: 'app-technicien-edit',
@@ -40,7 +41,7 @@ export class TechnicienEditComponent {
 
   constructor(
     private technicienSrv: TechnicienService,
-    //private ordinateurSrv: OrdinateurService,
+    private ordinateurSrv: OrdinateurService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -49,6 +50,7 @@ export class TechnicienEditComponent {
       prenom: new FormControl('', Validators.required),
       mail: new FormControl('', Validators.required),
       telephone: new FormControl('', Validators.required),
+      ordinateurResponse: new FormControl('', Validators.required),
     });
   }
 
@@ -56,7 +58,7 @@ export class TechnicienEditComponent {
     // this.filiereSrv.getAll().subscribe((filieres) => {
     //   this.filieres = filieres;
     // });
-    //this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.OrdinateurObservable = this.ordinateurSrv.getAll();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
