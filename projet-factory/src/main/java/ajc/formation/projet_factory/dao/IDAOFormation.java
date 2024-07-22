@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import ajc.formation.projet_factory.model.Bloc;
 import ajc.formation.projet_factory.model.Formation;
 import ajc.formation.projet_factory.model.Gestionnaire;
+import ajc.formation.projet_factory.model.Stagiaire;
 import jakarta.transaction.Transactional;
 
 public interface IDAOFormation extends JpaRepository<Formation, Integer> {
@@ -21,4 +22,9 @@ public interface IDAOFormation extends JpaRepository<Formation, Integer> {
 	@Modifying
 	@Transactional
 	public void cascadeGestionnaireNull(@Param("gestionnaire") Gestionnaire gestionnaire);
+
+	@Query("update Formation f set f.stagiaire=null where f.stagiaire = :stagiaire")
+	@Modifying
+	@Transactional
+	public void cascadeStagiaireNull(@Param("stagiaire") Stagiaire stagiaire);
 }
