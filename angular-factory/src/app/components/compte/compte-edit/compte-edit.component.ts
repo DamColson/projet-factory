@@ -9,17 +9,34 @@ import {
   Validators,
 } from '@angular/forms';
 import { CompteService } from '../../../services/compte.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { Compte } from '../../../model/compte';
 
 @Component({
   selector: 'app-compte-edit',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AsyncPipe,
+    RouterLink,
+    RouterLinkActive,
+  ],
   templateUrl: './compte-edit.component.html',
   styleUrl: './compte-edit.component.css',
 })
 export class CompteEditComponent {
   form!: FormGroup;
+  roles: String[] = [
+    'ROLE_STAGIAIRE',
+    'ROLE_FORMATEUR',
+    'ROLE_TECHNICIEN',
+    'ROLE_GESTIONNAIRE',
+    'ROLE_ADMIN',
+  ];
+  compte: Compte = new Compte();
 
   constructor(private compteSrv: CompteService, private router: Router) {
     this.form = new FormGroup({
@@ -31,6 +48,7 @@ export class CompteEditComponent {
         },
         this.passwordEtConfirmationEgaux
       ),
+      role: new FormControl(''),
     });
   }
 
@@ -50,5 +68,9 @@ export class CompteEditComponent {
     return control.get('password')?.value == control.get('confirmation')?.value
       ? null
       : { passwordEtConfirmationNotEquals: true };
+  }
+
+  compareFn(f1: string, f2: string): boolean {
+    return f1 && f2 ? f1 === f2 : false;
   }
 }

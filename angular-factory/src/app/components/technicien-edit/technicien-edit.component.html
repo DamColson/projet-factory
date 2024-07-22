@@ -4,55 +4,69 @@
   }@else {
   <h1>Création d'un technicien</h1>
   }
-  <div class="form-group mb-3">
-    <label for="prenom">Prénom :</label>
-    <input id="prenom" class="form-control" [(ngModel)]="technicien.prenom" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="nom">Nom :</label>
-    <input id="nom" class="form-control" [(ngModel)]="technicien.nom" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="telephone">Téléphone :</label>
-    <input
-      id="telephone"
-      class="form-control"
-      [(ngModel)]="technicien.telephone"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="email">Email :</label>
-    <input
-      id="email"
-      type="email"
-      class="form-control"
-      [(ngModel)]="technicien.mail"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="ordinateur">Ordinateur :</label>
-    <select
-      [compareWith]="compareFn"
-      [(ngModel)]="technicien.ordinateurResponse"
-      id="oridnateur"
-      class="form-control"
-    >
-      @for(o of OrdinateurObservable|async; track o.id){
-      <option [ngValue]="o">
-        {{ o.libelle }}
-      </option>
+  <form (ngSubmit)="save()" [formGroup]="form">
+    <div class="form-group mb-3">
+      <label for="prenom">Prénom :</label>
+      <input id="prenom" class="form-control" formControlName="prenom" />
+      @if(form.get('prenom')?.dirty && form.get('prenom')?.invalid){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-outline-primary m*2" (click)="save()">
-      Enregistrer
-    </button>
-    <a
-      [routerLink]="['/technicien']"
-      routerLinkActive="router-link-active"
-      class="btn btn-outline-warning m-2"
-      >Retour</a
-    >
-  </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="nom">Nom :</label>
+      <input id="nom" class="form-control" formControlName="nom" />
+      @if(form.get('nom')?.dirty && form.get('nom')?.invalid){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="telephone">Téléphone :</label>
+      <input id="telephone" class="form-control" formControlName="telephone" />
+      @if(form.get('telephone')?.dirty && form.get('telephone')?.invalid){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="email">Email :</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        formControlName="mail"
+      />
+      @if(form.get('email')?.dirty && form.get('email')?.invalid){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <!--<div class="form-group mb-3">
+      <label for="ordinateur">Ordinateur :</label>
+      <select
+        [compareWith]="compareFn"
+        [(ngModel)]="technicien.ordinateurResponse"
+        id="ordinateur"
+        class="form-control"
+      >
+        @for(o of OrdinateurObservable|async; track o.id){
+        <option [ngValue]="o">
+          {{ o.libelle }}
+        </option>
+        }
+      </select>
+    </div>-->
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary m*2"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/technicien']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
 </div>
