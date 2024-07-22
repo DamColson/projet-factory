@@ -9,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,12 +34,6 @@ import ajc.formation.projet_factory.services.SalleService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-
-
-
 @RestController
 @RequestMapping("/api/bloc")
 @CrossOrigin("*")
@@ -56,7 +54,7 @@ public class BlocRestController {
         return blocService.getAll().stream().map(bloc->new BlocResponse(bloc)).collect(Collectors.toList());
     }
 
-    @GetMapping("")
+    @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.BlocWithAttributes.class)
     public BlocResponse create(@Valid @RequestBody BlocRequest blocRequest, BindingResult br) {

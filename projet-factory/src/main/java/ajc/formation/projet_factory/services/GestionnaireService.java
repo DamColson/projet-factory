@@ -3,12 +3,14 @@ package ajc.formation.projet_factory.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOFormation;
 import ajc.formation.projet_factory.dao.IDAOGestionnaire;
 import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.model.Gestionnaire;
 
+@Service
 public class GestionnaireService {
 
     @Autowired

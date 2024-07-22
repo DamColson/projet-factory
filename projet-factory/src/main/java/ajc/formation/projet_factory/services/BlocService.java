@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOBloc;
 import ajc.formation.projet_factory.dao.IDAOFormation;
 import ajc.formation.projet_factory.model.Bloc;
 import ajc.formation.projet_factory.model.Formation;
 
+@Service
 public class BlocService {
 
     @Autowired

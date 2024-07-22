@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOCompetence;
 import ajc.formation.projet_factory.dao.IDAOFormateur;
@@ -12,6 +13,7 @@ import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.model.Formateur;
 import ajc.formation.projet_factory.model.Matiere;
 
+@Service
 public class CompetenceService {
 
     @Autowired
