@@ -17,7 +17,7 @@ import ajc.formation.projet_factory.model.Compte;
 @RequestMapping("/api/auth")
 public class AuthRestController {
 
-	@JsonView(CustomJsonViews.Common.class)
+	@JsonView(CustomJsonViews.CompteWithPerson.class)
 	@GetMapping("")
 	public CompteResponse auth(@AuthenticationPrincipal Compte compte) {
 		return new CompteResponse(compte);

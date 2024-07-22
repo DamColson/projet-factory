@@ -39,11 +39,7 @@ public class GestionnaireResponse {
 		if(gestionnaire.getOrdinateur()!=null) {
 			this.ordinateurResponse = new OrdinateurResponse(gestionnaire.getOrdinateur());
 		}
-		if(gestionnaire.getFormations()!=null) {
-			this.formationsResponse = gestionnaire.getFormations().stream().map(formation->{
-				return new FormationResponse(formation);
-			}).collect(Collectors.toSet());
-		}
+
 		
 	}
 
