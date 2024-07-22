@@ -11,7 +11,7 @@ import ajc.formation.projet_factory.model.VideoProjecteur;
 
 public interface IDAOSalle extends JpaRepository<Salle, Integer>{
 
-    @Query("update Salle s set s.video_projecteur=null where v.video_projecteur = :videoProjecteur")
+    @Query("update Salle s set s.videoProjecteur=null where v.videoProjecteur = :videoProjecteur")
     @Modifying
     @Transactional
     public void cascadeVideoProjecteurNull(@Param("videoProjecteur") VideoProjecteur videoProjecteur);
