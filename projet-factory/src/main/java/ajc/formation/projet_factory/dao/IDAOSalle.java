@@ -7,12 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import ajc.formation.projet_factory.model.Salle;
-import ajc.formation.projet_factory.model.VideoProjecteur;
 
 public interface IDAOSalle extends JpaRepository<Salle, Integer>{
-
-    @Query("update Salle s set s.videoProjecteur=null where v.videoProjecteur = :videoProjecteur")
-    @Modifying
-    @Transactional
-    public void cascadeVideoProjecteurNull(@Param("videoProjecteur") VideoProjecteur videoProjecteur);
 }
