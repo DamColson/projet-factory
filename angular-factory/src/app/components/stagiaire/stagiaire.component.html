@@ -1,1 +1,59 @@
-<p>stagiaire works!</p>
+<div class="container">
+  <h1>Liste des stagiaires</h1>
+  <a
+    aria-current="page"
+    routerLink="/stagiaire/edit"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un stagiaire</a
+  >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Email</td>
+        <td>Téléphone</td>
+        <td>Ordinateur</td>
+        <td>Compte</td>
+        <td>Formation</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(s of stagiaires; track s.id){
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.prenom }}</td>
+        <td>{{ s.nom }}</td>
+        <td>{{ s.mail }}</td>
+        <td>{{ s.telephone }}</td>
+        <td>{{ s.ordinateurResponse?.id }}</td>
+        <td>{{ s.compteResponse?.login }}</td>
+        <td>
+          <a
+            routerLink="/stagiaire/edit/{{ s.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(s.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

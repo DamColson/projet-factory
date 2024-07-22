@@ -75,15 +75,22 @@ export class CompteEditComponent {
       }
     });
   }
+
   submit() {
     let obj = {
       login: this.form.get('login')?.value,
       password: this.form.get('passwordGroup.password')?.value,
       role: this.form.get('role')?.value,
     };
-    this.compteSrv.create(obj).subscribe((data) => {
-      this.router.navigateByUrl('/login');
-    });
+    if (this.compte.id) {
+      this.compteSrv.update(this.compte).subscribe((compte) => {
+        this.router.navigateByUrl('/compte?q=update&id=' + compte.id);
+      });
+    } else {
+      this.compteSrv.create(this.compte).subscribe((compte) => {
+        this.router.navigateByUrl('/compte?q=create&id=' + compte.id);
+      });
+    }
   }
 
   passwordEtConfirmationEgaux(
