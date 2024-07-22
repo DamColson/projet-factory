@@ -18,7 +18,7 @@ export class CompetenceService {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
 
-  public create(comptence: Competence): Observable<Competence> {
+  public create(competence: Competence): Observable<Competence> {
     return this.httpClient.post<Competence>(
       this.url,
       this.competenceToCompetenceRequest(competence)
