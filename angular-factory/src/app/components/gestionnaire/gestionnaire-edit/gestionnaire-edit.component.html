@@ -1,16 +1,16 @@
 <div class="container">
-  @if(stagiaire.id){
-  <h1>Edition du stagiaire numéro {{ stagiaire.id }}</h1>
+  @if(gestionnaire.id){
+  <h1>Edition du gestionnaire numéro {{ gestionnaire.id }}</h1>
   }@else {
-  <h1>Création d'un technicien</h1>
+  <h1>Création d'un gestionnaire</h1>
   }
   <div class="form-group mb-3">
     <label for="prenom">Prénom :</label>
-    <input id="prenom" class="form-control" [(ngModel)]="stagiaire.prenom" />
+    <input id="prenom" class="form-control" [(ngModel)]="gestionnaire.prenom" />
   </div>
   <div class="form-group mb-3">
     <label for="nom">Nom :</label>
-    <input id="nom" class="form-control" [(ngModel)]="stagiaire.nom" />
+    <input id="nom" class="form-control" [(ngModel)]="gestionnaire.nom" />
   </div>
   <div class="form-group mb-3">
     <label for="email">Email :</label>
@@ -18,14 +18,14 @@
       id="email"
       type="email"
       class="form-control"
-      [(ngModel)]="stagiaire.mail"
+      [(ngModel)]="gestionnaire.mail"
     />
   </div>
   <div class="form-group mb-3">
     <label for="ordinateur">Ordinateur :</label>
     <select
       [compareWith]="compareOn"
-      [(ngModel)]="stagiaire.ordinateurResponse"
+      [(ngModel)]="gestionnaire.ordinateurResponse"
       id="ordinateur"
       class="form-control"
     >
@@ -38,32 +38,16 @@
     </select>
   </div>
   <div class="form-group mb-3">
-    <label for="formation">Formation :</label>
-    <select
-      [compareWith]="compareFn"
-      [(ngModel)]="stagiaire.formationResponse"
-      id="formation"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(f of FormationObservable|async; track f.id){
-      <option [ngValue]="f">
-        {{ f.id }}
-      </option>
-      }
-    </select>
-  </div>
-  <div class="form-group mb-3">
     <label for="compte">Compte :</label>
     <select
       [compareWith]="compareCn"
-      [(ngModel)]="stagiaire.compteResponse"
+      [(ngModel)]="gestionnaire.compteResponse"
       id="compte"
       class="form-control"
     >
       <option value="null">Aucun</option>
       @for(c of CompteObservable|async; track c.id){
-      @if(c.role=='ROLE_STAGIAIRE'){
+      @if(c.role=='ROLE_GESTIONNAIRE'){
       <option [ngValue]="c">
         {{ c.login }}
       </option>
@@ -75,7 +59,7 @@
       Enregistrer
     </button>
     <a
-      [routerLink]="['/technicien']"
+      [routerLink]="['/formateur']"
       routerLinkActive="router-link-active"
       class="btn btn-outline-warning m-2"
       >Retour</a

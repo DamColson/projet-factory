@@ -5,7 +5,6 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import {
   ActivatedRoute,
@@ -14,15 +13,15 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Ordinateur } from '../../model/ordinateur';
-import { Technicien } from '../../model/technicien';
-import { TechnicienService } from '../../services/technicien.service';
-import { OrdinateurService } from '../../services/ordinateur.service';
-import { Compte } from '../../model/compte';
-import { CompteService } from '../../services/compte.service';
+import { Ordinateur } from '../../../model/ordinateur';
+import { Compte } from '../../../model/compte';
+import { Gestionnaire } from '../../../model/gestionnaire';
+import { GestionnaireService } from '../../../services/gestionnaire.service';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { CompteService } from '../../../services/compte.service';
 
 @Component({
-  selector: 'app-technicien-edit',
+  selector: 'app-gestionnaire-edit',
   standalone: true,
   imports: [
     FormsModule,
@@ -31,19 +30,19 @@ import { CompteService } from '../../services/compte.service';
     AsyncPipe,
     ReactiveFormsModule,
   ],
-  templateUrl: './technicien-edit.component.html',
-  styleUrl: './technicien-edit.component.css',
+  templateUrl: './gestionnaire-edit.component.html',
+  styleUrl: './gestionnaire-edit.component.css',
 })
-export class TechnicienEditComponent {
+export class GestionnaireEditComponent {
   //filieres: Filiere[] = [];
   form!: FormGroup;
   OrdinateurObservable!: Observable<Ordinateur[]>;
   CompteObservable!: Observable<Compte[]>;
 
-  technicien: Technicien = new Technicien();
+  gestionnaire: Gestionnaire = new Gestionnaire();
 
   constructor(
-    private technicienSrv: TechnicienService,
+    private gestionnaireSrv: GestionnaireService,
     private ordinateurSrv: OrdinateurService,
     private compteSrv: CompteService,
     private router: Router,
@@ -59,21 +58,29 @@ export class TechnicienEditComponent {
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
-        this.technicienSrv.getById(params['id']).subscribe((technicien) => {
-          this.technicien = technicien;
+        this.gestionnaireSrv.getById(params['id']).subscribe((gestionnaire) => {
+          this.gestionnaire = gestionnaire;
         });
       }
     });
   }
   save() {
-    if (this.technicien.id) {
-      this.technicienSrv.update(this.technicien).subscribe((technicien) => {
-        this.router.navigateByUrl('/technicien?q=update&id=' + technicien.id);
-      });
+    if (this.gestionnaire.id) {
+      this.gestionnaireSrv
+        .update(this.gestionnaire)
+        .subscribe((gestionnaire) => {
+          this.router.navigateByUrl(
+            '/gestionnaire?q=update&id=' + gestionnaire.id
+          );
+        });
     } else {
-      this.technicienSrv.create(this.technicien).subscribe((technicien) => {
-        this.router.navigateByUrl('/technicien?q=create&id=' + technicien.id);
-      });
+      this.gestionnaireSrv
+        .create(this.gestionnaire)
+        .subscribe((gestionnaire) => {
+          this.router.navigateByUrl(
+            '/formateur?q=create&id=' + gestionnaire.id
+          );
+        });
     }
   }
 

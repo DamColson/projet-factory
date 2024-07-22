@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Liste des gestionnaires</h1>
+  <a
+    aria-current="page"
+    routerLink="/gestionnaire/edit"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un gestionnaire</a
+  >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Email</td>
+        <td>Téléphone</td>
+        <td>Ordinateur</td>
+        <td>Compte</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(g of gestionnaires; track g.id){
+      <tr>
+        <td>{{ g.id }}</td>
+        <td>{{ g.prenom }}</td>
+        <td>{{ g.nom }}</td>
+        <td>{{ g.mail }}</td>
+        <td>{{ g.telephone }}</td>
+        <td>{{ g.ordinateurResponse?.id }}</td>
+        <td>{{ g.compteResponse?.login }}</td>
+        <td>
+          <a
+            routerLink="/gestionnaire/edit/{{ g.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(g.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
