@@ -39,9 +39,6 @@ public class StagiaireService {
     }
 
     public void delete(Stagiaire stagiaire){
-        daoFormation.cascadeStagiaireNull(stagiaire);
-        daoOrdinateur.cascadeStagiaireNull(stagiaire);
-
         daoStagiaire.delete(stagiaire);
     }
 
