@@ -9,7 +9,6 @@ import ajc.formation.projet_factory.model.Formateur;
 import ajc.formation.projet_factory.model.Gestionnaire;
 import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Salle;
-import ajc.formation.projet_factory.model.Stagiaire;
 import ajc.formation.projet_factory.model.Technicien;
 import jakarta.transaction.Transactional;
 
@@ -34,9 +33,4 @@ public interface IDAOOrdinateur extends JpaRepository<Ordinateur, Integer>{
 	@Modifying
 	@Transactional
 	public void cascadeSalleNull(@Param("salle") Salle salle);
-
-	@Query("update Ordinateur o set o.stagiaire=null where o.stagiaire = :stagiaire")
-	@Modifying
-	@Transactional
-	public void cascadeStagiaireNull(@Param("stagiaire") Stagiaire stagiaire);
 }
