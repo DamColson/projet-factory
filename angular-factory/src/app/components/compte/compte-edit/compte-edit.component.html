@@ -52,18 +52,17 @@
     <div class="form-group mb-3">
       <label class="mb-2" for="role">Rôle :</label>
       <select formControlName="role" id="role" class="form-control">
-        @for (r of roles; track $index) { @if(compte.role==r){
-        <option [ngValue]="r" selected>
-          {{ r }}
-        </option>
-        }@else {
+        @for (r of roles; track $index) {
         <option [ngValue]="r">
           {{ r }}
         </option>
-        } }
+        }
       </select>
     </div>
     <div>
+      @if(compte.id){
+      <button type="submit" class="btn btn-outline-primary">Envoyer</button>
+      } @else{
       <button
         type="submit"
         class="btn btn-outline-primary"
@@ -71,6 +70,7 @@
       >
         Envoyer
       </button>
+      }
     </div>
   </form>
 </div>

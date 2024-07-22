@@ -71,6 +71,7 @@ export class CompteEditComponent {
       if (params['id']) {
         this.compteSrv.getById(params['id']).subscribe((compte) => {
           this.compte = compte;
+          this.selectedValue(this.compte.role);
         });
       }
     });
@@ -100,6 +101,11 @@ export class CompteEditComponent {
     }
   }
 
+  selectedValue(select: any) {
+    const selectElement = document.getElementById('role') as HTMLSelectElement;
+    selectElement.value = this.roles.indexOf(select) + ': ' + <string>select;
+  }
+
   passwordEtConfirmationEgaux(
     control: AbstractControl
   ): null | ValidationErrors {
@@ -108,7 +114,7 @@ export class CompteEditComponent {
       : { passwordEtConfirmationNotEquals: true };
   }
 
-  compareFn(f1: string, f2: string): boolean {
+  compareFn(f1: String, f2: String): boolean {
     return f1 && f2 ? f1 === f2 : false;
   }
 }
