@@ -18,22 +18,17 @@ export class CompteService {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
 
-  public create(compte: Compte): Observable<Compte> {
-    return this.httpClient.post<Compte>(
-      this.url,
-      this.compteToCompteRequest(compte)
-    );
+  public create(compte: any): Observable<Compte> {
+    return this.httpClient.post<any>(this.url, compte);
   }
 
   public getById(id: number): Observable<Compte> {
     return this.httpClient.get<Compte>(`${this.url}/${id}`);
   }
 
-  public update(compte: Compte): Observable<Compte> {
-    return this.httpClient.put<Compte>(
-      `${this.url}/${compte.id}`,
-      this.compteToCompteRequest(compte)
-    );
+  public update(compte: any): Observable<Compte> {
+    console.log(compte);
+    return this.httpClient.put<any>(`${this.url}/${compte.id}`, compte);
   }
 
   private compteToCompteRequest(compte: Compte): any {
