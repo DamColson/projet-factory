@@ -7,7 +7,7 @@ import { Formateur } from '../model/formateur';
   providedIn: 'root',
 })
 export class FormateurService {
-  url = 'http://localhost:8080/factory/api/stagiaire';
+  url = 'http://localhost:8080/factory/api/formateur';
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<Formateur[]> {

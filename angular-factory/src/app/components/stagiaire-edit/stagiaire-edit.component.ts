@@ -17,6 +17,11 @@ import { Ordinateur } from '../../model/ordinateur';
 import { Observable } from 'rxjs';
 import { Stagiaire } from '../../model/stagiaire';
 import { StagiaireService } from '../../services/stagiaire.service';
+import { Compte } from '../../model/compte';
+import { Formation } from '../../model/formation';
+import { OrdinateurService } from '../../services/ordinateur.service';
+import { FormationService } from '../../services/formation.service';
+import { CompteService } from '../../services/compte.service';
 
 @Component({
   selector: 'app-stagiaire-edit',
@@ -35,28 +40,27 @@ export class StagiaireEditComponent {
   //filieres: Filiere[] = [];
   form!: FormGroup;
   OrdinateurObservable!: Observable<Ordinateur[]>;
+  FormationObservable!: Observable<Formation[]>;
+  CompteObservable!: Observable<Compte[]>;
 
   stagiaire: Stagiaire = new Stagiaire();
 
   constructor(
     private stagiaireSrv: StagiaireService,
-    //private ordinateurSrv: OrdinateurService,
+    private ordinateurSrv: OrdinateurService,
+    private formationSrv: FormationService,
+    private compteSrv: CompteService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-    this.form = new FormGroup({
-      nom: new FormControl('', Validators.required),
-      prenom: new FormControl('', Validators.required),
-      mail: new FormControl('', Validators.required),
-      telephone: new FormControl('', Validators.required),
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     // this.filiereSrv.getAll().subscribe((filieres) => {
     //   this.filieres = filieres;
     // });
-    //this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.FormationObservable = this.formationSrv.getAll();
+    this.CompteObservable = this.compteSrv.getAll();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
@@ -78,7 +82,15 @@ export class StagiaireEditComponent {
     }
   }
 
-  compareFn(o1: Ordinateur, o2: Ordinateur): boolean {
+  compareOn(o1: Ordinateur, o2: Ordinateur): boolean {
     return o1 && o2 ? o1.id === o2.id : false;
+  }
+
+  compareFn(f1: Formation, f2: Formation): boolean {
+    return f1 && f2 ? f1.id === f2.id : false;
+  }
+
+  compareCn(c1: Compte, c2: Compte): boolean {
+    return c1 && c2 ? c1.id === c2.id : false;
   }
 }

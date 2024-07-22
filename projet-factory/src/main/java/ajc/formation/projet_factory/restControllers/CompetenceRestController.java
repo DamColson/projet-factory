@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.dto.request.CompetenceRequest;
 import ajc.formation.projet_factory.dto.response.CompetenceResponse;
+import ajc.formation.projet_factory.dto.response.CompteResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.services.CompetenceService;
@@ -30,6 +32,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/competence")
+@CrossOrigin("*")
 public class CompetenceRestController {
     
     @Autowired
@@ -41,7 +44,13 @@ public class CompetenceRestController {
     public List<CompetenceResponse> getAll() {
         return competenceService.getAll().stream().map(competence->new CompetenceResponse(competence)).collect(Collectors.toList());
     }
-
+    
+    @GetMapping("/{id}")
+    @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
+    public CompetenceResponse getById(@PathVariable("id") Integer id) {
+        return new CompetenceResponse(competenceService.getById(id));
+    }
+    
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.CompetenceWithAttributes.class)

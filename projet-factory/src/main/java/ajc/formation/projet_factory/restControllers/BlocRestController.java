@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.dto.request.BlocRequest;
 import ajc.formation.projet_factory.dto.response.BlocResponse;
+import ajc.formation.projet_factory.dto.response.CompetenceResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Bloc;
 import ajc.formation.projet_factory.model.Formateur;
@@ -54,6 +55,12 @@ public class BlocRestController {
         return blocService.getAll().stream().map(bloc->new BlocResponse(bloc)).collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    @JsonView(CustomJsonViews.BlocWithAttributes.class)
+    public BlocResponse getById(@PathVariable("id") Integer id) {
+        return new BlocResponse(blocService.getById(id));
+    }
+    
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.BlocWithAttributes.class)
