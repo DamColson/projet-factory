@@ -2,7 +2,6 @@ package ajc.formation.projet_factory.dto.response;
 
 import java.time.LocalDate;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 

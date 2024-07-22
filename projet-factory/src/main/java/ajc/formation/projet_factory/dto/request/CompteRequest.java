@@ -1,6 +1,5 @@
 package ajc.formation.projet_factory.dto.request;
 
-import ajc.formation.projet_factory.dto.response.TechnicienResponse;
 import jakarta.validation.constraints.NotBlank;
 
 public class CompteRequest {
