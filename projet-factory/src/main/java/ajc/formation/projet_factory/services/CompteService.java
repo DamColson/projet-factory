@@ -75,7 +75,7 @@ public class CompteService implements UserDetailsService{
 		if(compte.getId()==null) {
 			throw new RuntimeException("Aucun compte avec cet id existe");
 		}
-				
+		compte.setPassword(passwordEncoder.encode(compte.getPassword()));	
 		return daoCompte.save(compte);
 	}
 	

@@ -9,6 +9,8 @@ public class CompteRequest {
 	private String login;
 	@NotBlank
 	private String role;	
+	@NotBlank
+	private String password;
 	private Integer technicienId;
 	private Integer formateurId;
 	private Integer stagiaireId;
@@ -64,5 +66,14 @@ public class CompteRequest {
 	public void setGestionnaireId(Integer gestionnaireId) {
 		this.gestionnaireId = gestionnaireId;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 }

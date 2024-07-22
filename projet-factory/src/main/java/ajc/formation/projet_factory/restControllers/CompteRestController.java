@@ -19,6 +19,7 @@ import ajc.formation.projet_factory.dto.request.CompteRequest;
 import ajc.formation.projet_factory.dto.response.CompteResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Compte;
+import ajc.formation.projet_factory.model.Role;
 import ajc.formation.projet_factory.services.CompteService;
 import jakarta.validation.Valid;
 
@@ -29,9 +30,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
-
-
-
 
 
 @RestController
@@ -50,7 +48,7 @@ public class CompteRestController {
 
     @GetMapping("/{id}")
     @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
-    public CompteResponse getById(@RequestParam("id") Integer id) {
+    public CompteResponse getById(@PathVariable("id") Integer id) {
         return new CompteResponse(compteService.getById(id));
     }
 
@@ -62,7 +60,9 @@ public class CompteRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Compte compte = new Compte();
-        BeanUtils.copyProperties(compteRequest, compte);
+        
+        BeanUtils.copyProperties(compteRequest, compte,"role");
+        compte.setRole(Role.valueOf(compteRequest.getRole()));
         return new CompteResponse(compteService.insert(compte));
     }
 
@@ -73,7 +73,8 @@ public class CompteRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Compte compte = new Compte();
-        BeanUtils.copyProperties(compteRequest, compte);
+        BeanUtils.copyProperties(compteRequest, compte,"role");
+        compte.setRole(Role.valueOf(compteRequest.getRole()));
         compte.setId(id);
         return new CompteResponse(compteService.update(compte));
     }
