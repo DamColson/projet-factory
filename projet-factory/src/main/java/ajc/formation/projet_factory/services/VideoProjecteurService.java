@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ajc.formation.projet_factory.dao.IDAOFormateur;
-import ajc.formation.projet_factory.dao.IDAOSalle;
 import ajc.formation.projet_factory.dao.IDAOVideoProjecteur;
 import ajc.formation.projet_factory.model.VideoProjecteur;
 
@@ -13,8 +12,6 @@ public class VideoProjecteurService {
 
     @Autowired
     private IDAOVideoProjecteur daoVideoProjecteur;
-    @Autowired
-    private IDAOSalle daoSalle;
     @Autowired
     private IDAOFormateur daoFormateur;
 
@@ -39,7 +36,6 @@ public class VideoProjecteurService {
 
     public void delete(VideoProjecteur videoProjecteur){
         daoFormateur.cascadevideoProjecteurNull(videoProjecteur);
-
         daoVideoProjecteur.delete(videoProjecteur);
     }
 }
