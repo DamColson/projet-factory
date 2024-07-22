@@ -4,30 +4,22 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 
-public class TechnicienRequest {
+public class FormateurRequest {
 
 	@NotBlank
 	private String nom;
 	@NotBlank
-	private String prenom;
-	private String telephone;
+    private String prenom;
 	@NotBlank
-	private String mail;	
-	private Integer ordinateurId;
-	@NotNull
-	private Integer compteId;
-	
-	public TechnicienRequest() {
-	}
-	
-	public TechnicienRequest(@NotBlank String nom, @NotBlank String prenom, String telephone, @NotBlank String mail,
-			@NotNull Integer ordinateurId, @NotNull Integer compteId) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-		this.mail = mail;
-		this.ordinateurId = ordinateurId;
-		this.compteId = compteId;
+    private String telephone;
+	@NotBlank
+    private String mail;
+    @NotNull
+    private Integer compteId;
+    private Integer ordinateurId;
+    private Integer videoProjecteurId;
+    
+    public FormateurRequest() {
 	}
 
 	public String getNom() {
@@ -62,6 +54,14 @@ public class TechnicienRequest {
 		this.mail = mail;
 	}
 
+	public Integer getCompteId() {
+		return compteId;
+	}
+
+	public void setCompteId(Integer compteId) {
+		this.compteId = compteId;
+	}
+
 	public Integer getOrdinateurId() {
 		return ordinateurId;
 	}
@@ -70,15 +70,13 @@ public class TechnicienRequest {
 		this.ordinateurId = ordinateurId;
 	}
 
-	public Integer getCompteId() {
-		return compteId;
+	public Integer getVideoProjecteurId() {
+		return videoProjecteurId;
 	}
 
-	public void setCompteId(Integer compteId) {
-		this.compteId = compteId;
+	public void setVideoProjecteurId(Integer videoProjecteurId) {
+		this.videoProjecteurId = videoProjecteurId;
 	}
-	
-	
-	
-	
+
+    
 }
