@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ajc.formation.projet_factory.model.Formation;
 import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Stagiaire;
-import jakarta.transaction.Transactional;
 
 public interface IDAOStagiaire extends JpaRepository<Stagiaire, Integer>{
 
