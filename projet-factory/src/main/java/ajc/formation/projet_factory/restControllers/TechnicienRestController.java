@@ -38,27 +38,27 @@ import jakarta.validation.Valid;
 public class TechnicienRestController {
 	
 	@Autowired
-	TechnicienService technicienSrv;
+	private TechnicienService technicienSrv;
 	@Autowired
-	OrdinateurService ordinateurSrv;
+	private OrdinateurService ordinateurSrv;
 	@Autowired
-	CompteService compteSrv;
+	private CompteService compteSrv;
 
 	@GetMapping("")
-	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
+	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
 	public List<TechnicienResponse> getAll(){
 		return technicienSrv.getAll().stream().map(technicien->new TechnicienResponse(technicien)).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
+	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
 	public TechnicienResponse getById(@PathVariable("id") Integer id) {
 		return new TechnicienResponse(technicienSrv.getByIdWithOrdinateur(id));
 	}
 	
 	@PostMapping("")
 	@ResponseStatus(code=HttpStatus.CREATED)
-	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
+	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
 	public TechnicienResponse Create(@Valid @RequestBody TechnicienRequest technicienRequest,BindingResult br) {
 		if(br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -73,7 +73,7 @@ public class TechnicienRestController {
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(CustomJsonViews.TechnicienWithOrdinateur.class)
+	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
 	public TechnicienResponse update(@Valid @RequestBody TechnicienRequest technicienRequest,BindingResult br, @PathVariable("id") Integer id) {
 		if(br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
