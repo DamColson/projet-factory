@@ -64,7 +64,7 @@ public class SpringTest {
 	ordinateur.setAdresseMac("mac");
 	ordinateur.setDateAchat(LocalDate.now().toString());	
 	ordinateurs.add(ordinateur);
-	ordinateur.setEmplacemeht(salle);
+	ordinateur.setSalle(salle);
 	
 	technicien.setMail("noah@gmail.com");
 	technicien.setNom("Fiquet");

@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -37,7 +37,8 @@ public class Formateur {
     private List<Bloc> blocs;
     
     @OneToOne
-    private VideoProjecteur emprunt;
+    @Column(name = "video_projecteur_id")
+    private VideoProjecteur videoProjecteur;
     
     @ManyToMany(mappedBy = "formateurs")
     private Set<Competence> competences;
@@ -47,7 +48,7 @@ public class Formateur {
     
 
     public Formateur(Integer id, String nom, String prenom, String telephone, String mail, Compte compte,
-			Ordinateur ordinateur, List<Bloc> blocs, VideoProjecteur emprunt, Set<Competence> competences) {
+			Ordinateur ordinateur, List<Bloc> blocs, VideoProjecteur videoProjecteur, Set<Competence> competences) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -57,7 +58,7 @@ public class Formateur {
 		this.compte = compte;
 		this.ordinateur = ordinateur;
 		this.blocs = blocs;
-		this.emprunt = emprunt;
+		this.videoProjecteur = videoProjecteur;
 		this.competences = competences;
 	}
 
@@ -127,12 +128,12 @@ public class Formateur {
         this.blocs = blocs;
     }
 
-    public VideoProjecteur getEmprunt() {
-        return emprunt;
+    public VideoProjecteur getVideoProjecteur() {
+        return videoProjecteur;
     }
 
-    public void setEmprunt(VideoProjecteur emprunt) {
-        this.emprunt = emprunt;
+    public void setVideoProjecteur(VideoProjecteur videoProjecteur) {
+        this.videoProjecteur = videoProjecteur;
     }
 
     public Set<Competence> getCompetences() {

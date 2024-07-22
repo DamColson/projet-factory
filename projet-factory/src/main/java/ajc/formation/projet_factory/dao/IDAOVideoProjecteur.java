@@ -5,14 +5,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import ajc.formation.projet_factory.model.Formateur;
+import ajc.formation.projet_factory.model.Salle;
 import ajc.formation.projet_factory.model.VideoProjecteur;
 import jakarta.transaction.Transactional;
 
 public interface IDAOVideoProjecteur extends JpaRepository<VideoProjecteur, Integer> {
 	
-	@Query("update VideoProjecteur v set v.formateur=null where v.formateur = :formateur")
+	@Query("update VideoProjecteur v set v.salle=null where v.salle = :salle")
 	@Modifying
 	@Transactional
-	public void cascadeNull(@Param("formateur") Formateur formateur);
+	public void cascadeSalleNull(@Param("salle") Salle salle);
 }

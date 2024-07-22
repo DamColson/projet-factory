@@ -1,7 +1,6 @@
 package ajc.formation.projet_factory.services;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import ajc.formation.projet_factory.dao.IDAOCompte;
 import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOTechnicien;
-import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Technicien;
 
 @Service

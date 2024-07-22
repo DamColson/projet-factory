@@ -1,1 +1,53 @@
-<p>videoprojecteur works!</p>
+<div class="container">
+  <h1>Liste des video projecteur</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/videoprojecteur/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un video projecteur</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>adresse mac</td>
+        <td>Date achat</td>
+        <td>Libelle</td>
+        <td>status</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(v of videoprojecteurs; track v.id){
+      <tr>
+        <td>{{ v.id }}</td>
+        <td>{{ v.adresse_mac }}</td>
+        <td>{{ v.date_achat | date : "dd/MM/yyyy" }}</td>
+        <td>{{ v.libelle }}</td>
+        <td>{{ v.status }}</td>
+
+        <td>
+          <a
+            routerLink="/videoprojecteur/edit/{{ v.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(v.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

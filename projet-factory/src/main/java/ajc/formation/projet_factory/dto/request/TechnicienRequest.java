@@ -23,7 +23,6 @@ public class TechnicienRequest {
 	
 	public TechnicienRequest(@NotBlank String nom, @NotBlank String prenom, String telephone, @NotBlank String mail,
 			@NotNull Integer ordinateurId, @NotNull Integer compteId) {
-		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;

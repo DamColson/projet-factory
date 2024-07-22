@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Formateur;
+import ajc.formation.projet_factory.model.VideoProjecteur;
 
 public interface IDAOFormateur extends JpaRepository<Formateur, Integer> {
   @Query("select f from Formateur f left join fetch f.competences as c where c =:competence")
@@ -19,4 +20,9 @@ public interface IDAOFormateur extends JpaRepository<Formateur, Integer> {
 	@Transactional
 	@Modifying
 	public void cascadeCompteNull(@Param("compte") Compte compte);
+
+	@Query("update Formateur f set f.videoProjecteur=null where f.videoProjecteur=:videoProjecteur")
+	@Transactional
+	@Modifying
+	public void cascadevideoProjecteurNull(@Param("videoProjecteur") VideoProjecteur videoProjecteur);
 }

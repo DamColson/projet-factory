@@ -4,14 +4,10 @@ import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import ajc.formation.projet_factory.model.Compte;
-import ajc.formation.projet_factory.model.Ordinateur;
-import ajc.formation.projet_factory.model.Technicien;
+import ajc.formation.projet_factory.model.Stagiaire;
 
-public class TechnicienResponse {
+public class StagiaireResponse {
 
-	@JsonView(CustomJsonViews.Common.class)
-	private Integer id;
 	@JsonView(CustomJsonViews.Common.class)
 	private String nom;
 	@JsonView(CustomJsonViews.Common.class)
@@ -20,26 +16,21 @@ public class TechnicienResponse {
 	private String telephone;
 	@JsonView(CustomJsonViews.Common.class)
 	private String mail;
-	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
-	private OrdinateurResponse ordinateurResponse;
-	@JsonView(CustomJsonViews.TechnicienWithAttributes.class)
+	@JsonView(CustomJsonViews.StagiaireWithAttributes.class)
 	private CompteResponse compteResponse;
-	
-	public TechnicienResponse() {
-	}
-	
-	public TechnicienResponse(Technicien technicien) {
-		BeanUtils.copyProperties(technicien, this);
-		this.ordinateurResponse = new OrdinateurResponse(technicien.getOrdinateur());
-		this.compteResponse = new CompteResponse(technicien.getCompte());
+	@JsonView(CustomJsonViews.StagiaireWithAttributes.class)
+	private OrdinateurResponse ordinateurResponse;
+	@JsonView(CustomJsonViews.StagiaireWithAttributes.class)
+	private FormationResponse formationResponse;
+
+	public StagiaireResponse() {
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public StagiaireResponse(Stagiaire stagiaire) {
+		BeanUtils.copyProperties(stagiaire, this);
+		this.compteResponse = new CompteResponse(stagiaire.getCompte());
+		this.ordinateurResponse = new OrdinateurResponse(stagiaire.getOrdinateur());
+		this.formationResponse = new FormationResponse(stagiaire.getFormation());
 	}
 
 	public String getNom() {
@@ -74,14 +65,6 @@ public class TechnicienResponse {
 		this.mail = mail;
 	}
 
-	public OrdinateurResponse getOrdinateurResponse() {
-		return ordinateurResponse;
-	}
-
-	public void setOrdinateurResponse(OrdinateurResponse ordinateurResponse) {
-		this.ordinateurResponse = ordinateurResponse;
-	}
-
 	public CompteResponse getCompteResponse() {
 		return compteResponse;
 	}
@@ -90,8 +73,20 @@ public class TechnicienResponse {
 		this.compteResponse = compteResponse;
 	}
 
-	
+	public OrdinateurResponse getOrdinateurResponse() {
+		return ordinateurResponse;
+	}
 
-	
-	
+	public void setOrdinateurResponse(OrdinateurResponse ordinateurResponse) {
+		this.ordinateurResponse = ordinateurResponse;
+	}
+
+	public FormationResponse getFormationResponse() {
+		return formationResponse;
+	}
+
+	public void setFormationResponse(FormationResponse formationResponse) {
+		this.formationResponse = formationResponse;
+	}
+
 }

@@ -11,6 +11,7 @@ import ajc.formation.projet_factory.model.Bloc;
 import ajc.formation.projet_factory.model.Formateur;
 import ajc.formation.projet_factory.model.Formation;
 import ajc.formation.projet_factory.model.Matiere;
+import ajc.formation.projet_factory.model.Salle;
 import jakarta.transaction.Transactional;
 
 public interface IDAOBloc extends JpaRepository<Bloc, Integer> {
@@ -24,6 +25,11 @@ public interface IDAOBloc extends JpaRepository<Bloc, Integer> {
 	@Modifying
 	@Transactional
 	public void cascadeMatiereNull(@Param("matiere") Matiere matiere);
+
+	@Query("update Bloc b set b.salle=null where b.salle = :salle")
+	@Modifying
+	@Transactional
+	public void cascadeSalleNull(@Param("salle") Salle salle);
 
 	@Query("select b from Bloc b left join fetch b.formations as f where f =:formation")
 	public List<Bloc> findByFormation(@Param("formation") Formation formation);

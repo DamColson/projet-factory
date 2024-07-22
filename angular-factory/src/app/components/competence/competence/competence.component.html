@@ -1,1 +1,47 @@
-<p>competence works!</p>
+<div class="container">
+  <h1>Liste des compétences</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/competence/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'un ordinateur</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>nom</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(c of competences; track c.id){
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.nom }}</td>
+
+        <td>
+          <a
+            routerLink="/competence/edit/{{ c.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(c.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

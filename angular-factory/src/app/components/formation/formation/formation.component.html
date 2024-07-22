@@ -1,1 +1,53 @@
-<p>formation works!</p>
+<div class="container">
+  <h1>Liste des formations</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/formation/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'une formation</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>pre-requis</td>
+        <td>Date début</td>
+        <td>Date fin</td>
+        <td>Id Gestionnaire</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(f of formations; track f.id){
+      <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.prerequis }}</td>
+        <td>{{ f.debut_formation | date : "dd/MM/yyyy" }}</td>
+        <td>{{ f.fin_formation | date : "dd/MM/yyyy" }}</td>
+        <td>{{ f.gestionnaire_id }}</td>
+
+        <td>
+          <a
+            routerLink="/formation/edit/{{ f.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(f.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

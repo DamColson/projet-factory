@@ -28,7 +28,7 @@ public class Ordinateur {
 	private String dateAchat;
 	
 	@ManyToOne
-	private Salle emplacement;
+	private Salle salle;
 	
 	private String status;
 	
@@ -49,14 +49,14 @@ public class Ordinateur {
 	public Ordinateur() {
 	}
 
-	public Ordinateur(Integer id, String libelle, String adresseMac, String dateAchat, Salle emplacement, String status,
+	public Ordinateur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle, String status,
 			Formateur formateur, Stagiaire stagiaire, Gestionnaire gestionnaire, Technicien technicien, String os) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.adresseMac = adresseMac;
 		this.dateAchat = dateAchat;
-		this.emplacement = emplacement;
+		this.salle = salle;
 		this.status = status;
 		this.formateur = formateur;
 		this.stagiaire = stagiaire;
@@ -89,12 +89,12 @@ public class Ordinateur {
 		this.dateAchat = dateAchat;
 	}
 
-	public Salle getEmplacement() {
-		return emplacement;
+	public Salle getSalle() {
+		return salle;
 	}
 
-	public void setEmplacemeht(Salle emplacement) {
-		this.emplacement = emplacement;
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
 
 	public String getStatus() {
@@ -151,10 +151,6 @@ public class Ordinateur {
 
 	public void setTechnicien(Technicien technicien) {
 		this.technicien = technicien;
-	}
-
-	public void setEmplacement(Salle emplacement) {
-		this.emplacement = emplacement;
 	}
 
 	@Override

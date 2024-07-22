@@ -22,14 +22,14 @@ public class Salle {
 	
 	private Integer superficie;
 	
-	@OneToMany(mappedBy="emplacement")
+	@OneToMany(mappedBy="salle")
 	private Set<Ordinateur> ordinateurs;
 	
 	@OneToMany(mappedBy="salle")
 	private Set<Bloc> blocs;
 	
-	@OneToOne(mappedBy="emplacement")
-	private VideoProjecteur videoProjecteurs;
+	@OneToOne(mappedBy="salle")
+	private VideoProjecteur videoProjecteur;
 	
 	public Salle() {
 	}
@@ -42,7 +42,7 @@ public class Salle {
 		this.superficie = superficie;
 		this.ordinateurs = ordinateurs;
 		this.blocs = blocs;
-		this.videoProjecteurs = videoProjecteurs;
+		this.videoProjecteur = videoProjecteurs;
 	}
 
 	public String getLibelle() {
@@ -78,11 +78,11 @@ public class Salle {
 	}
 
 	public VideoProjecteur getVideoProjecteurs() {
-		return videoProjecteurs;
+		return videoProjecteur;
 	}
 
 	public void setVideoProjecteurs(VideoProjecteur videoProjecteurs) {
-		this.videoProjecteurs = videoProjecteurs;
+		this.videoProjecteur = videoProjecteurs;
 	}
 
 	public Set<Bloc> getBlocs() {

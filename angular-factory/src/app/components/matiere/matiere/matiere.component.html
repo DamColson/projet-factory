@@ -1,1 +1,50 @@
-<p>matiere works!</p>
+<div class="container">
+  <h1>Liste des matieres</h1>
+  <a
+    class="nav-link active"
+    aria-current="page"
+    [routerLink]="['/matiere/edit']"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary m-3"
+    >Création d'une matiere</a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Contenu</td>
+        <td>Titre</td>
+        <td>Editer</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(m of matieres; track m.id){
+      <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.contenu }}</td>
+        <td>{{ m.titre }}</td>
+        >
+
+        <td>
+          <a
+            routerLink="/matiere/edit/{{ m.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Editer</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(m.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
