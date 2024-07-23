@@ -13,6 +13,8 @@ import ajc.formation.projet_factory.model.Matiere;
 public class MatiereResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String titre;
 	@JsonView(CustomJsonViews.Common.class)
 	private String contenu;
@@ -74,6 +76,14 @@ public class MatiereResponse {
 
 	public void setBlocsResponse(Set<BlocResponse> blocsResponse) {
 		this.blocsResponse = blocsResponse;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

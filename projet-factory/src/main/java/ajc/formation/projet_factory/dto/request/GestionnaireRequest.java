@@ -7,8 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 public class GestionnaireRequest {
 
-private String nom;
-	
+	@NotBlank
+	private String nom;
 	@NotBlank
 	private String prenom;
 	@NotBlank

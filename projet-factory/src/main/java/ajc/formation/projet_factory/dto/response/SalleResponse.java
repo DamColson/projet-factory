@@ -12,6 +12,8 @@ import ajc.formation.projet_factory.model.Salle;
 public class SalleResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String libelle;
 	@JsonView(CustomJsonViews.Common.class)
 	private Integer superficie;
@@ -88,4 +90,13 @@ public class SalleResponse {
 		this.videoProjecteurResponse = videoProjecteurResponse;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
 }

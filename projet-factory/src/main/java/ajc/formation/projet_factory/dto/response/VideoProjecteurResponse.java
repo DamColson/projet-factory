@@ -9,6 +9,8 @@ import ajc.formation.projet_factory.model.VideoProjecteur;
 public class VideoProjecteurResponse {
 	
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String libelle;
 	@JsonView(CustomJsonViews.Common.class)	
 	private String adresseMac;
@@ -87,4 +89,14 @@ public class VideoProjecteurResponse {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 }

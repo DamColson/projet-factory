@@ -13,6 +13,8 @@ import ajc.formation.projet_factory.model.Gestionnaire;
 public class GestionnaireResponse {
 	
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String nom;
 	@JsonView(CustomJsonViews.Common.class)
 	private String prenom;
@@ -119,8 +121,16 @@ public class GestionnaireResponse {
 	public void setFormationsResponse(Set<FormationResponse> formationsResponse) {
 		this.formationsResponse = formationsResponse;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
-	
+	 
 	
 	
 }

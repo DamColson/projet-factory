@@ -9,6 +9,8 @@ import ajc.formation.projet_factory.model.Stagiaire;
 public class StagiaireResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String nom;
 	@JsonView(CustomJsonViews.Common.class)
 	private String prenom;
@@ -101,4 +103,13 @@ public class StagiaireResponse {
 		this.formationResponse = formationResponse;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
 }

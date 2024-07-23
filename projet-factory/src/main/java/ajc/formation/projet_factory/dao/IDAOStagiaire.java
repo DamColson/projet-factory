@@ -10,13 +10,13 @@ import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Stagiaire;
 
-public interface IDAOStagiaire extends JpaRepository<Stagiaire, Integer>{
+public interface IDAOStagiaire extends JpaRepository<Stagiaire, Integer> {
 
-  @Query("update Stagiaire s set s.formation=null where s.formation = :formation")
+	@Query("update Stagiaire s set s.formation=null where s.formation = :formation")
 	@Modifying
 	@Transactional
 	public void cascadeFormationtNull(@Param("formation") Formation formation);
-  
+
 	@Query("update Stagiaire s set s.compte=null where s.compte=:compte")
 	@Modifying
 	@Transactional

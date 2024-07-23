@@ -44,8 +44,8 @@ public class Formateur {
     @ManyToMany
     @JoinTable(
 	name = "comp_formateur",
-	joinColumns = @JoinColumn(name = "competence_id"),
-	inverseJoinColumns = @JoinColumn(name = "formateur_id")
+	joinColumns = @JoinColumn(name = "formateur_id"),
+	inverseJoinColumns = @JoinColumn(name = "competence_id")
 	)
     private Set<Competence> competences;
 

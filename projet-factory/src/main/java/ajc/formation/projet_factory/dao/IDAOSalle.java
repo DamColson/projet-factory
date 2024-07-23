@@ -10,6 +10,6 @@ import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Salle;
 
 public interface IDAOSalle extends JpaRepository<Salle, Integer>{
-    @Query("select s from Salle s left join fetch s.ordinateur as o where o =:ordinateur")
+    @Query("select s from Salle s left join fetch s.ordinateurs as o where o =:ordinateur")
     public List<Salle> findByOrdinateur(@Param("ordinateur") Ordinateur ordinateur);
 }

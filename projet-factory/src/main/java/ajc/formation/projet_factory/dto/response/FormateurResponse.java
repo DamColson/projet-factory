@@ -14,6 +14,8 @@ import ajc.formation.projet_factory.model.Formateur;
 public class FormateurResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String nom;
 	@JsonView(CustomJsonViews.Common.class)
     private String prenom;
@@ -135,6 +137,14 @@ public class FormateurResponse {
 
 	public void setCompetencesResponse(Set<CompetenceResponse> competencesResponse) {
 		this.competencesResponse = competencesResponse;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

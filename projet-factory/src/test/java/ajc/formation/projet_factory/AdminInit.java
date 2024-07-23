@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ajc.formation.projet_factory.dao.IDAOCompte;
 import ajc.formation.projet_factory.model.Compte;
+import ajc.formation.projet_factory.model.Role;
 
 @SpringBootTest
 class AdminInit {
@@ -21,9 +22,10 @@ class AdminInit {
 	@Test
 	@Transactional
 	@Commit
-	@Disabled
 	void initAdmin() {
-		Compte admin=daoCompte.findById(1).get();
+		Compte admin=new Compte();
+		admin.setLogin("admin");
+		admin.setRole(Role.ROLE_ADMIN);
 		admin.setPassword( passwordEncoder.encode("admin"));
 		daoCompte.save(admin);
 	}
