@@ -1,6 +1,7 @@
 package ajc.formation.projet_factory.dto.response;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -22,9 +23,26 @@ public class CompetenceResponse {
 	public CompetenceResponse() {
 	}
 	
-	public CompetenceResponse(Competence competence) {
+	public CompetenceResponse(Competence competence,boolean bool) {
 		BeanUtils.copyProperties(competence, this);
-		
+		if(bool) {
+			if(competence.getMatieres()!=null){
+				this.matieresResponse = competence.getMatieres().stream().map(matiere->{
+					return new MatiereResponse(matiere,false);
+				}).collect(Collectors.toSet());
+			}
+			if(competence.getFormateurs()!=null) {
+				this.formateursResponse = competence.getFormateurs().stream().map(formateur->{
+					return new FormateurResponse(formateur,false);
+				}).collect(Collectors.toSet());
+			}
+			
+			
+		}
+	}
+	
+	public CompetenceResponse(Competence competence) {
+		this(competence,true);
 	}
 
 	

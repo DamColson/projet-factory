@@ -34,14 +34,29 @@ public class OrdinateurResponse {
 	public OrdinateurResponse() {
 	}
 	
-	public OrdinateurResponse(Ordinateur ordinateur) {
+	public OrdinateurResponse(Ordinateur ordinateur,boolean bool) {
 		BeanUtils.copyProperties(ordinateur, this);
-		if(ordinateur.getSalle()!=null) {
-			this.salleResponse = new SalleResponse(ordinateur.getSalle());
-		}
-		
-		
-		
+		if(bool) {
+			if(ordinateur.getSalle()!=null) {
+				this.salleResponse = new SalleResponse(ordinateur.getSalle(),false);
+			}
+			if(ordinateur.getFormateur()!=null) {
+				this.formateurResponse = new FormateurResponse(ordinateur.getFormateur(),false);
+			}
+			if(ordinateur.getStagiaire()!=null) {
+				this.stagiaireResponse = new StagiaireResponse(ordinateur.getStagiaire(),false);
+			}
+			if(ordinateur.getGestionnaire()!=null) {
+				this.gestionnaireResponse = new GestionnaireResponse(ordinateur.getGestionnaire(),false);
+			}
+			if(ordinateur.getTechnicien()!=null) {
+				this.technicienResponse = new TechnicienResponse(ordinateur.getTechnicien(),false);
+			}
+		}	
+	}
+	
+	public OrdinateurResponse(Ordinateur ordinateur) {
+		this(ordinateur,true);
 	}
 
 	public Integer getId() {

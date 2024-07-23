@@ -27,9 +27,27 @@ public class CompteResponse {
 	public CompteResponse() {
 	}
 	
-	public CompteResponse(Compte compte) {
+	public CompteResponse(Compte compte,boolean bool) {
 		BeanUtils.copyProperties(compte, this,"role");
-		this.role = compte.getRole().toString();		
+		this.role = compte.getRole().toString();
+		if(bool) {
+			if(compte.getTechnicien()!=null) {
+				this.technicienResponse = new TechnicienResponse(compte.getTechnicien(),false);
+			}
+			if(compte.getGestionnaire()!=null) {
+				this.gestionnaireResponse = new GestionnaireResponse(compte.getGestionnaire(),false);
+			}
+			if(compte.getFormateur()!=null) {
+				this.formateurResponse = new FormateurResponse(compte.getFormateur(),false);
+			}
+			if(compte.getStagiaire()!=null) {
+				this.stagiaireResponse = new StagiaireResponse(compte.getStagiaire(),false);
+			}
+		}	
+	}
+	
+	public CompteResponse(Compte compte) {
+		this(compte,true);
 	}
 
 	public Integer getId() {

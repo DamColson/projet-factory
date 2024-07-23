@@ -2,6 +2,7 @@ package ajc.formation.projet_factory.dto.response;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -35,19 +36,28 @@ public class BlocResponse {
 	public BlocResponse() {
 	}
 	
-	public BlocResponse(Bloc bloc) {
+	public BlocResponse(Bloc bloc,boolean bool) {
 		BeanUtils.copyProperties(bloc, this);
-		if(bloc.getFormateur()!=null) {
-			this.formateurResponse = new FormateurResponse(bloc.getFormateur());
-		}
-		if(bloc.getMatiere()!=null) {
-			this.matiereResponse = new MatiereResponse(bloc.getMatiere());
-		}
-		if(bloc.getSalle()!=null) {
-			this.salleResponse = new SalleResponse(bloc.getSalle());
-		}
-		
-		
+		if(bool) {
+			if(bloc.getFormateur()!=null) {
+				this.formateurResponse = new FormateurResponse(bloc.getFormateur(),false);
+			}
+			if(bloc.getMatiere()!=null) {
+				this.matiereResponse = new MatiereResponse(bloc.getMatiere(),false);
+			}
+			if(bloc.getSalle()!=null) {
+				this.salleResponse = new SalleResponse(bloc.getSalle(),false);
+			}
+			if(bloc.getFormations()!=null) {
+				this.formationsResponse = bloc.getFormations().stream().map(formation->{
+					return new FormationResponse(formation,false);
+				}).collect(Collectors.toSet());
+			}
+		}	
+	}
+	
+	public BlocResponse(Bloc bloc) {
+		this(bloc,true);
 	}
 
 	

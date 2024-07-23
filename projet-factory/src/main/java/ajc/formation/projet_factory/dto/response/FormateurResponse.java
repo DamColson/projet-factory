@@ -35,23 +35,34 @@ public class FormateurResponse {
     public FormateurResponse() {
 	}
     
-    public FormateurResponse(Formateur formateur) {
+    public FormateurResponse(Formateur formateur,boolean bool) {
     	BeanUtils.copyProperties(formateur, this);
-    	if(formateur.getCompte()!=null) {
-    		this.compteResponse = new CompteResponse(formateur.getCompte());	
-    	}
-    	if(formateur.getOrdinateur()!=null) {
-    		this.ordinateurResponse = new OrdinateurResponse(formateur.getOrdinateur());
-    	}
-    	if(formateur.getVideoProjecteur()!=null) {
-    		this.videoProjecteurResponse = new VideoProjecteurResponse(formateur.getVideoProjecteur());
-    	}
-    	if(formateur.getCompetences()!=null) {
-    		this.competencesResponse = formateur.getCompetences().stream().map(competence->{
-        		return new CompetenceResponse(competence);
-        	}).collect(Collectors.toSet());
-    	}
-    	
+    	if(bool) {
+    		if(formateur.getCompte()!=null) {
+        		this.compteResponse = new CompteResponse(formateur.getCompte(),false);	
+        	}
+        	if(formateur.getOrdinateur()!=null) {
+        		this.ordinateurResponse = new OrdinateurResponse(formateur.getOrdinateur(),false);
+        	}
+        	if(formateur.getVideoProjecteur()!=null) {
+        		this.videoProjecteurResponse = new VideoProjecteurResponse(formateur.getVideoProjecteur(),false);
+        	}
+        	if(formateur.getCompetences()!=null) {
+        		this.competencesResponse = formateur.getCompetences().stream().map(competence->{
+            		return new CompetenceResponse(competence,false);
+            	}).collect(Collectors.toSet());
+        	}
+        	if(formateur.getBlocs()!=null) {
+        		this.blocsResponse = formateur.getBlocs().stream().map(bloc->{
+        			return new BlocResponse(bloc,false);
+        		}).collect(Collectors.toList());
+        	}
+        	
+    	} 	
+    }
+    
+    public FormateurResponse(Formateur formateur) {
+    	this(formateur,true);
     }
 
 	public String getNom() {

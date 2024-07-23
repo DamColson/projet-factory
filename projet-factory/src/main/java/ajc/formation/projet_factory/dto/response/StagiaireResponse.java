@@ -26,18 +26,23 @@ public class StagiaireResponse {
 	public StagiaireResponse() {
 	}
 
-	public StagiaireResponse(Stagiaire stagiaire) {
+	public StagiaireResponse(Stagiaire stagiaire,boolean bool) {
 		BeanUtils.copyProperties(stagiaire, this);
-		if(stagiaire.getCompte()!=null) {
-			this.compteResponse = new CompteResponse(stagiaire.getCompte());
-		}
-		if(stagiaire.getOrdinateur()!=null) {
-			this.ordinateurResponse = new OrdinateurResponse(stagiaire.getOrdinateur());
-		}
-		if(stagiaire.getFormation()!=null) {
-			this.formationResponse = new FormationResponse(stagiaire.getFormation());
-		}
-		
+		if(bool) {
+			if(stagiaire.getCompte()!=null) {
+				this.compteResponse = new CompteResponse(stagiaire.getCompte(),false);
+			}
+			if(stagiaire.getOrdinateur()!=null) {
+				this.ordinateurResponse = new OrdinateurResponse(stagiaire.getOrdinateur(),false);
+			}
+			if(stagiaire.getFormation()!=null) {
+				this.formationResponse = new FormationResponse(stagiaire.getFormation(),false);
+			}
+		}		
+	}
+	
+	public StagiaireResponse(Stagiaire stagiaire) {
+		this(stagiaire,true);
 	}
 
 	public String getNom() {

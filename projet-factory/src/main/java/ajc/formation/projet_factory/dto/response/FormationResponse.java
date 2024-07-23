@@ -28,17 +28,27 @@ public class FormationResponse {
 	public FormationResponse() {
 	}
 	
-	public FormationResponse(Formation formation) {
+	public FormationResponse(Formation formation,boolean bool) {
 		BeanUtils.copyProperties(formation, this);
-		if(formation.getGestionnaire()!=null) {
-			this.gestionnaireResponse = new GestionnaireResponse(formation.getGestionnaire());
-		}
-		if(formation.getBlocs()!=null) {
-			this.blocsResponse = formation.getBlocs().stream().map(bloc->{
-				return new BlocResponse(bloc);
-			}).collect(Collectors.toSet());
-		}
-		
+		if(bool) {
+			if(formation.getGestionnaire()!=null) {
+				this.gestionnaireResponse = new GestionnaireResponse(formation.getGestionnaire());
+			}
+			if(formation.getBlocs()!=null) {
+				this.blocsResponse = formation.getBlocs().stream().map(bloc->{
+					return new BlocResponse(bloc);
+				}).collect(Collectors.toSet());
+			}
+			if(formation.getStagiaires()!=null) {
+				this.stagiairesResponse = formation.getStagiaires().stream().map(stagiaire->{
+					return new StagiaireResponse(stagiaire,false);
+				}).collect(Collectors.toSet());
+			}
+		}	
+	}
+	
+	public FormationResponse(Formation formation) {
+		this(formation,true);
 	}
 
 	public LocalDate getDebut() {

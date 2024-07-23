@@ -25,15 +25,20 @@ public class TechnicienResponse {
 	public TechnicienResponse() {
 	}
 	
-	public TechnicienResponse(Technicien technicien) {
+	public TechnicienResponse(Technicien technicien,boolean bool) {
 		BeanUtils.copyProperties(technicien, this);
-		if(technicien.getOrdinateur()!=null) {
-			this.ordinateurResponse = new OrdinateurResponse(technicien.getOrdinateur());
-		}
-		if(technicien.getCompte()!=null) {
-			this.compteResponse = new CompteResponse(technicien.getCompte());
-		}
-		
+		if(bool) {
+			if(technicien.getOrdinateur()!=null) {
+				this.ordinateurResponse = new OrdinateurResponse(technicien.getOrdinateur(),false);
+			}
+			if(technicien.getCompte()!=null) {
+				this.compteResponse = new CompteResponse(technicien.getCompte(),false);
+			}
+		}	
+	}
+	
+	public TechnicienResponse(Technicien technicien) {
+		this(technicien,true);
 	}
 
 	public Integer getId() {

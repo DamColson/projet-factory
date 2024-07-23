@@ -1,6 +1,7 @@
 package ajc.formation.projet_factory.dto.response;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -24,13 +25,27 @@ public class SalleResponse {
 	public SalleResponse() {
 	}
 
-	public SalleResponse(Salle salle) {
+	public SalleResponse(Salle salle,boolean bool) {
 		BeanUtils.copyProperties(salle, this);
-		if(salle.getVideoProjecteurs()!=null) {
-			this.videoProjecteurResponse = new VideoProjecteurResponse(salle.getVideoProjecteurs());
-		}
-
-		
+		if(bool) {
+			if(salle.getVideoProjecteurs()!=null) {
+				this.videoProjecteurResponse = new VideoProjecteurResponse(salle.getVideoProjecteurs(),false);
+			}
+			if(salle.getOrdinateurs()!=null) {
+				this.ordinateursResponse = salle.getOrdinateurs().stream().map(ordinateur->{
+					return new OrdinateurResponse(ordinateur,false);
+				}).collect(Collectors.toSet());
+			}
+			if(salle.getBlocs()!=null) {
+				this.blocsResponse = salle.getBlocs().stream().map(bloc->{
+					return new BlocResponse(bloc,false);
+				}).collect(Collectors.toSet());
+			}
+		}		
+	}
+	
+	public SalleResponse(Salle salle) {
+		this(salle,true);
 	}
 
 	public String getLibelle() {

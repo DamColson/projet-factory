@@ -24,15 +24,24 @@ public class MatiereResponse {
 	public MatiereResponse() {
 	}
 	
-	public MatiereResponse(Matiere matiere) {
+	public MatiereResponse(Matiere matiere,boolean bool) {
 		BeanUtils.copyProperties(matiere, this);
-		if(matiere.getCompetences()!=null) {
-			this.competencesResponse = matiere.getCompetences().stream().map(competence->{
-				return new CompetenceResponse(competence);
-			}).collect(Collectors.toSet());
-		}
-		
-		
+		if(bool) {
+			if(matiere.getCompetences()!=null) {
+				this.competencesResponse = matiere.getCompetences().stream().map(competence->{
+					return new CompetenceResponse(competence,false);
+				}).collect(Collectors.toSet());
+			}
+			if(matiere.getBlocs()!=null) {
+				this.blocsResponse = matiere.getBlocs().stream().map(bloc->{
+					return new BlocResponse(bloc,false);
+				}).collect(Collectors.toSet());
+			}
+		}	
+	}
+	
+	public MatiereResponse(Matiere matiere) {
+		this(matiere,true);
 	}
 
 	public String getTitre() {
