@@ -22,7 +22,7 @@ public class FormateurRequest {
     private Integer ordinateurId;
     private Integer videoProjecteurId;
     private Set<Integer> competencesId;
-    private List<Integer> blocsId;
+
     
     public FormateurRequest() {
 	}
@@ -89,14 +89,6 @@ public class FormateurRequest {
 
 	public void setCompetencesId(Set<Integer> competencesId) {
 		this.competencesId = competencesId;
-	}
-
-	public List<Integer> getBlocsId() {
-		return blocsId;
-	}
-
-	public void setBlocsId(List<Integer> blocsId) {
-		this.blocsId = blocsId;
 	}
 
     

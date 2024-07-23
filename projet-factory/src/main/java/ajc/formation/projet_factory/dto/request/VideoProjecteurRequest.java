@@ -58,4 +58,5 @@ public class VideoProjecteurRequest {
 		this.status = status;
 	}
 
+	
 }
