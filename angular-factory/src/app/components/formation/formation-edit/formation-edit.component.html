@@ -1,1 +1,52 @@
-<p>formation-edit works!</p>
+<div class="container">
+  @if(formation.id){
+  <h1>Edition du formation numéro {{ formation.id }}</h1>
+  }@else {
+  <h1>Création d'une formation</h1>
+  }
+  <div class="form-group mb-3">
+    <label for="debut">Date de début :</label>
+    <input
+      id="debut"
+      type="date"
+      class="form-control"
+      [(ngModel)]="formation.debut"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="fin">Date de fin :</label>
+    <input
+      id="fin"
+      type="date"
+      class="form-control"
+      [(ngModel)]="formation.fin"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="gestionnaire">Gestionnaire :</label>
+    <select
+      [compareWith]="compareGn"
+      [(ngModel)]="formation.gestionnaireResponse"
+      id="ordinateur"
+      class="form-control"
+    >
+      <option value="null">Aucun</option>
+      @for(g of GestionnaireObservable|async; track g.id){
+      <option [ngValue]="g">
+        {{ g.nom }}
+      </option>
+      }
+    </select>
+    <div class="form-group">
+      <button class="btn btn-outline-primary m*2" (click)="save()">
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/formation']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </div>
+</div>
