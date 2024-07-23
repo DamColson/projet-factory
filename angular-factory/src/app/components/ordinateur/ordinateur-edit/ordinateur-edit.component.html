@@ -4,77 +4,136 @@
   }@else {
   <h1>Création d'un ordinateur</h1>
   }
-
-  <div class="form-group mb-3">
-    <label for="adresse_mac">Adresse Mac :</label>
-    <input
-      id="adresse_mac"
-      class="form-control"
-      [(ngModel)]="ordinateur.adresseMac"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="dateachat">Date d'achat :</label>
-    <input
-      id="dateachat"
-      type="date"
-      class="form-control"
-      [(ngModel)]="ordinateur.dateAchat"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="libelle">Libelle :</label>
-    <input id="libelle" class="form-control" [(ngModel)]="ordinateur.libelle" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="salle">Salle :</label>
-    <select
-      [compareWith]="compareSn"
-      [(ngModel)]="ordinateur.salleResponse"
-      id="salle"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(s of SalleObservable|async; track s.id){
-      <option [ngValue]="s">
-        {{ s.id }}
-      </option>
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <div class="form-group mb-3">
+        <label for="libelle">Libelle :</label>
+        <input
+          id="libelle"
+          class="form-control"
+          [(ngModel)]="ordinateur.libelle"
+          name="libelle"
+          required
+          #libelleCtrl="ngModel"
+        />
+        @if(libelleCtrl.invalid && libelleCtrl.dirty){
+        <div class="text-danger fst-italic">*obligatoire</div>
+        }
+      </div>
+      <label for="adresseMac">Adresse Mac :</label>
+      <input
+        id="adresseMac"
+        class="form-control"
+        [(ngModel)]="ordinateur.adresseMac"
+        name="adresseMac"
+        required
+        #adresseCtrl="ngModel"
+      />
+      @if(adresseCtrl.invalid && adresseCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group mb-3">
-    <label for="stagiaire">Stagiaire :</label>
-    <select
-      [compareWith]="compareStn"
-      [(ngModel)]="ordinateur.stagiaireResponse"
-      id="stagiaire"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(s of StagiaireObservable|async; track s.id){
-      <option [ngValue]="s">
-        {{ s.id }}
-      </option>
+    </div>
+    <div class="form-group mb-3">
+      <label for="dateAchat">Date d'achat :</label>
+      <input
+        id="dateAchat"
+        type="date"
+        class="form-control"
+        [(ngModel)]="ordinateur.dateAchat"
+        name="dateAchat"
+        required
+        #dateCtrl="ngModel"
+      />
+      @if(dateCtrl.invalid && dateCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group mb-3">
-    <label for="os">Os :</label>
-    <input id="Os" class="form-control" [(ngModel)]="ordinateur.os" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="status">Status :</label>
-    <input id="status" class="form-control" [(ngModel)]="ordinateur.status" />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-outline-primary m*2" (click)="save()">
-      Enregistrer
-    </button>
-    <a
-      [routerLink]="['/ordinateur']"
-      routerLinkActive="router-link-active"
-      class="btn btn-outline-warning m-2"
-      >Retour</a
-    >
-  </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="os">Os :</label>
+      <input
+        id="os"
+        class="form-control"
+        [(ngModel)]="ordinateur.os"
+        name="os"
+        required
+        #osCtrl="ngModel"
+      />
+      @if(osCtrl.invalid && osCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="status">Status :</label>
+      <input
+        id="status"
+        class="form-control"
+        [(ngModel)]="ordinateur.status"
+        name="satus"
+        required
+        #statusCtrl="ngModel"
+      />
+      @if(statusCtrl.invalid && statusCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="salle">Salle :</label>
+      <select
+        [compareWith]="compareSn"
+        [(ngModel)]="ordinateur.salleResponse"
+        id="salle"
+        class="form-control"
+        name="salle"
+        required
+        #salleCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(s of SalleObservable|async; track s.id){
+        <option [ngValue]="s">
+          {{ s.id }}
+        </option>
+        }
+      </select>
+      @if(salleCtrl.invalid && salleCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="stagiaire">Stagiaire :</label>
+      <select
+        [compareWith]="compareStn"
+        [(ngModel)]="ordinateur.stagiaireResponse"
+        id="stagiaire"
+        class="form-control"
+        name="stagiaire"
+        required
+        #stagiaireCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(s of StagiaireObservable|async; track s.id){
+        <option [ngValue]="s">
+          {{ s.id }}
+        </option>
+        }
+      </select>
+      @if(stagiaireCtrl.invalid && stagiaireCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/ordinateur']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
 </div>
