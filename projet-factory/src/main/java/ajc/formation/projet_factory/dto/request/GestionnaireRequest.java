@@ -1,5 +1,7 @@
 package ajc.formation.projet_factory.dto.request;
 
+
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,7 +17,6 @@ private String nom;
 	private String mail;
 	@NotNull
 	private Integer compteId;
-	
 	private Integer ordinateurId;
 	
 	public GestionnaireRequest() {
