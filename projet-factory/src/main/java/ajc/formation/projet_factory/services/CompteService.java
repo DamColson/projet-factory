@@ -46,6 +46,22 @@ public class CompteService implements UserDetailsService{
 		return daoCompte.findAll();
 	}
 	
+	public List<Compte> getAllFreeTech(){
+		return daoCompte.findFreeTechnicien();
+	}
+	
+	public List<Compte> getAllFreeGest(){
+		return daoCompte.findFreeGestionnaire();
+	}
+	
+	public List<Compte> getAllFreeForm(){
+		return daoCompte.findFreeFormateur();
+	}
+	
+	public List<Compte> getAllFreeStag(){
+		return daoCompte.findFreeStagiaire();
+	}
+	
 	public Compte insert(Compte compte) {
 		if(compte.getLogin()==null||compte.getLogin().isBlank()||daoCompte.findByLogin(compte.getLogin()).isPresent()) {
 			throw new CompteException("probleme login");
