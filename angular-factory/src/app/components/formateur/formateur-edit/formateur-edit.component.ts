@@ -14,14 +14,14 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Ordinateur } from '../../model/ordinateur';
-import { Formateur } from '../../model/formateur';
-import { FormateurService } from '../../services/formateur.service';
-import { OrdinateurService } from '../../services/ordinateur.service';
-import { Videoprojecteur } from '../../model/videoprojecteur';
-import { Compte } from '../../model/compte';
-import { VideoprojecteurService } from '../../services/videoprojecteur.service';
-import { CompteService } from '../../services/compte.service';
+import { Ordinateur } from '../../../model/ordinateur';
+import { Formateur } from '../../../model/formateur';
+import { FormateurService } from '../../../services/formateur.service';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { Videoprojecteur } from '../../../model/videoprojecteur';
+import { Compte } from '../../../model/compte';
+import { VideoprojecteurService } from '../../../services/videoprojecteur.service';
+import { CompteService } from '../../../services/compte.service';
 
 @Component({
   selector: 'app-formateur-edit',

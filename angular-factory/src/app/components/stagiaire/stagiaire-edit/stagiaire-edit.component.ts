@@ -13,15 +13,15 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Ordinateur } from '../../model/ordinateur';
+import { Ordinateur } from '../../../model/ordinateur';
 import { Observable } from 'rxjs';
-import { Stagiaire } from '../../model/stagiaire';
-import { StagiaireService } from '../../services/stagiaire.service';
-import { Compte } from '../../model/compte';
-import { Formation } from '../../model/formation';
-import { OrdinateurService } from '../../services/ordinateur.service';
-import { FormationService } from '../../services/formation.service';
-import { CompteService } from '../../services/compte.service';
+import { Stagiaire } from '../../../model/stagiaire';
+import { StagiaireService } from '../../../services/stagiaire.service';
+import { Compte } from '../../../model/compte';
+import { Formation } from '../../../model/formation';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { FormationService } from '../../../services/formation.service';
+import { CompteService } from '../../../services/compte.service';
 
 @Component({
   selector: 'app-stagiaire-edit',
