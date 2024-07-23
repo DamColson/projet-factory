@@ -50,6 +50,30 @@ public class CompteRestController {
     public CompteResponse getById(@PathVariable("id") Integer id) {
         return new CompteResponse(compteService.getById(id));
     }
+    
+    @GetMapping("/free-tech")
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
+    public List<CompteResponse> getAllFreeTech() {
+    	return compteService.getAllFreeTech().stream().map(compte-> new CompteResponse(compte)).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/free-gest")
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
+    public List<CompteResponse> getAllFreeGest() {
+    	return compteService.getAllFreeGest().stream().map(compte-> new CompteResponse(compte)).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/free-form")
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
+    public List<CompteResponse> getAllFreeForm() {
+    	return compteService.getAllFreeForm().stream().map(compte-> new CompteResponse(compte)).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/free-stag")
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
+    public List<CompteResponse> getAllFreeStag() {
+    	return compteService.getAllFreeStag().stream().map(compte-> new CompteResponse(compte)).collect(Collectors.toList());
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
