@@ -16,6 +16,8 @@
         <td>Date achat</td>
         <td>Libelle</td>
         <td>status</td>
+        <td>Salle</td>
+        <td>Formateur</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -28,7 +30,8 @@
         <td>{{ v.dateAchat | date : "dd/MM/yyyy" }}</td>
         <td>{{ v.libelle }}</td>
         <td>{{ v.status }}</td>
-
+        <td>{{ v.salleResponse }}</td>
+        <td>{{ v.formateurResponse }}</td>
         <td>
           <a
             routerLink="/videoprojecteur/edit/{{ v.id }}"

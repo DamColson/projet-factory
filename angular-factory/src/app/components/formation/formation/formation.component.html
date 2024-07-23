@@ -15,7 +15,7 @@
         <td>pre-requis</td>
         <td>Date début</td>
         <td>Date fin</td>
-        <td>Id Gestionnaire</td>
+        <td>Gestionnaire</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -27,7 +27,7 @@
         <td>{{ f.prerequis }}</td>
         <td>{{ f.debut | date : "dd/MM/yyyy" }}</td>
         <td>{{ f.fin | date : "dd/MM/yyyy" }}</td>
-        <td>{{ f.gestionnaireResponse?.id }}</td>
+        <td>{{ f.gestionnaireResponse?.nom }}</td>
 
         <td>
           <a
