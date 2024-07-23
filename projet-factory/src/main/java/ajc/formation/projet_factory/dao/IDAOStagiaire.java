@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ajc.formation.projet_factory.model.Formation;
+import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Stagiaire;
 
@@ -20,4 +21,9 @@ public interface IDAOStagiaire extends JpaRepository<Stagiaire, Integer>{
 	@Modifying
 	@Transactional
 	public void cascadeCompteNull(@Param("compte") Compte compte);
+
+	@Query("update Stagiaire s set s.ordinateur=null where s.ordinateur=:ordinateur")
+	@Modifying
+	@Transactional
+	public void cascadeOrdinateurNull(@Param("ordinateur") Ordinateur ordinateur);
 }

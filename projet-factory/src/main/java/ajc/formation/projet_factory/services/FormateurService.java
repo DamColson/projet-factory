@@ -41,6 +41,10 @@ public class FormateurService {
 		if(formateur.getId() == null) {
 			throw new RuntimeException("l'id n'existe pas");
 		}
+		if(formateur.getCompte()==null) 
+		{
+			throw new RuntimeException("Impossible d'update un formateur sans compte");
+		}
 		return daoFormateur.save(formateur);
 	}
 	
