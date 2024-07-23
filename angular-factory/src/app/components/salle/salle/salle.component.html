@@ -15,8 +15,8 @@
     <thead>
       <tr>
         <td>Id</td>
-        <td>superficie</td>
-        <td>libelle</td>
+        <td>Libelle</td>
+        <td>Superficie</td>
         <td>Vidéoprojecteur</td>
         <td>Editer</td>
         <td>Supprimer</td>
@@ -26,8 +26,8 @@
       @for(s of salles; track s.id){
       <tr>
         <td>{{ s.id }}</td>
-        <td>{{ s.superficie }}</td>
         <td>{{ s.libelle }}</td>
+        <td>{{ s.superficie }}</td>
         <td>{{ s.videoprojecteurResponse?.libelle }}</td>
 
         <td>
