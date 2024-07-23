@@ -1,1 +1,80 @@
-<p>ordinateur-edit works!</p>
+<div class="container">
+  @if(ordinateur.id){
+  <h1>Edition de l'ordinateur numéro {{ ordinateur.id }}</h1>
+  }@else {
+  <h1>Création d'un ordinateur</h1>
+  }
+
+  <div class="form-group mb-3">
+    <label for="adresse_mac">Adresse Mac :</label>
+    <input
+      id="adresse_mac"
+      class="form-control"
+      [(ngModel)]="ordinateur.adresseMac"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="dateachat">Date d'achat :</label>
+    <input
+      id="dateachat"
+      type="date"
+      class="form-control"
+      [(ngModel)]="ordinateur.dateAchat"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="libelle">Libelle :</label>
+    <input id="libelle" class="form-control" [(ngModel)]="ordinateur.libelle" />
+  </div>
+  <div class="form-group mb-3">
+    <label for="salle">Salle :</label>
+    <select
+      [compareWith]="compareSn"
+      [(ngModel)]="ordinateur.salleResponse"
+      id="salle"
+      class="form-control"
+    >
+      <option value="null">Aucun</option>
+      @for(s of SalleObservable|async; track s.id){
+      <option [ngValue]="s">
+        {{ s.id }}
+      </option>
+      }
+    </select>
+  </div>
+  <div class="form-group mb-3">
+    <label for="stagiaire">Stagiaire :</label>
+    <select
+      [compareWith]="compareStn"
+      [(ngModel)]="ordinateur.stagiaireResponse"
+      id="stagiaire"
+      class="form-control"
+    >
+      <option value="null">Aucun</option>
+      @for(s of StagiaireObservable|async; track s.id){
+      <option [ngValue]="s">
+        {{ s.id }}
+      </option>
+      }
+    </select>
+  </div>
+  <div class="form-group mb-3">
+    <label for="os">Os :</label>
+    <input id="Os" class="form-control" [(ngModel)]="ordinateur.os" />
+  </div>
+  <div class="form-group mb-3">
+    <label for="status">Status :</label>
+    <input id="status" class="form-control" [(ngModel)]="ordinateur.status" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-outline-primary m*2" (click)="save()">
+      Enregistrer
+    </button>
+    <a
+      [routerLink]="['/ordinateur']"
+      routerLinkActive="router-link-active"
+      class="btn btn-outline-warning m-2"
+      >Retour</a
+    >
+  </div>
+</div>
