@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   FormsModule,
@@ -22,6 +23,8 @@ import { Videoprojecteur } from '../../../model/videoprojecteur';
 import { Compte } from '../../../model/compte';
 import { VideoprojecteurService } from '../../../services/videoprojecteur.service';
 import { CompteService } from '../../../services/compte.service';
+import { CompetenceService } from '../../../services/competence.service';
+import { Competence } from '../../../model/competence';
 
 @Component({
   selector: 'app-formateur-edit',
@@ -42,6 +45,7 @@ export class FormateurEditComponent {
   OrdinateurObservable!: Observable<Ordinateur[]>;
   VideoprojecteurObservable!: Observable<Videoprojecteur[]>;
   CompteObservable!: Observable<Compte[]>;
+  CompetencesObservable!: Observable<Competence[]>;
 
   formateur: Formateur = new Formateur();
 
@@ -49,6 +53,7 @@ export class FormateurEditComponent {
     private formateurSrv: FormateurService,
     private ordinateurSrv: OrdinateurService,
     private videoprojecteurSrv: VideoprojecteurService,
+    private competenceSrv: CompetenceService,
     private compteSrv: CompteService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -61,6 +66,7 @@ export class FormateurEditComponent {
     this.OrdinateurObservable = this.ordinateurSrv.getAll();
     this.VideoprojecteurObservable = this.videoprojecteurSrv.getAll();
     this.CompteObservable = this.compteSrv.getAll();
+    this.CompetencesObservable = this.competenceSrv.getAll();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
@@ -70,6 +76,7 @@ export class FormateurEditComponent {
       }
     });
   }
+
   save() {
     if (this.formateur.id) {
       this.formateurSrv.update(this.formateur).subscribe((formateur) => {
