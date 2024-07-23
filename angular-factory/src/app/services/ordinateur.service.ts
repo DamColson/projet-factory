@@ -39,11 +39,12 @@ export class OrdinateurService {
   private ordinateurToOrdinateurRequest(ordinateur: Ordinateur): any {
     let obj = {
       id: ordinateur.id,
-      adresse_mac: ordinateur.adresse_mac,
-      date_achat: ordinateur.date_achat,
+      adresseMac: ordinateur.adresseMac,
+      dateAchat: ordinateur.dateAchat,
       libelle: ordinateur.libelle,
-      OS: ordinateur.os,
-      Status: ordinateur.status,
+      os: ordinateur.os,
+      status: ordinateur.status,
+      salle: ordinateur.salleResponse?.id,
     };
     return obj;
   }

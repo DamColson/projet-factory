@@ -41,6 +41,7 @@ export class MatiereService {
       id: matiere.id,
       contenu: matiere.contenu,
       titre: matiere.titre,
+      competence: matiere.competencesResponse,
     };
     return obj;
   }

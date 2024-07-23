@@ -40,10 +40,12 @@ export class FormationService {
   private formationToFormationRequest(formation: Formation): any {
     let obj = {
       id: formation.id,
-      debut_formation: formation.debut_formation,
-      fin_formation: formation.fin_formation,
-      gesitonnaire_id: formation.gestionnaire_id,
+      debut: formation.debut,
+      fin: formation.fin,
+      gestionnaire: formation.gestionnaireResponse,
       prerequis: formation.prerequis,
+      stagiaires: formation.stagiairesResponse,
+      blocs: formation.blocsResponse,
     };
     return obj;
   }

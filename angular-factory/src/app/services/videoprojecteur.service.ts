@@ -38,14 +38,16 @@ export class VideoprojecteurService {
   }
 
   private videoprojecteurToVideoprojecteurrRequest(
-    ordinateur: Ordinateur
+    videoprojecteur: Videoprojecteur
   ): any {
     let obj = {
-      id: ordinateur.id,
-      adresse_mac: ordinateur.adresse_mac,
-      date_achat: ordinateur.date_achat,
-      libelle: ordinateur.libelle,
-      Status: ordinateur.status,
+      id: videoprojecteur.id,
+      adresse_mac: videoprojecteur.adresseMac,
+      date_achat: videoprojecteur.dateAchat,
+      libelle: videoprojecteur.libelle,
+      Status: videoprojecteur.status,
+      salle: videoprojecteur.salleResponse?.id,
+      formateur: videoprojecteur.formateurResponse?.id,
     };
     return obj;
   }
