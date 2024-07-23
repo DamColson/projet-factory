@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class CompetenceRequest {
 
-	
+	@NotBlank
 	private String nom;
 	
 	public CompetenceRequest() {

@@ -40,20 +40,20 @@ public class CompteRestController {
     private CompteService compteService;
 
     @GetMapping("")
-    @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
     public List<CompteResponse> getALl() {
         return compteService.getAll().stream().map(compte->new CompteResponse(compte)).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
     public CompteResponse getById(@PathVariable("id") Integer id) {
         return new CompteResponse(compteService.getById(id));
     }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
     public CompteResponse create(@Valid @RequestBody CompteRequest compteRequest, BindingResult br) {
         if(br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class CompteRestController {
     }
 
     @PutMapping("/{id}")
-    @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
+    @JsonView(CustomJsonViews.CompteWithPerson.class)
     public CompteResponse update(@Valid @RequestBody CompteRequest compteRequest, BindingResult br, @PathVariable("id") Integer id) {
         if(br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

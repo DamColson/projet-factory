@@ -1,6 +1,7 @@
 package ajc.formation.projet_factory.dto.response;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -30,17 +31,27 @@ public class GestionnaireResponse {
 	public GestionnaireResponse() {
 	}
 
-	public GestionnaireResponse(Gestionnaire gestionnaire) {
+	public GestionnaireResponse(Gestionnaire gestionnaire,boolean bool) {
 		BeanUtils.copyProperties(gestionnaire, this);
-		if(gestionnaire.getCompte()!=null) {
-			this.compteResponse = new CompteResponse(gestionnaire.getCompte());
-		}
-		if(gestionnaire.getOrdinateur()!=null) {
-			this.ordinateurResponse = new OrdinateurResponse(gestionnaire.getOrdinateur());
-		}
-
-		
+		if(bool) {
+			if(gestionnaire.getCompte()!=null) {
+				this.compteResponse = new CompteResponse(gestionnaire.getCompte());
+			}
+			if(gestionnaire.getOrdinateur()!=null) {
+				this.ordinateurResponse = new OrdinateurResponse(gestionnaire.getOrdinateur());
+			}
+			if(gestionnaire.getFormations()!=null) {
+				this.formationsResponse = gestionnaire.getFormations().stream().map(formation->{
+					return new FormationResponse(formation,false);
+				}).collect(Collectors.toSet());
+			}
+		}	
 	}
+	
+	public GestionnaireResponse(Gestionnaire gestionnaire) {
+		this(gestionnaire,true);
+	}
+
 
 	public String getNom() {
 		return nom;

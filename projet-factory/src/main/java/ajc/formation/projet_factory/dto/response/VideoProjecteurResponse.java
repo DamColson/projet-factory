@@ -24,13 +24,20 @@ public class VideoProjecteurResponse {
 	public VideoProjecteurResponse() {
 	}
 	
-	public VideoProjecteurResponse(VideoProjecteur videoProjecteur) {
+	public VideoProjecteurResponse(VideoProjecteur videoProjecteur,boolean bool) {
 		BeanUtils.copyProperties(videoProjecteur, this);
-		if(videoProjecteur.getSalle()!=null) {
-			this.salleResponse = new SalleResponse(videoProjecteur.getSalle());
+		if(bool) {
+			if(videoProjecteur.getSalle()!=null) {
+				this.salleResponse = new SalleResponse(videoProjecteur.getSalle(),false);
+			}
+			if(videoProjecteur.getFormateur()!=null) {
+				this.formateurResponse = new FormateurResponse(videoProjecteur.getFormateur(),false);
+			}
 		}
-		
-		
+	}
+	
+	public VideoProjecteurResponse(VideoProjecteur videoProjecteur) {
+		this(videoProjecteur,true);
 	}
 
 	public String getLibelle() {
