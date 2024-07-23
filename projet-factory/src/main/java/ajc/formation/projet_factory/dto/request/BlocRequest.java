@@ -79,6 +79,6 @@ public class BlocRequest {
 	public void setMatiereId(Integer matiereId) {
 		this.matiereId = matiereId;
 	}
-	
+
 	
 }

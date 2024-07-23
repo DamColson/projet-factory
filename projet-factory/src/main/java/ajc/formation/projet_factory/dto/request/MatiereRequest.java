@@ -1,10 +1,15 @@
 package ajc.formation.projet_factory.dto.request;
 
+import java.util.Set;
+
+import jakarta.validation.constraints.NotBlank;
+
 public class MatiereRequest {
 
+	@NotBlank
 	private String titre;
-
 	private String contenu;
+	private Set<Integer> competencesId;
 	
 	public MatiereRequest() {
 	}
@@ -24,6 +29,15 @@ public class MatiereRequest {
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
+	
+	public Set<Integer> getCompetencesId() {
+		return competencesId;
+	}
 
+	public void setCompetencesId(Set<Integer> competencesId) {
+		this.competencesId = competencesId;
+	}
+	
+	
 	
 }

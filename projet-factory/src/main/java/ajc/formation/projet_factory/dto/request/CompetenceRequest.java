@@ -1,5 +1,6 @@
 package ajc.formation.projet_factory.dto.request;
 
+
 import jakarta.validation.constraints.NotBlank;
 
 public class CompetenceRequest {
@@ -22,6 +23,7 @@ public class CompetenceRequest {
 	public String toString() {
 		return "CompetenceRequest [nom=" + nom + "]";
 	}
+	
 	
 	
 }

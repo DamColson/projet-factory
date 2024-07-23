@@ -10,10 +10,6 @@ public class CompteRequest {
 	private String role;	
 	@NotBlank
 	private String password;
-	private Integer technicienId;
-	private Integer formateurId;
-	private Integer stagiaireId;
-	private Integer gestionnaireId;
 	
 	public CompteRequest() {
 	}
@@ -32,38 +28,6 @@ public class CompteRequest {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public Integer getTechnicienId() {
-		return technicienId;
-	}
-
-	public void setTechnicienId(Integer technicienId) {
-		this.technicienId = technicienId;
-	}
-
-	public Integer getFormateurId() {
-		return formateurId;
-	}
-
-	public void setFormateurId(Integer formateurId) {
-		this.formateurId = formateurId;
-	}
-
-	public Integer getStagiaireId() {
-		return stagiaireId;
-	}
-
-	public void setStagiaireId(Integer stagiaireId) {
-		this.stagiaireId = stagiaireId;
-	}
-
-	public Integer getGestionnaireId() {
-		return gestionnaireId;
-	}
-
-	public void setGestionnaireId(Integer gestionnaireId) {
-		this.gestionnaireId = gestionnaireId;
 	}
 
 	public String getPassword() {
