@@ -22,12 +22,12 @@ import { SalleEditComponent } from './components/salle/salle-edit/salle-edit.com
 import { CompteComponent } from './components/compte/compte/compte.component';
 import { CompteEditComponent } from './components/compte/compte-edit/compte-edit.component';
 import { authGuard } from './guards/auth.guard';
-import { StagiaireComponent } from './components/stagiaire/stagiaire.component';
-import { StagiaireEditComponent } from './components/stagiaire-edit/stagiaire-edit.component';
-import { FormateurComponent } from './components/formateur/formateur.component';
-import { FormateurEditComponent } from './components/formateur-edit/formateur-edit.component';
-import { TechnicienEditComponent } from './components/technicien-edit/technicien-edit.component';
-import { TechnicienComponent } from './components/technicien/technicien.component';
+import { StagiaireComponent } from './components/stagiaire/stagiaire/stagiaire.component';
+import { StagiaireEditComponent } from './components/stagiaire/stagiaire-edit/stagiaire-edit.component';
+import { FormateurComponent } from './components/formateur/formateur/formateur.component';
+import { FormateurEditComponent } from './components/formateur/formateur-edit/formateur-edit.component';
+import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
+import { TechnicienComponent } from './components/technicien/technicien/technicien.component';
 import { GestionnaireEditComponent } from './components/gestionnaire/gestionnaire-edit/gestionnaire-edit.component';
 import { GestionnaireComponent } from './components/gestionnaire/gestionnaire/gestionnaire.component';
 

@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { Technicien } from '../../model/technicien';
-import { TechnicienService } from '../../services/technicien.service';
+import { Formateur } from '../../../model/formateur';
+import { FormateurService } from '../../../services/formateur.service';
 
 @Component({
-  selector: 'app-technicien',
+  selector: 'app-formateur',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './technicien.component.html',
-  styleUrl: './technicien.component.css',
+  templateUrl: './formateur.component.html',
+  styleUrl: './formateur.component.css',
 })
-export class TechnicienComponent {
-  techniciens: Technicien[] = [];
+export class FormateurComponent {
+  formateurs: Formateur[] = [];
   message = '';
   showMessage = false;
   style = 'info';
 
   constructor(
-    private technicienSrv: TechnicienService,
+    private formateurSrv: FormateurService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initTechniciens();
+    this.initFormateurs();
     this.initMessage();
   }
 
-  initTechniciens() {
-    this.technicienSrv.getAll().subscribe((techniciens) => {
-      this.techniciens = techniciens;
+  initFormateurs() {
+    this.formateurSrv.getAll().subscribe((formateurs) => {
+      this.formateurs = formateurs;
     });
   }
 
@@ -36,10 +36,10 @@ export class TechnicienComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
         if (params['q'] == 'create') {
-          this.message = `Technicien ${params['id']} crée `;
+          this.message = `Formateur ${params['id']} crée `;
           this.style = 'alert-success';
         } else if (params['q'] == 'update') {
-          this.message = `Technicien ${params['id']} mis à jour `;
+          this.message = `Formateur ${params['id']} mis à jour `;
           this.style = 'alert-info';
         }
       }
@@ -48,9 +48,9 @@ export class TechnicienComponent {
   }
 
   delete(id: number) {
-    this.technicienSrv.delete(id).subscribe(() => {
-      this.initTechniciens();
-      this.message = `Technicien ${id} supprimé `;
+    this.formateurSrv.delete(id).subscribe(() => {
+      this.initFormateurs();
+      this.message = `Formateur ${id} supprimé `;
       this.style = 'alert-danger';
     });
   }
