@@ -13,6 +13,8 @@ import ajc.formation.projet_factory.model.Formation;
 public class FormationResponse {
 
 	@JsonView(CustomJsonViews.Common.class)
+	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate debut;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate fin;
@@ -97,6 +99,14 @@ public class FormationResponse {
 
 	public void setGestionnaireResponse(GestionnaireResponse gestionnaireResponse) {
 		this.gestionnaireResponse = gestionnaireResponse;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

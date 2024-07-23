@@ -28,8 +28,8 @@ public class Matiere {
 	@ManyToMany
 	@JoinTable(
 	name = "comp_matiere",
-	joinColumns = @JoinColumn(name = "competence_id"),
-	inverseJoinColumns = @JoinColumn(name = "matiere_id")
+	joinColumns = @JoinColumn(name = "matiere_id"),
+	inverseJoinColumns = @JoinColumn(name = "competence_id")
 	)
 	private Set<Competence> competences;
 	

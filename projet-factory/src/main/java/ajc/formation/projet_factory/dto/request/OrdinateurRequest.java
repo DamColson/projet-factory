@@ -13,6 +13,8 @@ public class OrdinateurRequest {
 	private Integer salleId;
 	@NotBlank
 	private String status;
+	@NotBlank
+	private String os;
 	
 	public OrdinateurRequest() {	
 	}
@@ -55,6 +57,14 @@ public class OrdinateurRequest {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getOs() {
+		return os;
+	}
+
+	public void setOs(String os) {
+		this.os = os;
 	}
 	
 	

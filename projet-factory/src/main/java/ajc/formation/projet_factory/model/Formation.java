@@ -35,8 +35,8 @@ public class Formation {
 	@ManyToMany
 	@JoinTable(
 	name = "bloc_formation",
-	joinColumns = @JoinColumn(name = "bloc_id"),
-	inverseJoinColumns = @JoinColumn(name = "formation_id")
+	joinColumns = @JoinColumn(name = "formation_id"),
+	inverseJoinColumns = @JoinColumn(name = "bloc_id")
 	)
 	private Set<Bloc> blocs;
 	

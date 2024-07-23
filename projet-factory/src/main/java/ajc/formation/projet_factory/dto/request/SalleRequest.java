@@ -1,12 +1,13 @@
 package ajc.formation.projet_factory.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class SalleRequest {
 
 	@NotBlank
 	private String libelle;
-	@NotBlank
+	@NotNull
 	private Integer superficie;
 	
 	public SalleRequest() {
