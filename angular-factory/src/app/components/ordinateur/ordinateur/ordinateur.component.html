@@ -25,8 +25,8 @@
       @for(o of ordinateurs; track o.id){
       <tr>
         <td>{{ o.id }}</td>
-        <td>{{ o.adresse_mac }}</td>
-        <td>{{ o.date_achat | date : "dd/MM/yyyy" }}</td>
+        <td>{{ o.adresseMac }}</td>
+        <td>{{ o.dateAchat | date : "dd/MM/yyyy" }}</td>
         <td>{{ o.libelle }}</td>
         <td>{{ o.os }}</td>
         <td>{{ o.status }}</td>
