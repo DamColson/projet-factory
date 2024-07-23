@@ -15,9 +15,7 @@ public class StagiaireRequest {
     private String mail;
     @NotNull
     private Integer compteId;
-    
     private Integer ordinateurId;
-    @NotNull
     private Integer formationId;
     
     public StagiaireRequest() {

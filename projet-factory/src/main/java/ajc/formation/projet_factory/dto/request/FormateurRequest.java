@@ -1,6 +1,5 @@
 package ajc.formation.projet_factory.dto.request;
 
-import java.util.List;
 import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;

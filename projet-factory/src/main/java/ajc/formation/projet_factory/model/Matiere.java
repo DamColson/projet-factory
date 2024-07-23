@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -23,7 +25,12 @@ public class Matiere {
 	
 	private String contenu;
 	
-	@ManyToMany(mappedBy = "matieres")
+	@ManyToMany
+	@JoinTable(
+	name = "comp_matiere",
+	joinColumns = @JoinColumn(name = "competence_id"),
+	inverseJoinColumns = @JoinColumn(name = "matiere_id")
+	)
 	private Set<Competence> competences;
 	
 	@OneToMany(mappedBy="matiere")

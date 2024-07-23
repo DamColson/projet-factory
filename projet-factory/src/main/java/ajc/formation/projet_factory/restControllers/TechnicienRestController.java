@@ -65,10 +65,15 @@ public class TechnicienRestController {
 		}
 		Technicien technicien = new Technicien();
 		BeanUtils.copyProperties(technicienRequest, technicien);
-		Ordinateur ordinateur = ordinateurSrv.getById(technicienRequest.getOrdinateurId());
-		technicien.setOrdinateur(ordinateur);
+
+		if(technicienRequest.getOrdinateurId() != null){
+			Ordinateur ordinateur = ordinateurSrv.getById(technicienRequest.getOrdinateurId());
+			technicien.setOrdinateur(ordinateur);
+		}
+
 		Compte compte = compteSrv.getById(technicienRequest.getCompteId());
 		technicien.setCompte(compte);
+
 		return new TechnicienResponse(technicienSrv.insert(technicien));	
 	}
 	
@@ -80,11 +85,16 @@ public class TechnicienRestController {
 		}
 		Technicien technicien = new Technicien();
 		BeanUtils.copyProperties(technicienRequest, technicien);
-		Ordinateur ordinateur = ordinateurSrv.getById(technicienRequest.getOrdinateurId());				
-		technicien.setOrdinateur(ordinateur);
-		technicien.setId(id);
+
+		if(technicienRequest.getOrdinateurId() != null){
+			Ordinateur ordinateur = ordinateurSrv.getById(technicienRequest.getOrdinateurId());				
+			technicien.setOrdinateur(ordinateur);
+		}
+
 		Compte compte = compteSrv.getById(technicienRequest.getCompteId());
 		technicien.setCompte(compte);
+		
+		technicien.setId(id);
 		return new TechnicienResponse(technicienSrv.update(technicien));
 	}
 	

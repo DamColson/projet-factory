@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ajc.formation.projet_factory.dao.IDAOCompte;
-import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOTechnicien;
 import ajc.formation.projet_factory.model.Technicien;
 
@@ -15,12 +13,6 @@ public class TechnicienService {
 
 	@Autowired
 	IDAOTechnicien daoTechnicien;
-	
-	@Autowired
-	IDAOOrdinateur daoOrdinateur;
-	
-	@Autowired
-	IDAOCompte daoCompte;
 	
 	public List<Technicien> getAll(){
 		return daoTechnicien.findAll();
@@ -60,20 +52,7 @@ public class TechnicienService {
 	}
 	
 	public void delete(Technicien technicien) {
-		daoOrdinateur.cascadeTechNull(technicien);
-		daoCompte.cascadeTechNull(technicien);
 		daoTechnicien.delete(technicien);
 	}
-	
-	public void deleteById(Integer id) {
-		if(id==null) {
-			throw new RuntimeException("Aucun technicien avec cet id existe");
-		}
-		Technicien technicien = daoTechnicien.findById(id).orElseThrow(()->new RuntimeException("Aucun technicien avec cet id existe"));
-		daoOrdinateur.cascadeTechNull(technicien);
-		daoCompte.cascadeTechNull(technicien);
-		daoTechnicien.deleteById(id);
-	}
-	
 	
 }

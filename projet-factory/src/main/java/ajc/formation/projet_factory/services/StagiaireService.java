@@ -30,6 +30,10 @@ public class StagiaireService {
         if(stagiaire.getId() == null){
             throw new RuntimeException("l'id n'existe pas");
         }
+        if(stagiaire.getCompte()==null) 
+		{
+			throw new RuntimeException("Impossible d'update un stagiaire sans compte");
+		}
         return daoStagiaire.save(stagiaire);
     }
 
