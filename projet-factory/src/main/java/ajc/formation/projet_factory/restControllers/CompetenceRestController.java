@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +23,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.dto.request.CompetenceRequest;
 import ajc.formation.projet_factory.dto.response.CompetenceResponse;
-import ajc.formation.projet_factory.dto.response.CompteResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.services.CompetenceService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 
@@ -56,7 +55,7 @@ public class CompetenceRestController {
     @JsonView(CustomJsonViews.CompetenceWithAttributes.class)
     public CompetenceResponse create(@Valid @RequestBody CompetenceRequest competenceRequest, BindingResult br) {
         if(br.hasErrors()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); 
         }
         Competence competence = new Competence();
         BeanUtils.copyProperties(competenceRequest, competence);
