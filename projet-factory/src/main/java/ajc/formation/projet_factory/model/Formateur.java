@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -40,7 +41,12 @@ public class Formateur {
     @JoinColumn(name = "video_projecteur_id")
     private VideoProjecteur videoProjecteur;
     
-    @ManyToMany(mappedBy = "formateurs")
+    @ManyToMany
+    @JoinTable(
+	name = "comp_formateur",
+	joinColumns = @JoinColumn(name = "competence_id"),
+	inverseJoinColumns = @JoinColumn(name = "formateur_id")
+	)
     private Set<Competence> competences;
 
     public Formateur(){}

@@ -1,7 +1,6 @@
 package ajc.formation.projet_factory.dto.request;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 public class FormationRequest {
@@ -11,7 +10,7 @@ public class FormationRequest {
 	private String prerequis;
 	private Integer gestionnaireId;
 	private Set<Integer> stagiairesId;
-	private List<Integer> blocsId;
+	private Set<Integer> blocsId;
 	
 	public FormationRequest() {
 	}
@@ -56,11 +55,11 @@ public class FormationRequest {
 		this.stagiairesId = stagiairesId;
 	}
 
-	public List<Integer> getBlocsId() {
+	public Set<Integer> getBlocsId() {
 		return blocsId;
 	}
 
-	public void setBlocsId(List<Integer> blocsId) {
+	public void setBlocsId(Set<Integer> blocsId) {
 		this.blocsId = blocsId;
 	}
 	

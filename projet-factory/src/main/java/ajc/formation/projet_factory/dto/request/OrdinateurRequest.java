@@ -10,7 +10,6 @@ public class OrdinateurRequest {
 	private String adresseMac;
 	@NotBlank
 	private String dateAchat;
-
 	private Integer salleId;
 	@NotBlank
 	private String status;

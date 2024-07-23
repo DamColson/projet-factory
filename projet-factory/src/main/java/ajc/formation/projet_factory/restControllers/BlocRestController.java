@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.dto.request.BlocRequest;
 import ajc.formation.projet_factory.dto.response.BlocResponse;
-import ajc.formation.projet_factory.dto.response.CompetenceResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Bloc;
 import ajc.formation.projet_factory.model.Formateur;
@@ -32,7 +32,6 @@ import ajc.formation.projet_factory.services.BlocService;
 import ajc.formation.projet_factory.services.FormateurService;
 import ajc.formation.projet_factory.services.MatiereService;
 import ajc.formation.projet_factory.services.SalleService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController
@@ -71,15 +70,17 @@ public class BlocRestController {
         Bloc bloc = new Bloc();
         BeanUtils.copyProperties(blocRequest, bloc);
         
-        Formateur formateur = formateurService.getById(blocRequest.getFormateurId());
-        bloc.setFormateur(formateur);
-
+        if(blocRequest.getFormateurId() != null){
+            Formateur formateur = formateurService.getById(blocRequest.getFormateurId());
+            bloc.setFormateur(formateur);
+        }
         Matiere matiere = matiereService.getById(blocRequest.getMatiereId());
         bloc.setMatiere(matiere);
 
-        Salle salle = salleService.getById(blocRequest.getSalleId());
-        bloc.setSalle(salle);
-        
+        if(blocRequest.getSalleId() != null){
+            Salle salle = salleService.getById(blocRequest.getSalleId());
+            bloc.setSalle(salle);
+        }
         return new BlocResponse(blocService.insert(bloc));
     }
 
@@ -91,15 +92,19 @@ public class BlocRestController {
         }
         Bloc bloc = new Bloc();
         BeanUtils.copyProperties(blocRequest, bloc);
-         
-        Formateur formateur = formateurService.getById(blocRequest.getFormateurId());
-        bloc.setFormateur(formateur);
+        
+        if(blocRequest.getFormateurId() != null){
+            Formateur formateur = formateurService.getById(blocRequest.getFormateurId());
+            bloc.setFormateur(formateur);
+        }
 
         Matiere matiere = matiereService.getById(blocRequest.getMatiereId());
         bloc.setMatiere(matiere);
 
-        Salle salle = salleService.getById(blocRequest.getSalleId());
-        bloc.setSalle(salle);
+        if(blocRequest.getSalleId() != null){
+            Salle salle = salleService.getById(blocRequest.getSalleId());
+            bloc.setSalle(salle);
+        }
 
         bloc.setId(id);
         
