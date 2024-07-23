@@ -45,6 +45,7 @@ export class OrdinateurService {
       os: ordinateur.os,
       status: ordinateur.status,
       salle: ordinateur.salleResponse?.id,
+      stagiaire: ordinateur.stagiaireResponse?.id,
     };
     return obj;
   }
