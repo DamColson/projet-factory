@@ -4,65 +4,109 @@
   }@else {
   <h1>Création d'un technicien</h1>
   }
-  <div class="form-group mb-3">
-    <label for="prenom">Prénom :</label>
-    <input id="prenom" class="form-control" [(ngModel)]="technicien.prenom" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="nom">Nom :</label>
-    <input id="nom" class="form-control" [(ngModel)]="technicien.nom" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="email">Email :</label>
-    <input
-      id="email"
-      type="email"
-      class="form-control"
-      [(ngModel)]="technicien.mail"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="ordinateur">Ordinateur :</label>
-    <select
-      [compareWith]="compareOn"
-      [(ngModel)]="technicien.ordinateurResponse"
-      id="ordinateur"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(o of OrdinateurObservable|async; track o.id){
-      <option [ngValue]="o">
-        {{ o.libelle }}
-      </option>
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="prenom">Prénom :</label>
+      <input
+        id="prenom"
+        class="form-control"
+        [(ngModel)]="technicien.prenom"
+        name="prenom"
+        required
+        #prenomCtrl="ngModel"
+      />
+      @if(prenomCtrl.invalid && prenomCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group mb-3">
-    <label for="compte">Compte :</label>
-    <select
-      [compareWith]="compareCn"
-      [(ngModel)]="technicien.compteResponse"
-      id="compte"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(c of CompteObservable|async; track c.id){
-      @if(c.role=='ROLE_TECHNICIEN'){
-      <option [ngValue]="c">
-        {{ c.login }}
-      </option>
-      } }
-    </select>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-outline-primary m*2" (click)="save()">
-      Enregistrer
-    </button>
-    <a
-      [routerLink]="['/technicien']"
-      routerLinkActive="router-link-active"
-      class="btn btn-outline-warning m-2"
-      >Retour</a
-    >
-  </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="nom">Nom :</label>
+      <input
+        id="nom"
+        class="form-control"
+        [(ngModel)]="technicien.nom"
+        name="nom"
+        required
+        #nomCtrl="ngModel"
+      />
+      @if(nomCtrl.invalid && nomCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="mail">Email :</label>
+      <input
+        id="mail"
+        type="mail"
+        class="form-control"
+        [(ngModel)]="technicien.mail"
+        name="mail"
+        required
+        #mailCtrl="ngModel"
+      />
+      @if(mailCtrl.invalid && mailCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="ordinateur">Ordinateur :</label>
+      <select
+        [compareWith]="compareOn"
+        [(ngModel)]="technicien.ordinateurResponse"
+        id="ordinateur"
+        class="form-control"
+        name="ordinateur"
+        required
+        #ordinateurCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(o of OrdinateurObservable|async; track o.id){
+        <option [ngValue]="o">
+          {{ o.libelle }}
+        </option>
+        }
+      </select>
+      @if(ordinateurCtrl.invalid && ordinateurCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="compte">Compte :</label>
+      <select
+        [compareWith]="compareCn"
+        [(ngModel)]="technicien.compteResponse"
+        id="compte"
+        class="form-control"
+        name="compte"
+        required
+        #compteCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(c of CompteObservable|async; track c.id){
+        @if(c.role=='ROLE_TECHNICIEN'){
+        <option [ngValue]="c">
+          {{ c.login }}
+        </option>
+        } }
+      </select>
+      @if(compteCtrl.invalid && compteCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/technicien']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
 </div>
