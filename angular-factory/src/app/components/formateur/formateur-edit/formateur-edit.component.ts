@@ -42,6 +42,7 @@ import { Competence } from '../../../model/competence';
 export class FormateurEditComponent {
   //filieres: Filiere[] = [];
   form!: FormGroup;
+
   OrdinateurObservable!: Observable<Ordinateur[]>;
   VideoprojecteurObservable!: Observable<Videoprojecteur[]>;
   CompteObservable!: Observable<Compte[]>;
@@ -60,14 +61,11 @@ export class FormateurEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.OrdinateurObservable = this.ordinateurSrv.getAll();
     this.VideoprojecteurObservable = this.videoprojecteurSrv.getAll();
-    this.CompteObservable = this.compteSrv.getAll();
-    this.CompetencesObservable = this.competenceSrv.getAll();
+    this.CompteObservable = this.compteSrv.getAllForm();
 
+    this.CompetencesObservable = this.competenceSrv.getAll();
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.formateurSrv.getById(params['id']).subscribe((formateur) => {

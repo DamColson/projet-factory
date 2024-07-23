@@ -60,7 +60,7 @@ export class StagiaireEditComponent {
     // });
     this.OrdinateurObservable = this.ordinateurSrv.getAll();
     this.FormationObservable = this.formationSrv.getAll();
-    this.CompteObservable = this.compteSrv.getAll();
+    this.CompteObservable = this.compteSrv.getAllStag();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {

@@ -97,11 +97,11 @@
       >
         <option value="null">Aucun</option>
         @for(c of CompteObservable|async; track c.id){
-        @if(c.role=='ROLE_GESTIONNAIRE'){
+
         <option [ngValue]="c">
           {{ c.login }}
         </option>
-        } }
+        }
       </select>
       @if(compteCtrl.invalid && compteCtrl.dirty){
       <div class="text-danger fst-italic">*obligatoire</div>
