@@ -50,7 +50,7 @@ export class CompetenceComponent {
   delete(id: number) {
     this.competenceSrv.delete(id).subscribe(() => {
       this.initCompetences();
-      this.message = `Formateur ${id} supprimé `;
+      this.message = `Compétence ${id} supprimé `;
       this.style = 'alert-danger';
     });
   }

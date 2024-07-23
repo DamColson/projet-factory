@@ -1,1 +1,53 @@
-<p>matiere-edit works!</p>
+<div class="container">
+  @if(matiere.id){
+  <h1>Edition de la matière numéro {{ matiere.id }}</h1>
+  }@else {
+  <h1>Création d'une matiere</h1>
+  }
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="titre">Titre :</label>
+      <input
+        id="titre"
+        class="form-control"
+        [(ngModel)]="matiere.titre"
+        name="titre"
+        required
+        #titreCtrl="ngModel"
+      />
+      @if(titreCtrl.invalid && titreCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="contenu">Contenu :</label>
+      <input
+        id="contenu"
+        class="form-control"
+        [(ngModel)]="matiere.contenu"
+        name="contenu"
+        required
+        #contenuCtrl="ngModel"
+      />
+      @if(contenuCtrl.invalid && contenuCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/matiere']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
+</div>

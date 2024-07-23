@@ -1,4 +1,5 @@
 import { Salle } from './salle';
+import { Stagiaire } from './stagiaire';
 
 export class Ordinateur {
   constructor(
@@ -8,6 +9,7 @@ export class Ordinateur {
     public libelle?: string,
     public os?: string,
     public status?: string,
-    public salleResponse?: Salle
+    public salleResponse?: Salle,
+    public stagiaireResponse?: Stagiaire
   ) {}
 }

@@ -1,1 +1,76 @@
-<p>salle-edit works!</p>
+<div class="container">
+  @if(salle.id){
+  <h1>Edition de la salle numéro {{ salle.id }}</h1>
+  }@else {
+  <h1>Création d'une salle</h1>
+  }
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="libelle">Libelle :</label>
+      <input
+        id="libelle"
+        class="form-control"
+        [(ngModel)]="salle.libelle"
+        name="libelle"
+        required
+        #libelleCtrl="ngModel"
+      />
+      @if(libelleCtrl.invalid && libelleCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="superficie">Superficie :</label>
+      <input
+        id="superficie"
+        class="form-control"
+        [(ngModel)]="salle.superficie"
+        name="superficie"
+        required
+        #superficieCtrl="ngModel"
+      />
+      @if(superficieCtrl.invalid && superficieCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="videoprojecteur">Video projecteur :</label>
+      <select
+        [compareWith]="compareOn"
+        [(ngModel)]="salle.videoprojecteurResponse"
+        id="videoprojecteur"
+        class="form-control"
+        name="videoprojecteur"
+        required
+        #videoprojecteurCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(o of VideoprojecteurObservable|async; track o.id){
+        <option [ngValue]="o">
+          {{ o.libelle }}
+        </option>
+        }
+      </select>
+      @if(videoprojecteurCtrl.invalid && videoprojecteurCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/salle']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
+</div>

@@ -8,14 +8,17 @@
     class="btn btn-primary m-3"
     >Création d'une formation</a
   >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Id</td>
-        <td>pre-requis</td>
-        <td>Date début</td>
-        <td>Date fin</td>
-        <td>Id Gestionnaire</td>
+        <td>Prérequis</td>
+        <td>Date de début</td>
+        <td>Date de fin</td>
+        <td>Gestionnaire</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -27,7 +30,7 @@
         <td>{{ f.prerequis }}</td>
         <td>{{ f.debut | date : "dd/MM/yyyy" }}</td>
         <td>{{ f.fin | date : "dd/MM/yyyy" }}</td>
-        <td>{{ f.gestionnaireResponse?.id }}</td>
+        <td>{{ f.gestionnaireResponse?.nom }}</td>
 
         <td>
           <a

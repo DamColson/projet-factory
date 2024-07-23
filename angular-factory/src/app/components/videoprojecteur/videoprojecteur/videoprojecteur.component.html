@@ -1,21 +1,26 @@
 <div class="container">
-  <h1>Liste des video projecteur</h1>
+  <h1>Liste des Videoprojecteurs</h1>
   <a
     class="nav-link active"
     aria-current="page"
     [routerLink]="['/videoprojecteur/edit']"
     routerLinkActive="router-link-active"
     class="btn btn-primary m-3"
-    >Création d'un video projecteur</a
+    >Création d'un Vidéoprojecteur</a
   >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Id</td>
-        <td>adresse mac</td>
-        <td>Date achat</td>
         <td>Libelle</td>
-        <td>status</td>
+        <td>Adresse mac</td>
+        <td>Date achat</td>
+        <td>Status</td>
+        <td>Salle</td>
+        <td>Formateur</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -24,11 +29,12 @@
       @for(v of videoprojecteurs; track v.id){
       <tr>
         <td>{{ v.id }}</td>
+        <td>{{ v.libelle }}</td>
         <td>{{ v.adresseMac }}</td>
         <td>{{ v.dateAchat | date : "dd/MM/yyyy" }}</td>
-        <td>{{ v.libelle }}</td>
         <td>{{ v.status }}</td>
-
+        <td>{{ v.salleResponse }}</td>
+        <td>{{ v.formateurResponse }}</td>
         <td>
           <a
             routerLink="/videoprojecteur/edit/{{ v.id }}"

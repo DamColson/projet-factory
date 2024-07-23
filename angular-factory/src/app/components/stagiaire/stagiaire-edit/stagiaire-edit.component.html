@@ -1,8 +1,8 @@
 <div class="container">
-  @if(gestionnaire.id){
-  <h1>Edition du gestionnaire numéro {{ gestionnaire.id }}</h1>
+  @if(stagiaire.id){
+  <h1>Edition du stagiaire numéro {{ stagiaire.id }}</h1>
   }@else {
-  <h1>Création d'un gestionnaire</h1>
+  <h1>Création d'un stagiaire</h1>
   }
   <form (ngSubmit)="save()" #form="ngForm">
     <div class="form-group mb-3">
@@ -10,7 +10,7 @@
       <input
         id="prenom"
         class="form-control"
-        [(ngModel)]="gestionnaire.prenom"
+        [(ngModel)]="stagiaire.prenom"
         name="prenom"
         required
         #prenomCtrl="ngModel"
@@ -24,7 +24,7 @@
       <input
         id="nom"
         class="form-control"
-        [(ngModel)]="gestionnaire.nom"
+        [(ngModel)]="stagiaire.nom"
         name="nom"
         required
         #nomCtrl="ngModel"
@@ -39,7 +39,7 @@
         id="mail"
         type="email"
         class="form-control"
-        [(ngModel)]="gestionnaire.mail"
+        [(ngModel)]="stagiaire.mail"
         name="mail"
         required
         #mailCtrl="ngModel"
@@ -53,7 +53,7 @@
       <input
         id="telephone"
         class="form-control"
-        [(ngModel)]="gestionnaire.telephone"
+        [(ngModel)]="stagiaire.telephone"
         name="telephone"
         required
         #telephoneCtrl="ngModel"
@@ -66,7 +66,7 @@
       <label for="ordinateur">Ordinateur :</label>
       <select
         [compareWith]="compareOn"
-        [(ngModel)]="gestionnaire.ordinateurResponse"
+        [(ngModel)]="stagiaire.ordinateurResponse"
         id="ordinateur"
         class="form-control"
         name="ordinateur"
@@ -85,10 +85,32 @@
       }
     </div>
     <div class="form-group mb-3">
+      <label for="formation">Formation :</label>
+      <select
+        [compareWith]="compareFn"
+        [(ngModel)]="stagiaire.formationResponse"
+        id="formation"
+        class="form-control"
+        name="formation"
+        required
+        #formationCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(f of FormationObservable|async; track f.id){
+        <option [ngValue]="f">
+          {{ f.id }}
+        </option>
+        }
+      </select>
+      @if(formationCtrl.invalid && formationCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
       <label for="compte">Compte :</label>
       <select
         [compareWith]="compareCn"
-        [(ngModel)]="gestionnaire.compteResponse"
+        [(ngModel)]="stagiaire.compteResponse"
         id="compte"
         class="form-control"
         name="compte"
@@ -97,7 +119,6 @@
       >
         <option value="null">Aucun</option>
         @for(c of CompteObservable|async; track c.id){
-
         <option [ngValue]="c">
           {{ c.login }}
         </option>
@@ -116,7 +137,7 @@
         Enregistrer
       </button>
       <a
-        [routerLink]="['/gestionnaire']"
+        [routerLink]="['/technicien']"
         routerLinkActive="router-link-active"
         class="btn btn-outline-warning m-2"
         >Retour</a

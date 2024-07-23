@@ -1,1 +1,76 @@
-<p>formation-edit works!</p>
+<div class="container">
+  @if(formation.id){
+  <h1>Edition de la formation numéro {{ formation.id }}</h1>
+  }@else {
+  <h1>Création d'une formation</h1>
+  }
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="debut">Date de début :</label>
+      <input
+        id="debut"
+        type="date"
+        class="form-control"
+        [(ngModel)]="formation.debut"
+        name="debut"
+        required
+        #debutCtrl="ngModel"
+      />
+      @if(debutCtrl.invalid && debutCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="fin">Date de fin :</label>
+      <input
+        id="fin"
+        type="date"
+        class="form-control"
+        [(ngModel)]="formation.fin"
+        name="fin"
+        required
+        #finCtrl="ngModel"
+      />
+      @if(finCtrl.invalid && finCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="gestionnaire">Gestionnaire :</label>
+      <select
+        [compareWith]="compareGn"
+        [(ngModel)]="formation.gestionnaireResponse"
+        id="ordinateur"
+        class="form-control"
+        name="ordinateur"
+        required
+        #ordinateurCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(g of GestionnaireObservable|async; track g.id){
+        <option [ngValue]="g">
+          {{ g.nom }}
+        </option>
+        }
+      </select>
+      @if(ordinateurCtrl.invalid && ordinateurCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/formation']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
+</div>

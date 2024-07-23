@@ -14,6 +14,20 @@ export class CompteService {
     return this.httpClient.get<Compte[]>(this.url);
   }
 
+  public getAllStag(): Observable<Compte[]> {
+    return this.httpClient.get<Compte[]>(this.url + '/free-stag');
+  }
+  public getAllForm(): Observable<Compte[]> {
+    return this.httpClient.get<Compte[]>(this.url + '/free-form');
+  }
+  public getAllTech(): Observable<Compte[]> {
+    return this.httpClient.get<Compte[]>(this.url + '/free-tech');
+  }
+
+  public getAllGest(): Observable<Compte[]> {
+    return this.httpClient.get<Compte[]>(this.url + '/free-gest');
+  }
+
   public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }

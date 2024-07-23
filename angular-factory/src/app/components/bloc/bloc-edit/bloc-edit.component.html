@@ -4,90 +4,146 @@
   }@else {
   <h1>Création d'un bloc</h1>
   }
-  <div class="form-group mb-3">
-    <label for="date_debut">Date de début :</label>
-    <input
-      id="date_debut"
-      type="date"
-      class="form-control"
-      [(ngModel)]="bloc.dateDebut"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="date_fin">Date de fin :</label>
-    <input
-      id="date_fin"
-      type="date"
-      class="form-control"
-      [(ngModel)]="bloc.dateFin"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="code">Code :</label>
-    <input id="code" class="form-control" [(ngModel)]="bloc.code" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="objectif">Objectif :</label>
-    <input id="objectif" class="form-control" [(ngModel)]="bloc.objectif" />
-  </div>
-  <div class="form-group mb-3">
-    <label for="salle">Salle :</label>
-    <select
-      [compareWith]="compareSn"
-      [(ngModel)]="bloc.salleResponse"
-      id="salle"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(s of SalleObservable|async; track s.id){
-      <option [ngValue]="s">
-        {{ s.libelle }}
-      </option>
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="date_debut">Date de début :</label>
+      <input
+        id="date_debut"
+        type="date"
+        class="form-control"
+        [(ngModel)]="bloc.dateDebut"
+        name="date_debut"
+        required
+        #debutCtrl="ngModel"
+      />
+      @if(debutCtrl.invalid && debutCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group mb-3">
-    <label for="matiere">Matière :</label>
-    <select
-      [compareWith]="compareMn"
-      [(ngModel)]="bloc.matiereResponse"
-      id="matiere"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(m of MatiereObservable|async; track m.id){
-      <option [ngValue]="m">
-        {{ m.titre }}
-      </option>
+    </div>
+    <div class="form-group mb-3">
+      <label for="date_fin">Date de fin :</label>
+      <input
+        id="date_fin"
+        type="date"
+        class="form-control"
+        [(ngModel)]="bloc.dateFin"
+        name="date_fin"
+        required
+        #finCtrl="ngModel"
+      />
+      @if(finCtrl.invalid && finCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group mb-3">
-    <label for="formateur">Formateur :</label>
-    <select
-      [compareWith]="compareFn"
-      [(ngModel)]="bloc.formateurResponse"
-      id="formateur"
-      class="form-control"
-    >
-      <option value="null">Aucun</option>
-      @for(f of FormateurObservable|async; track f.id){
+    </div>
+    <div class="form-group mb-3">
+      <label for="code">Code :</label>
+      <input
+        id="code"
+        class="form-control"
+        [(ngModel)]="bloc.code"
+        name="code"
+        required
+        #codeCtrl="ngModel"
+      />
+      @if(codeCtrl.invalid && codeCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="objectif">Objectif :</label>
+      <input
+        id="objectif"
+        class="form-control"
+        [(ngModel)]="bloc.objectif"
+        name="objectif"
+        required
+        #objectifCtrl="ngModel"
+      />
+      @if(objectifCtrl.invalid && objectifCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="salle">Salle :</label>
+      <select
+        [compareWith]="compareSn"
+        [(ngModel)]="bloc.salleResponse"
+        name="salle"
+        id="salle"
+        class="form-control"
+        required
+        #salleCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(s of SalleObservable|async; track s.id){
+        <option [ngValue]="s">
+          {{ s.libelle }}
+        </option>
+        }
+      </select>
+      @if(salleCtrl.invalid && salleCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="matiere">Matière :</label>
+      <select
+        [compareWith]="compareMn"
+        [(ngModel)]="bloc.matiereResponse"
+        name="matiere"
+        id="matiere"
+        class="form-control"
+        required
+        #matiereCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(m of MatiereObservable|async; track m.id){
+        <option [ngValue]="m">
+          {{ m.titre }}
+        </option>
+        }
+      </select>
+      @if(matiereCtrl.invalid && matiereCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="formateur">Formateur :</label>
+      <select
+        [compareWith]="compareFn"
+        [(ngModel)]="bloc.formateurResponse"
+        name="formateur"
+        id="formateur"
+        class="form-control"
+        required
+        #formateurCtrl="ngModel"
+      >
+        <option value="null">Aucun</option>
+        @for(f of FormateurObservable|async; track f.id){
 
-      <option [ngValue]="f">
-        {{ f.nom }}
-      </option>
+        <option [ngValue]="f">
+          {{ f.nom }}
+        </option>
+        }
+      </select>
+      @if(formateurCtrl.invalid && formateurCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
       }
-    </select>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-outline-primary" (click)="save()">
-      Enregistrer
-    </button>
-    <a
-      [routerLink]="['/bloc']"
-      routerLinkActive="router-link-active"
-      class="btn btn-outline-warning m-2"
-      >Retour</a
-    >
-  </div>
+    </div>
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        Enregistrer
+      </button>
+      <a
+        [routerLink]="['/bloc']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-warning m-2"
+        >Retour</a
+      >
+    </div>
+  </form>
 </div>

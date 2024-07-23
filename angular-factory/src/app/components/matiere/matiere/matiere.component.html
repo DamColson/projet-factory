@@ -8,12 +8,15 @@
     class="btn btn-primary m-3"
     >Création d'une matiere</a
   >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Id</td>
-        <td>Contenu</td>
         <td>Titre</td>
+        <td>Contenu</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -22,8 +25,8 @@
       @for(m of matieres; track m.id){
       <tr>
         <td>{{ m.id }}</td>
-        <td>{{ m.contenu }}</td>
         <td>{{ m.titre }}</td>
+        <td>{{ m.contenu }}</td>
         >
 
         <td>

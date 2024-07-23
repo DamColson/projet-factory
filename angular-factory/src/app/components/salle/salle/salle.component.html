@@ -8,12 +8,16 @@
     class="btn btn-primary m-3"
     >Création d'une salle</a
   >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Id</td>
-        <td>superficie</td>
-        <td>libelle</td>
+        <td>Libelle</td>
+        <td>Superficie</td>
+        <td>Vidéoprojecteur</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -22,8 +26,9 @@
       @for(s of salles; track s.id){
       <tr>
         <td>{{ s.id }}</td>
-        <td>{{ s.superficie }}</td>
         <td>{{ s.libelle }}</td>
+        <td>{{ s.superficie }}</td>
+        <td>{{ s.videoprojecteurResponse?.libelle }}</td>
 
         <td>
           <a

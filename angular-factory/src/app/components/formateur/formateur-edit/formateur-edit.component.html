@@ -1,8 +1,8 @@
 <div class="container">
-  @if(gestionnaire.id){
-  <h1>Edition du gestionnaire numéro {{ gestionnaire.id }}</h1>
+  @if(formateur.id){
+  <h1>Edition du formateur numéro {{ formateur.id }}</h1>
   }@else {
-  <h1>Création d'un gestionnaire</h1>
+  <h1>Création d'un formateur</h1>
   }
   <form (ngSubmit)="save()" #form="ngForm">
     <div class="form-group mb-3">
@@ -10,7 +10,7 @@
       <input
         id="prenom"
         class="form-control"
-        [(ngModel)]="gestionnaire.prenom"
+        [(ngModel)]="formateur.prenom"
         name="prenom"
         required
         #prenomCtrl="ngModel"
@@ -24,7 +24,7 @@
       <input
         id="nom"
         class="form-control"
-        [(ngModel)]="gestionnaire.nom"
+        [(ngModel)]="formateur.nom"
         name="nom"
         required
         #nomCtrl="ngModel"
@@ -39,7 +39,7 @@
         id="mail"
         type="email"
         class="form-control"
-        [(ngModel)]="gestionnaire.mail"
+        [(ngModel)]="formateur.mail"
         name="mail"
         required
         #mailCtrl="ngModel"
@@ -53,7 +53,7 @@
       <input
         id="telephone"
         class="form-control"
-        [(ngModel)]="gestionnaire.telephone"
+        [(ngModel)]="formateur.telephone"
         name="telephone"
         required
         #telephoneCtrl="ngModel"
@@ -66,13 +66,16 @@
       <label for="ordinateur">Ordinateur :</label>
       <select
         [compareWith]="compareOn"
-        [(ngModel)]="gestionnaire.ordinateurResponse"
+        [(ngModel)]="formateur.ordinateurResponse"
         id="ordinateur"
         class="form-control"
         name="ordinateur"
         required
         #ordinateurCtrl="ngModel"
       >
+        @if(ordinateurCtrl.invalid && ordinateurCtrl.dirty){
+        <div class="text-danger fst-italic">*obligatoire</div>
+        }
         <option value="null">Aucun</option>
         @for(o of OrdinateurObservable|async; track o.id){
         <option [ngValue]="o">
@@ -80,15 +83,34 @@
         </option>
         }
       </select>
-      @if(ordinateurCtrl.invalid && ordinateurCtrl.dirty){
-      <div class="text-danger fst-italic">*obligatoire</div>
-      }
+    </div>
+    <div class="form-group mb-3">
+      <label for="videoprojecteur">Vidéoprojecteur :</label>
+      <select
+        [compareWith]="compareVn"
+        [(ngModel)]="formateur.videoprojecteurResponse"
+        id="videoprojecteur"
+        class="form-control"
+        name="videoprojecteur"
+        required
+        #videoprojecteurCtrl="ngModel"
+      >
+        @if(videoprojecteurCtrl.invalid && videoprojecteurCtrl.dirty){
+        <div class="text-danger fst-italic">*obligatoire</div>
+        }
+        <option value="null">Aucun</option>
+        @for(v of VideoprojecteurObservable|async; track v.id){
+        <option [ngValue]="v">
+          {{ v.libelle }}
+        </option>
+        }
+      </select>
     </div>
     <div class="form-group mb-3">
       <label for="compte">Compte :</label>
       <select
         [compareWith]="compareCn"
-        [(ngModel)]="gestionnaire.compteResponse"
+        [(ngModel)]="formateur.compteResponse"
         id="compte"
         class="form-control"
         name="compte"
@@ -97,7 +119,6 @@
       >
         <option value="null">Aucun</option>
         @for(c of CompteObservable|async; track c.id){
-
         <option [ngValue]="c">
           {{ c.login }}
         </option>
@@ -106,6 +127,9 @@
       @if(compteCtrl.invalid && compteCtrl.dirty){
       <div class="text-danger fst-italic">*obligatoire</div>
       }
+    </div>
+    <div class="form-group mb-3">
+      <form></form>
     </div>
     <div class="form-group">
       <button
@@ -116,7 +140,7 @@
         Enregistrer
       </button>
       <a
-        [routerLink]="['/gestionnaire']"
+        [routerLink]="['/formateur']"
         routerLinkActive="router-link-active"
         class="btn btn-outline-warning m-2"
         >Retour</a

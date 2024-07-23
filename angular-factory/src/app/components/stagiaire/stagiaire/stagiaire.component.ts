@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { Formateur } from '../../model/formateur';
-import { FormateurService } from '../../services/formateur.service';
+import { Stagiaire } from '../../../model/stagiaire';
+import { StagiaireService } from '../../../services/stagiaire.service';
 
 @Component({
-  selector: 'app-formateur',
+  selector: 'app-stagiaire',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './formateur.component.html',
-  styleUrl: './formateur.component.css',
+  templateUrl: './stagiaire.component.html',
+  styleUrl: './stagiaire.component.css',
 })
-export class FormateurComponent {
-  formateurs: Formateur[] = [];
+export class StagiaireComponent {
+  stagiaires: Stagiaire[] = [];
   message = '';
   showMessage = false;
   style = 'info';
 
   constructor(
-    private formateurSrv: FormateurService,
+    private stagiaireSrv: StagiaireService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initFormateurs();
+    this.initStagiaires();
     this.initMessage();
   }
 
-  initFormateurs() {
-    this.formateurSrv.getAll().subscribe((formateurs) => {
-      this.formateurs = formateurs;
+  initStagiaires() {
+    this.stagiaireSrv.getAll().subscribe((stagiaires) => {
+      this.stagiaires = stagiaires;
     });
   }
 
@@ -36,10 +36,10 @@ export class FormateurComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
         if (params['q'] == 'create') {
-          this.message = `Formateur ${params['id']} crée `;
+          this.message = `Stagiaire ${params['id']} crée `;
           this.style = 'alert-success';
         } else if (params['q'] == 'update') {
-          this.message = `Formateur ${params['id']} mis à jour `;
+          this.message = `Stagiaire ${params['id']} mis à jour `;
           this.style = 'alert-info';
         }
       }
@@ -48,9 +48,9 @@ export class FormateurComponent {
   }
 
   delete(id: number) {
-    this.formateurSrv.delete(id).subscribe(() => {
-      this.initFormateurs();
-      this.message = `Formateur ${id} supprimé `;
+    this.stagiaireSrv.delete(id).subscribe(() => {
+      this.initStagiaires();
+      this.message = `Stagiaire ${id} supprimé `;
       this.style = 'alert-danger';
     });
   }

@@ -54,7 +54,7 @@ export class GestionnaireEditComponent {
     //   this.filieres = filieres;
     // });
     this.OrdinateurObservable = this.ordinateurSrv.getAll();
-    this.CompteObservable = this.compteSrv.getAll();
+    this.CompteObservable = this.compteSrv.getAllGest();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {

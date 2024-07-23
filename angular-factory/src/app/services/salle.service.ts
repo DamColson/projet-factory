@@ -42,7 +42,7 @@ export class SalleService {
       id: salle.id,
       superficie: salle.superficie,
       libelle: salle.libelle,
-      ordinateur: salle.ordinateursResponse,
+      ordinateurs: salle.ordinateursResponse,
       videoprojecteur: salle.videoprojecteurResponse?.id,
     };
     return obj;

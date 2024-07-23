@@ -8,15 +8,19 @@
     class="btn btn-primary m-3"
     >Création d'un ordinateur</a
   >
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Id</td>
-        <td>adresse mac</td>
-        <td>Date achat</td>
         <td>Libelle</td>
+        <td>Adresse mac</td>
+        <td>Date d'achat</td>
         <td>OS</td>
-        <td>status</td>
+        <td>Status</td>
+        <td>Salle</td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -24,12 +28,13 @@
     <tbody>
       @for(o of ordinateurs; track o.id){
       <tr>
+        <td>{{ o.libelle }}</td>
         <td>{{ o.id }}</td>
         <td>{{ o.adresseMac }}</td>
         <td>{{ o.dateAchat | date : "dd/MM/yyyy" }}</td>
-        <td>{{ o.libelle }}</td>
         <td>{{ o.os }}</td>
         <td>{{ o.status }}</td>
+        <td>{{ o.salleResponse }}</td>
 
         <td>
           <a

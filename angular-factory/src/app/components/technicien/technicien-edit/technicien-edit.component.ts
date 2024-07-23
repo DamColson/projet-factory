@@ -14,12 +14,12 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Ordinateur } from '../../model/ordinateur';
-import { Technicien } from '../../model/technicien';
-import { TechnicienService } from '../../services/technicien.service';
-import { OrdinateurService } from '../../services/ordinateur.service';
-import { Compte } from '../../model/compte';
-import { CompteService } from '../../services/compte.service';
+import { Ordinateur } from '../../../model/ordinateur';
+import { Technicien } from '../../../model/technicien';
+import { TechnicienService } from '../../../services/technicien.service';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { Compte } from '../../../model/compte';
+import { CompteService } from '../../../services/compte.service';
 
 @Component({
   selector: 'app-technicien-edit',
@@ -55,7 +55,7 @@ export class TechnicienEditComponent {
     //   this.filieres = filieres;
     // });
     this.OrdinateurObservable = this.ordinateurSrv.getAll();
-    this.CompteObservable = this.compteSrv.getAll();
+    this.CompteObservable = this.compteSrv.getAllTech();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
