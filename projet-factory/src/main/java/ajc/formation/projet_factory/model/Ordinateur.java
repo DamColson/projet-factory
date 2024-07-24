@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +32,8 @@ public class Ordinateur {
 	@ManyToOne
 	private Salle salle;
 	
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private Status status;
 	
 	@OneToOne(mappedBy = "ordinateur")
 	private Formateur formateur;
@@ -49,7 +52,7 @@ public class Ordinateur {
 	public Ordinateur() {
 	}
 
-	public Ordinateur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle, String status,
+	public Ordinateur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle, Status status,
 			Formateur formateur, Stagiaire stagiaire, Gestionnaire gestionnaire, Technicien technicien, String os) {
 		super();
 		this.id = id;
@@ -97,11 +100,11 @@ public class Ordinateur {
 		this.salle = salle;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

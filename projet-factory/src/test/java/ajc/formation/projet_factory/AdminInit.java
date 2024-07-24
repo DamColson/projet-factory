@@ -22,6 +22,7 @@ class AdminInit {
 	@Test
 	@Transactional
 	@Commit
+	@Disabled
 	void initAdmin() {
 		Compte admin=new Compte();
 		admin.setLogin("admin");

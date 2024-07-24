@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOTechnicien;
 import ajc.formation.projet_factory.model.Technicien;
 
@@ -12,7 +13,9 @@ import ajc.formation.projet_factory.model.Technicien;
 public class TechnicienService {
 
 	@Autowired
-	IDAOTechnicien daoTechnicien;
+	private IDAOTechnicien daoTechnicien;
+	@Autowired
+	private IDAOOrdinateur daoOrdinateur;
 	
 	public List<Technicien> getAll(){
 		return daoTechnicien.findAll();
@@ -47,11 +50,17 @@ public class TechnicienService {
 		if(technicien.getCompte().getId()==null) 
 		{
 			throw new RuntimeException("Impossible d'update un technicien avec un compte sans id");
-		}		
+		}	
+		if(technicien.getOrdinateur()!=null) {
+        	daoOrdinateur.setOrdinateurIndisponible(technicien.getOrdinateur().getId());
+        }
 		return daoTechnicien.save(technicien);
 	}
 	
 	public void delete(Technicien technicien) {
+		if(technicien.getOrdinateur()!=null) {
+        	daoOrdinateur.setOrdinateurDisponible(technicien.getOrdinateur().getId());
+        }
 		daoTechnicien.delete(technicien);
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ajc.formation.projet_factory.dao.IDAOBloc;
 import ajc.formation.projet_factory.dao.IDAOCompetence;
 import ajc.formation.projet_factory.dao.IDAOFormateur;
+import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.model.Formateur;
 
@@ -22,6 +23,8 @@ public class FormateurService {
 	private IDAOBloc daoBloc;
 	@Autowired
 	private IDAOCompetence daoCompetence;
+	@Autowired
+	private IDAOOrdinateur daoOrdinateur;
 
 	
 	
@@ -34,6 +37,13 @@ public class FormateurService {
 	}
 	
 	public Formateur insert(Formateur formateur) {
+		if(formateur.getCompte()==null) 
+		{
+			throw new RuntimeException("Impossible d'update un formateur sans compte");
+		}
+		if(formateur.getOrdinateur()!=null) {
+			daoOrdinateur.setOrdinateurIndisponible(formateur.getOrdinateur().getId());
+		}
 		return daoFormateur.save(formateur);
 	}
 	
@@ -45,10 +55,16 @@ public class FormateurService {
 		{
 			throw new RuntimeException("Impossible d'update un formateur sans compte");
 		}
+		if(formateur.getOrdinateur()!=null) {
+			daoOrdinateur.setOrdinateurIndisponible(formateur.getOrdinateur().getId());
+		}
 		return daoFormateur.save(formateur);
 	}
 	
 	public void delete(Formateur formateur) {
+		if(formateur.getOrdinateur()!=null) {
+			daoOrdinateur.setOrdinateurDisponible(formateur.getOrdinateur().getId());
+		}
 		daoBloc.cascadeFormateurNull(formateur);
 		List<Competence> competences = daoCompetence.findByFormateurs(formateur);
 		competences = competences.stream().peek(competence->competence.getFormateurs().remove(formateur)).collect(Collectors.toList());
