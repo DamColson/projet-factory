@@ -50,14 +50,17 @@
     </div>
     <div class="form-group mb-3">
       <label for="status">Status :</label>
-      <input
+      <select
+        [compareWith]="compareStn"
+        [(ngModel)]="videoprojecteur.status"
         id="status"
         class="form-control"
-        [(ngModel)]="videoprojecteur.status"
         name="status"
-        required
         #statusCtrl="ngModel"
-      />
+      >
+        <option ngValue="DISPONIBLE">DISPONIBLE</option>
+        <option ngValue="INDISPONIBLE">INDISPONIBLE</option>
+      </select>
       @if(statusCtrl.invalid && statusCtrl.dirty){
       <div class="text-danger fst-italic">*obligatoire</div>
       }
@@ -70,7 +73,6 @@
         id="salle"
         class="form-control"
         name="salle"
-        required
         #salleCtrl="ngModel"
       >
         <option value="null">Aucun</option>

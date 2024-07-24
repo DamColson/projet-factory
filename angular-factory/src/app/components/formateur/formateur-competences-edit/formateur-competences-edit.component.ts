@@ -2,10 +2,16 @@ import { Component } from '@angular/core';
 import { Competence } from '../../../model/competence';
 import { CompetenceService } from '../../../services/competence.service';
 import { Formateur } from '../../../model/formateur';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { FormateurService } from '../../../services/formateur.service';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-formateur-competences-edit',
@@ -23,6 +29,7 @@ import { AsyncPipe } from '@angular/common';
 export class FormateurCompetencesEditComponent {
   form!: FormGroup;
   competences: Competence[] = [];
+  CompetencesObservable!: Observable<Competence[]>;
   formateur: Formateur = new Formateur();
   message = '';
   showMessage = false;
@@ -31,19 +38,23 @@ export class FormateurCompetencesEditComponent {
   constructor(
     private competenceSrv: CompetenceService,
     private formateurSrv: FormateurService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.CompetencesObservable = this.competenceSrv.getAll();
     this.initCompetences();
     this.initMessage();
   }
 
   initCompetences() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.formateurSrv.getById(params['id']).subscribe((formateur) => {
-        this.formateur = formateur;
-      });
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id']) {
+        this.formateurSrv.getById(params['id']).subscribe((formateur) => {
+          this.formateur = formateur;
+        });
+      }
     });
     this.competenceSrv.getAll().subscribe((competences) => {
       this.competences = competences;
@@ -65,7 +76,11 @@ export class FormateurCompetencesEditComponent {
     this.showMessage = true;
   }
 
-  save() {}
+  save() {
+    console.log(this.formateur.competencesResponse);
+    this.formateurSrv.update(this.formateur).subscribe((ordinateur) => {});
+  }
+
   delete(id: number) {
     this.competenceSrv.delete(id).subscribe(() => {
       this.initCompetences();

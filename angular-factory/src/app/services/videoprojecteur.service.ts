@@ -15,6 +15,10 @@ export class VideoprojecteurService {
     return this.httpClient.get<Videoprojecteur[]>(this.url);
   }
 
+  public getAllDisponible(): Observable<Videoprojecteur[]> {
+    return this.httpClient.get<Videoprojecteur[]>(this.url + '/disponible');
+  }
+
   public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
