@@ -46,7 +46,7 @@ export class FormateurService {
       compteId: formateur.compteResponse?.id,
       ordinateurId: formateur.ordinateurResponse?.id,
       videoProjecteurId: formateur.videoProjecteurResponse?.id,
-      competencesId: formateur.competencesResponse,
+      competencesResponse: formateur.competencesResponse,
     };
     return obj;
   }
