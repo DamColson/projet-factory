@@ -94,7 +94,6 @@ public class FormateurRestController {
             VideoProjecteur videoProjecteur = videoProjecteurService.getById(formateurRequest.getVideoProjecteurId());
             formateur.setVideoProjecteur(videoProjecteur);
         }
-
         return new FormateurResponse(formateurService.insert(formateur));
     }
 

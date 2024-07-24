@@ -10,6 +10,7 @@ import ajc.formation.projet_factory.dao.IDAOBloc;
 import ajc.formation.projet_factory.dao.IDAOCompetence;
 import ajc.formation.projet_factory.dao.IDAOFormateur;
 import ajc.formation.projet_factory.dao.IDAOOrdinateur;
+import ajc.formation.projet_factory.dao.IDAOVideoProjecteur;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.model.Formateur;
 
@@ -25,6 +26,8 @@ public class FormateurService {
 	private IDAOCompetence daoCompetence;
 	@Autowired
 	private IDAOOrdinateur daoOrdinateur;
+	@Autowired
+	private IDAOVideoProjecteur daoVideoProjecteur;
 
 	
 	
@@ -44,6 +47,12 @@ public class FormateurService {
 		if(formateur.getOrdinateur()!=null) {
 			daoOrdinateur.setOrdinateurIndisponible(formateur.getOrdinateur().getId());
 		}
+		if(formateur.getVideoProjecteur()!=null) {
+	    	System.out.println("------------------------");
+	    	System.out.println(formateur.getVideoProjecteur().getId());
+	    	System.out.println("------------------------");
+			daoVideoProjecteur.setVideoProjecteurIndisponible(formateur.getVideoProjecteur().getId());
+		}
 		return daoFormateur.save(formateur);
 	}
 	
@@ -58,12 +67,18 @@ public class FormateurService {
 		if(formateur.getOrdinateur()!=null) {
 			daoOrdinateur.setOrdinateurIndisponible(formateur.getOrdinateur().getId());
 		}
+		if(formateur.getVideoProjecteur()!=null) {
+			daoVideoProjecteur.setVideoProjecteurIndisponible(formateur.getVideoProjecteur().getId());
+		}
 		return daoFormateur.save(formateur);
 	}
 	
 	public void delete(Formateur formateur) {
 		if(formateur.getOrdinateur()!=null) {
 			daoOrdinateur.setOrdinateurDisponible(formateur.getOrdinateur().getId());
+		}
+		if(formateur.getVideoProjecteur()!=null) {
+			daoVideoProjecteur.setVideoProjecteurDisponible(formateur.getVideoProjecteur().getId());
 		}
 		daoBloc.cascadeFormateurNull(formateur);
 		List<Competence> competences = daoCompetence.findByFormateurs(formateur);

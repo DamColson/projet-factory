@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,14 +33,15 @@ public class VideoProjecteur {
 	@OneToOne(mappedBy = "videoProjecteur")
 	private Formateur formateur;
 	
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private Status status;
 	
 	public VideoProjecteur() {
 	}
 
 	
 	public VideoProjecteur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle,
-			Formateur formateur, String status) {
+			Formateur formateur, Status status) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
@@ -73,11 +76,11 @@ public class VideoProjecteur {
 		this.dateAchat = dateAchat;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

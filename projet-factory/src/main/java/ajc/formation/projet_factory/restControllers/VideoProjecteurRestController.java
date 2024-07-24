@@ -23,8 +23,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.dto.request.VideoProjecteurRequest;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
+import ajc.formation.projet_factory.dto.response.OrdinateurResponse;
 import ajc.formation.projet_factory.dto.response.VideoProjecteurResponse;
 import ajc.formation.projet_factory.model.Salle;
+import ajc.formation.projet_factory.model.Status;
 import ajc.formation.projet_factory.model.VideoProjecteur;
 import ajc.formation.projet_factory.services.SalleService;
 import ajc.formation.projet_factory.services.VideoProjecteurService;
@@ -45,6 +47,24 @@ public class VideoProjecteurRestController {
         return videoProjecteurService.getAll().stream().map(videoProjecteur->new VideoProjecteurResponse(videoProjecteur)).collect(Collectors.toList());
     }
     
+    @GetMapping("/free-salle")
+    @JsonView(CustomJsonViews.VideoProjecteurWithAttributes.class)
+    public List<VideoProjecteurResponse> getAllFreeSalle(){
+    	return videoProjecteurService.getAllFreeSalle().stream().map(videoProjecteur->new VideoProjecteurResponse(videoProjecteur)).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/disponible")
+    @JsonView(CustomJsonViews.VideoProjecteurWithAttributes.class)
+    public List<VideoProjecteurResponse> getAllDisponible(){
+    	return videoProjecteurService.getAllDisponible().stream().map(videoProjecteur->new VideoProjecteurResponse(videoProjecteur)).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/indisponible")
+    @JsonView(CustomJsonViews.VideoProjecteurWithAttributes.class)
+    public List<VideoProjecteurResponse> getAllIndisponible(){
+    	return videoProjecteurService.getAllIndisponible().stream().map(videoProjecteur->new VideoProjecteurResponse(videoProjecteur)).collect(Collectors.toList());
+    }
+    
     @GetMapping("/{id}")
     @JsonView(CustomJsonViews.VideoProjecteurWithAttributes.class)
     public VideoProjecteurResponse getById(@PathVariable("id") Integer id) {
@@ -59,7 +79,8 @@ public class VideoProjecteurRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         VideoProjecteur videoProjecteur = new VideoProjecteur();
-        BeanUtils.copyProperties(videoProjecteurRequest, videoProjecteur);
+        BeanUtils.copyProperties(videoProjecteurRequest, videoProjecteur,"status");
+        videoProjecteur.setStatus(Status.valueOf(videoProjecteurRequest.getStatus()));
 
         if(videoProjecteurRequest.getSalleId() !=null){
             Salle salle = salleService.getById(videoProjecteurRequest.getSalleId());
@@ -76,7 +97,8 @@ public class VideoProjecteurRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         VideoProjecteur videoProjecteur = new VideoProjecteur();
-        BeanUtils.copyProperties(videoProjecteurRequest, videoProjecteur);
+        BeanUtils.copyProperties(videoProjecteurRequest, videoProjecteur,"status");
+        videoProjecteur.setStatus(Status.valueOf(videoProjecteurRequest.getStatus()));
         
         if(videoProjecteurRequest.getSalleId() !=null){
             Salle salle = salleService.getById(videoProjecteurRequest.getSalleId());

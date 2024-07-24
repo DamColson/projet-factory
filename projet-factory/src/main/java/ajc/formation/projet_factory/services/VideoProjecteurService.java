@@ -20,7 +20,18 @@ public class VideoProjecteurService {
     public List<VideoProjecteur> getAll(){
 		return daoVideoProjecteur.findAll();
 	}
+    
+    public List<VideoProjecteur> getAllDisponible(){
+    	return daoVideoProjecteur.findAllDisponible();
+    }
+    
+    public List<VideoProjecteur> getAllIndisponible(){
+    	return daoVideoProjecteur.findAllIndisponible();
+    }
 	
+    public List<VideoProjecteur> getAllFreeSalle(){
+    	return daoVideoProjecteur.findFreevpSalle();
+    }
 	public VideoProjecteur getById(Integer id) {
 		return daoVideoProjecteur.findById(id).orElseThrow();
 	}

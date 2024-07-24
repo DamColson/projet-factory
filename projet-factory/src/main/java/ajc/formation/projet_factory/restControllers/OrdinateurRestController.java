@@ -46,6 +46,12 @@ public class OrdinateurRestController {
         return ordinateurService.getAll().stream().map(ordinateur->new OrdinateurResponse(ordinateur)).collect(Collectors.toList());
     }
     
+    @GetMapping("/free-salle")
+    @JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+    public List<OrdinateurResponse> getAllFreeSalle(){
+    	return ordinateurService.getAllFreeSalle().stream().map(ordinateur->new OrdinateurResponse(ordinateur)).collect(Collectors.toList());
+    }
+    
     @GetMapping("/disponible")
     @JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
     public List<OrdinateurResponse> getAllDisponible(){
