@@ -95,10 +95,11 @@
         required
         #compteCtrl="ngModel"
       >
+        @if(gestionnaire.id){
         <option [ngValue]="gestionnaire.compteResponse">
           {{ gestionnaire.compteResponse?.login }}
         </option>
-        @for(c of CompteObservable|async; track c.id){
+        } @for(c of CompteObservable|async; track c.id){
 
         <option [ngValue]="c">
           {{ c.login }}
