@@ -8,6 +8,7 @@ import { Formateur } from '../model/formateur';
 })
 export class FormateurService {
   url = 'http://localhost:8080/factory/api/formateur';
+
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<Formateur[]> {
@@ -29,16 +30,22 @@ export class FormateurService {
     return this.httpClient.get<Formateur>(`${this.url}/${id}`);
   }
 
-  public update(formateur: Formateur): Observable<Formateur> {
-    return this.httpClient.put<Formateur>(
+  public update(formateur: Formateur): Observable<any> {
+    return this.httpClient.put<any>(
       `${this.url}/${formateur.id}`,
       this.formateurToFormateurRequest(formateur)
     );
   }
 
   private formateurToFormateurRequest(formateur: Formateur): any {
+    let competencesId: number[] = [];
+    formateur.competencesResponse?.forEach((competence) =>
+      competencesId.push(competence.id!)
+    );
+
+    console.log(competencesId);
+
     let obj = {
-      id: formateur.id,
       nom: formateur.nom,
       prenom: formateur.prenom,
       telephone: formateur.telephone,
@@ -46,7 +53,7 @@ export class FormateurService {
       compteId: formateur.compteResponse?.id,
       ordinateurId: formateur.ordinateurResponse?.id,
       videoProjecteurId: formateur.videoProjecteurResponse?.id,
-      competencesResponse: formateur.competencesResponse,
+      competencesId: competencesId,
     };
     return obj;
   }

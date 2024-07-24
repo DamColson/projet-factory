@@ -171,7 +171,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'formateur/competences/:id',
+    path: 'formateur/:id/competences',
     component: FormateurCompetencesEditComponent,
     canActivate: [authGuard],
   },
