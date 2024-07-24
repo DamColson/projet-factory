@@ -28,8 +28,9 @@ import { Observable } from 'rxjs';
 })
 export class FormateurCompetencesEditComponent {
   form!: FormGroup;
-  competences: Competence[] = [];
-  CompetencesObservable!: Observable<Competence[]>;
+  competence!: Competence;
+  competencesId: number[] = [];
+  competencesObservable!: Observable<Competence[]>;
   formateur: Formateur = new Formateur();
   message = '';
   showMessage = false;
@@ -43,21 +44,18 @@ export class FormateurCompetencesEditComponent {
   ) {}
 
   ngOnInit(): void {
-    this.CompetencesObservable = this.competenceSrv.getAll();
-    this.initCompetences();
+    this.competencesObservable = this.competenceSrv.getAll();
+    this.initFormateur();
     this.initMessage();
   }
 
-  initCompetences() {
+  initFormateur() {
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.formateurSrv.getById(params['id']).subscribe((formateur) => {
           this.formateur = formateur;
         });
       }
-    });
-    this.competenceSrv.getAll().subscribe((competences) => {
-      this.competences = competences;
     });
   }
 
@@ -77,15 +75,34 @@ export class FormateurCompetencesEditComponent {
   }
 
   save() {
-    console.log(this.formateur.competencesResponse);
-    this.formateurSrv.update(this.formateur).subscribe((ordinateur) => {});
+    this.competenceSrv.getById(this.competence.id!).subscribe((competence) => {
+      this.formateur.competencesResponse?.push(competence);
+      if (this.formateur.id) {
+        this.formateurSrv.update(this.formateur).subscribe((formateur) => {
+          this.router.navigateByUrl(
+            '/formateur/' + formateur.id + '/competences'
+          );
+        });
+      }
+    });
   }
 
   delete(id: number) {
-    this.competenceSrv.delete(id).subscribe(() => {
-      this.initCompetences();
-      this.message = `Compétence ${id} supprimé `;
-      this.style = 'alert-danger';
+    this.competenceSrv.getById(id).subscribe((competence) => {
+      console.log(this.formateur);
+      for (let comp of this.formateur.competencesResponse!) {
+        if (comp.id == competence.id) {
+          this.formateur.competencesResponse?.splice(
+            this.formateur.competencesResponse.indexOf(comp),
+            1
+          );
+        }
+      }
+      this.formateurSrv.update(this.formateur).subscribe((formateur) => {
+        this.router.navigateByUrl(
+          '/formateur/' + formateur.id + '/competences'
+        );
+      });
     });
   }
 }
