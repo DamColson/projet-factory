@@ -14,6 +14,10 @@ export class OrdinateurService {
     return this.httpClient.get<Ordinateur[]>(this.url);
   }
 
+  public getAllDisponible(): Observable<Ordinateur[]> {
+    return this.httpClient.get<Ordinateur[]>(this.url + '/disponible');
+  }
+
   public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }

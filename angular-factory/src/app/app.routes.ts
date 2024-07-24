@@ -30,6 +30,7 @@ import { TechnicienEditComponent } from './components/technicien/technicien-edit
 import { TechnicienComponent } from './components/technicien/technicien/technicien.component';
 import { GestionnaireEditComponent } from './components/gestionnaire/gestionnaire-edit/gestionnaire-edit.component';
 import { GestionnaireComponent } from './components/gestionnaire/gestionnaire/gestionnaire.component';
+import { FormateurCompetencesEditComponent } from './components/formateur/formateur-competences-edit/formateur-competences-edit.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -167,6 +168,11 @@ export const routes: Routes = [
   {
     path: 'formateur/edit/:id',
     component: FormateurEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'formateur/competences/:id',
+    component: FormateurCompetencesEditComponent,
     canActivate: [authGuard],
   },
   {

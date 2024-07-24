@@ -77,7 +77,11 @@
         <div class="text-danger fst-italic">*obligatoire</div>
         }
         <option value="null">Aucun</option>
-        @for(o of OrdinateurObservable|async; track o.id){
+        @if(formateur.id){
+        <option [ngValue]="formateur.ordinateurResponse">
+          {{ formateur.ordinateurResponse?.id }}
+        </option>
+        } @for(o of OrdinateurObservable|async; track o.id){
         <option [ngValue]="o">
           {{ o.libelle }}
         </option>

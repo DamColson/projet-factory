@@ -96,7 +96,11 @@
         #formationCtrl="ngModel"
       >
         <option value="null">Aucun</option>
-        @for(f of FormationObservable|async; track f.id){
+        @if(stagiaire.id){
+        <option [ngValue]="stagiaire.ordinateurResponse">
+          {{ stagiaire.ordinateurResponse?.id }}
+        </option>
+        } @for(f of FormationObservable|async; track f.id){
         <option [ngValue]="f">
           {{ f.id }}
         </option>
