@@ -61,7 +61,7 @@ export class FormateurEditComponent {
   ) {}
 
   ngOnInit(): void {
-    this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.VideoprojecteurObservable = this.videoprojecteurSrv.getAll();
     this.CompteObservable = this.compteSrv.getAllForm();
     this.CompetencesObservable = this.competenceSrv.getAll();

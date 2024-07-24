@@ -58,7 +58,7 @@ export class StagiaireEditComponent {
     // this.filiereSrv.getAll().subscribe((filieres) => {
     //   this.filieres = filieres;
     // });
-    this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.FormationObservable = this.formationSrv.getAll();
     this.CompteObservable = this.compteSrv.getAllStag();
 

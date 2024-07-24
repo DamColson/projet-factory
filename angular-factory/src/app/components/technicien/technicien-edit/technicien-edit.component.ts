@@ -54,7 +54,7 @@ export class TechnicienEditComponent {
     // this.filiereSrv.getAll().subscribe((filieres) => {
     //   this.filieres = filieres;
     // });
-    this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.CompteObservable = this.compteSrv.getAllTech();
 
     this.activatedRoute.params.subscribe((params) => {

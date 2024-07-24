@@ -49,7 +49,7 @@ export class CompteEditComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.form = new FormGroup({
-      login: new FormControl('', Validators.required),
+      login: new FormControl(''),
       passwordGroup: new FormGroup(
         {
           password: new FormControl('', Validators.required),

@@ -74,7 +74,11 @@
         #ordinateurCtrl="ngModel"
       >
         <option value="null">Aucun</option>
-        @for(o of OrdinateurObservable|async; track o.id){
+        @if(gestionnaire.id){
+        <option [ngValue]="gestionnaire.ordinateurResponse">
+          {{ gestionnaire.ordinateurResponse?.id }}
+        </option>
+        } @for(o of OrdinateurObservable|async; track o.id){
         <option [ngValue]="o">
           {{ o.libelle }}
         </option>

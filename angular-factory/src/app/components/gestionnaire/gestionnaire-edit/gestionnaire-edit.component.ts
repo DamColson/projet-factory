@@ -53,7 +53,7 @@ export class GestionnaireEditComponent {
     // this.filiereSrv.getAll().subscribe((filieres) => {
     //   this.filieres = filieres;
     // });
-    this.OrdinateurObservable = this.ordinateurSrv.getAll();
+    this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.CompteObservable = this.compteSrv.getAllGest();
 
     this.activatedRoute.params.subscribe((params) => {
