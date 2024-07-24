@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOFormation;
 import ajc.formation.projet_factory.dao.IDAOGestionnaire;
+import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.model.Gestionnaire;
 
 @Service
@@ -16,6 +17,8 @@ public class GestionnaireService {
     private IDAOGestionnaire daoGestionnaire;
     @Autowired
     private IDAOFormation daoFormation;
+    @Autowired
+    private IDAOOrdinateur daoOrdinateur;
 
     public List<Gestionnaire> getAll(){
         return daoGestionnaire.findAll();
@@ -37,10 +40,16 @@ public class GestionnaireService {
 		{
 			throw new RuntimeException("Impossible d'update un gestionnaire sans compte");
 		}
+        if(gestionnaire.getOrdinateur()!=null) {
+        	daoOrdinateur.setOrdinateurIndisponible(gestionnaire.getOrdinateur().getId());
+        }
         return daoGestionnaire.save(gestionnaire);
     }
 
     public void delete(Gestionnaire gestionnaire){
+    	if(gestionnaire.getOrdinateur()!=null) {
+        	daoOrdinateur.setOrdinateurDisponible(gestionnaire.getOrdinateur().getId());
+        }
         daoFormation.cascadeGestionnaireNull(gestionnaire);
 
         daoGestionnaire.delete(gestionnaire);

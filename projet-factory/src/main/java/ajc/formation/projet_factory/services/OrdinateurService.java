@@ -1,10 +1,12 @@
 package ajc.formation.projet_factory.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ajc.formation.projet_factory.dao.IDAOFormateur;
 import ajc.formation.projet_factory.dao.IDAOGestionnaire;
@@ -16,6 +18,7 @@ import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Salle;
 
 @Service
+@Transactional
 public class OrdinateurService {
 
 	@Autowired
@@ -36,6 +39,19 @@ public class OrdinateurService {
 		return daoOrdinateur.findAll();
 	}
 	
+	public List<Ordinateur> getAllDisponible(){
+		return daoOrdinateur.findAllDisponible();
+	}
+	
+	public List<Ordinateur> getAllIndisponible(){
+		return daoOrdinateur.findAllIndisponible();
+	}
+	
+	public List<Ordinateur> getAllFreeSalle(){
+		return daoOrdinateur.findFreeOrdinateurSalle();
+	}
+	
+	
 	public Ordinateur getById(Integer id) {
 		if(id==null) {
 			throw new RuntimeException("id inexistant");
@@ -47,6 +63,7 @@ public class OrdinateurService {
 	public Ordinateur insert(Ordinateur ordinateur) {
 		return daoOrdinateur.save(ordinateur);
 	}
+	
 	
 	public Ordinateur update(Ordinateur ordinateur){
 		if(ordinateur.getId()==null) {

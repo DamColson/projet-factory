@@ -35,7 +35,8 @@ public class OrdinateurResponse {
 	}
 	
 	public OrdinateurResponse(Ordinateur ordinateur,boolean bool) {
-		BeanUtils.copyProperties(ordinateur, this);
+		BeanUtils.copyProperties(ordinateur, this,"status");
+		this.status = ordinateur.getStatus().toString();
 		if(bool) {
 			if(ordinateur.getSalle()!=null) {
 				this.salleResponse = new SalleResponse(ordinateur.getSalle(),false);

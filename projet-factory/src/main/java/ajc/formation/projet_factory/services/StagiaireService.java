@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOStagiaire;
 import ajc.formation.projet_factory.model.Stagiaire;
 
@@ -13,6 +14,8 @@ public class StagiaireService {
 
     @Autowired
     private IDAOStagiaire daoStagiaire;
+    @Autowired
+    private IDAOOrdinateur daoOrdinateur;
 
     public List<Stagiaire> getAll(){
         return daoStagiaire.findAll();
@@ -34,10 +37,16 @@ public class StagiaireService {
 		{
 			throw new RuntimeException("Impossible d'update un stagiaire sans compte");
 		}
+        if(stagiaire.getOrdinateur()!=null) {
+        	daoOrdinateur.setOrdinateurIndisponible(stagiaire.getOrdinateur().getId());
+        }
         return daoStagiaire.save(stagiaire);
     }
 
     public void delete(Stagiaire stagiaire){
+    	if(stagiaire.getOrdinateur()!=null) {
+        	daoOrdinateur.setOrdinateurDisponible(stagiaire.getOrdinateur().getId());
+        }
         daoStagiaire.delete(stagiaire);
     }
 

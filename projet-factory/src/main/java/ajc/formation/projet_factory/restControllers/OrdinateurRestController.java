@@ -26,6 +26,7 @@ import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.dto.response.OrdinateurResponse;
 import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Salle;
+import ajc.formation.projet_factory.model.Status;
 import ajc.formation.projet_factory.services.OrdinateurService;
 import ajc.formation.projet_factory.services.SalleService;
 import jakarta.validation.Valid;
@@ -45,6 +46,18 @@ public class OrdinateurRestController {
         return ordinateurService.getAll().stream().map(ordinateur->new OrdinateurResponse(ordinateur)).collect(Collectors.toList());
     }
     
+    @GetMapping("/disponible")
+    @JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+    public List<OrdinateurResponse> getAllDisponible(){
+    	return ordinateurService.getAllDisponible().stream().map(ordinateur->new OrdinateurResponse(ordinateur)).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/indisponible")
+    @JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
+    public List<OrdinateurResponse> getAllIndisponible(){
+    	return ordinateurService.getAllIndisponible().stream().map(ordinateur->new OrdinateurResponse(ordinateur)).collect(Collectors.toList());
+    }
+    
     @GetMapping("/{id}")
     @JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
     public OrdinateurResponse getById(@PathVariable("id") Integer id) {
@@ -59,7 +72,8 @@ public class OrdinateurRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Ordinateur ordinateur = new Ordinateur();
-        BeanUtils.copyProperties(ordinateurRequest, ordinateur);
+        BeanUtils.copyProperties(ordinateurRequest, ordinateur,"status");
+        ordinateur.setStatus(Status.valueOf(ordinateurRequest.getStatus()));
 
         if(ordinateurRequest.getSalleId() != null){
             Salle salle = salleService.getById(ordinateurRequest.getSalleId());
@@ -76,7 +90,8 @@ public class OrdinateurRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Ordinateur ordinateur = new Ordinateur();
-        BeanUtils.copyProperties(ordinateurRequest, ordinateur);
+        BeanUtils.copyProperties(ordinateurRequest, ordinateur,"status");
+        ordinateur.setStatus(Status.valueOf(ordinateurRequest.getStatus()));
 
         if(ordinateurRequest.getSalleId() != null){
             Salle salle = salleService.getById(ordinateurRequest.getSalleId());
