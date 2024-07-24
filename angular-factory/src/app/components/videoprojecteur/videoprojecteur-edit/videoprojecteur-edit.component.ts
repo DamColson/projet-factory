@@ -34,6 +34,8 @@ export class VideoprojecteurEditComponent {
   SalleObservable!: Observable<Salle[]>;
   FormateurObservable!: Observable<Formateur[]>;
 
+  status: String[] = ['DISPONIBLE', 'INDISPONIBLE'];
+
   videoprojecteur: Videoprojecteur = new Videoprojecteur();
 
   constructor(
@@ -58,6 +60,7 @@ export class VideoprojecteurEditComponent {
           .getById(params['id'])
           .subscribe((videoprojecteur) => {
             this.videoprojecteur = videoprojecteur;
+            this.selectedValue(this.videoprojecteur.status);
           });
       }
     });
@@ -81,12 +84,21 @@ export class VideoprojecteurEditComponent {
         });
     }
   }
-
+  selectedValue(select: any) {
+    const selectElement = document.getElementById(
+      'status'
+    ) as HTMLSelectElement;
+    selectElement.value = this.status.indexOf(select) + ': ' + <string>select;
+  }
   compareS(s1: Salle, s2: Salle): boolean {
     return s1 && s2 ? s1.id === s2.id : false;
   }
 
   compareFr(f1: Formateur, f2: Formateur): boolean {
     return f1 && f2 ? f1.id === f2.id : false;
+  }
+
+  compareStn(s1: String, s2: String): boolean {
+    return s1 && s2 ? s1 === s2 : false;
   }
 }

@@ -62,7 +62,7 @@ export class FormateurEditComponent {
 
   ngOnInit(): void {
     this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
-    this.VideoprojecteurObservable = this.videoprojecteurSrv.getAll();
+    this.VideoprojecteurObservable = this.videoprojecteurSrv.getAllDisponible();
     this.CompteObservable = this.compteSrv.getAllForm();
     this.CompetencesObservable = this.competenceSrv.getAll();
     this.activatedRoute.params.subscribe((params) => {
@@ -81,6 +81,7 @@ export class FormateurEditComponent {
       });
     } else {
       this.formateurSrv.create(this.formateur).subscribe((formateur) => {
+        console.log(this.formateur.ordinateurResponse);
         this.router.navigateByUrl('/formateur?q=create&id=' + formateur.id);
       });
     }

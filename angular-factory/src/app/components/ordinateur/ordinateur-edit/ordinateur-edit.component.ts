@@ -36,6 +36,8 @@ export class OrdinateurEditComponent {
   form!: FormGroup;
   SalleObservable!: Observable<Salle[]>;
 
+  status: String[] = ['DISPONIBLE', 'INDISPONIBLE'];
+
   ordinateur: Ordinateur = new Ordinateur();
 
   constructor(
@@ -56,6 +58,7 @@ export class OrdinateurEditComponent {
       if (params['id']) {
         this.ordinateurSrv.getById(params['id']).subscribe((ordinateur) => {
           this.ordinateur = ordinateur;
+          this.selectedValue(this.ordinateur.status);
         });
       }
     });
@@ -70,6 +73,17 @@ export class OrdinateurEditComponent {
         this.router.navigateByUrl('/ordinateur?q=create&id=' + ordinateur.id);
       });
     }
+  }
+
+  selectedValue(select: any) {
+    const selectElement = document.getElementById(
+      'status'
+    ) as HTMLSelectElement;
+    selectElement.value = this.status.indexOf(select) + ': ' + <string>select;
+  }
+
+  compareStn(s1: String, s2: String): boolean {
+    return s1 && s2 ? s1 === s2 : false;
   }
 
   compareSn(s1: Salle, s2: Salle): boolean {

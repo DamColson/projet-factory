@@ -64,6 +64,26 @@
     </div>
     <div class="form-group mb-3">
       <label for="status">Status :</label>
+      <select
+        [compareWith]="compareStn"
+        [(ngModel)]="ordinateur.status"
+        id="status"
+        class="form-control"
+        name="status"
+        #statusCtrl="ngModel"
+      >
+        <option ngValue="DISPONIBLE">DISPONIBLE</option>
+        <option ngValue="INDISPONIBLE">INDISPONIBLE</option>
+        <!-- <option value="null">Aucun</option>
+      @for(s of SalleObservable|async; track s.id){
+      <option [ngValue]="s">
+        {{ s.id }}
+      </option>
+      } 
+      </select>
+      @if(salleCtrl.invalid && salleCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
       <input
         id="status"
         class="form-control"
@@ -71,7 +91,8 @@
         name="satus"
         required
         #statusCtrl="ngModel"
-      />
+      /> -->
+      </select>
       @if(statusCtrl.invalid && statusCtrl.dirty){
       <div class="text-danger fst-italic">*obligatoire</div>
       }

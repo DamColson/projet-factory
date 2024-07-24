@@ -103,7 +103,11 @@
         <div class="text-danger fst-italic">*obligatoire</div>
         }
         <option value="null">Aucun</option>
-        @for(v of VideoprojecteurObservable|async; track v.id){
+        @if(formateur.id){
+        <option [ngValue]="formateur.videoProjecteurResponse">
+          {{ formateur.videoProjecteurResponse?.id }}
+        </option>
+        } @for(v of VideoprojecteurObservable|async; track v.id){
         <option [ngValue]="v">
           {{ v.libelle }}
         </option>
