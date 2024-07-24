@@ -27,7 +27,8 @@ public class VideoProjecteurResponse {
 	}
 	
 	public VideoProjecteurResponse(VideoProjecteur videoProjecteur,boolean bool) {
-		BeanUtils.copyProperties(videoProjecteur, this);
+		BeanUtils.copyProperties(videoProjecteur, this,"status");
+		this.status = videoProjecteur.getStatus().toString();
 		if(bool) {
 			if(videoProjecteur.getSalle()!=null) {
 				this.salleResponse = new SalleResponse(videoProjecteur.getSalle(),false);

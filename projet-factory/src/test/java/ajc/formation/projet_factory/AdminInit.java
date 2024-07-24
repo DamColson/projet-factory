@@ -22,13 +22,56 @@ class AdminInit {
 	@Test
 	@Transactional
 	@Commit
-	@Disabled
 	void initAdmin() {
 		Compte admin=new Compte();
 		admin.setLogin("admin");
 		admin.setRole(Role.ROLE_ADMIN);
 		admin.setPassword( passwordEncoder.encode("admin"));
 		daoCompte.save(admin);
+	}
+	
+	@Test
+	@Transactional
+	@Commit
+	void initTechnicien() {
+		Compte tech=new Compte();
+		tech.setLogin("technicien");
+		tech.setRole(Role.ROLE_TECHNICIEN);
+		tech.setPassword( passwordEncoder.encode("technicien"));
+		daoCompte.save(tech);
+	}
+	
+	@Test
+	@Transactional
+	@Commit
+	void initGestionnaire() {
+		Compte gest=new Compte();
+		gest.setLogin("gestionnaire");
+		gest.setRole(Role.ROLE_GESTIONNAIRE);
+		gest.setPassword( passwordEncoder.encode("gestionnaire"));
+		daoCompte.save(gest);
+	}
+	
+	@Test
+	@Transactional
+	@Commit
+	void initFormateur() {
+		Compte formateur =new Compte();
+		formateur.setLogin("formateur");
+		formateur.setRole(Role.ROLE_FORMATEUR);
+		formateur.setPassword( passwordEncoder.encode("formateur"));
+		daoCompte.save(formateur);
+	}
+	
+	@Test
+	@Transactional
+	@Commit
+	void initStagiaire() {
+		Compte stagiaire=new Compte();
+		stagiaire.setLogin("stagiaire");
+		stagiaire.setRole(Role.ROLE_STAGIAIRE);
+		stagiaire.setPassword( passwordEncoder.encode("stagiaire"));
+		daoCompte.save(stagiaire);
 	}
 	
 	@Test
