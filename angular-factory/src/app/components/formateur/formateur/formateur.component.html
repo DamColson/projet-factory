@@ -21,6 +21,7 @@
         <td>Ordinateur</td>
         <td>Vidéoprojecteur</td>
         <td>Compte</td>
+        <td></td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -36,6 +37,14 @@
         <td>{{ f.ordinateurResponse?.libelle }}</td>
         <td>{{ f.videoProjecteurResponse?.libelle }}</td>
         <td>{{ f.compteResponse?.login }}</td>
+        <td>
+          <a
+            routerLink="/formateur/competences/{{ f.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Compétences</a
+          >
+        </td>
         <td>
           <a
             routerLink="/formateur/edit/{{ f.id }}"

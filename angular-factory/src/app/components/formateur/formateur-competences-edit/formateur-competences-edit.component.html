@@ -1,0 +1,54 @@
+<div class="container">
+  <h1>Liste des compétences</h1>
+  @if(showMessage){
+  <div class="alert {{ style }}">{{ message }}</div>
+  }
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="competences">Ordinateur :</label>
+      <select
+        [(ngModel)]="formateur.competencesResponse"
+        id="competences"
+        class="form-control"
+        name="competences"
+      >
+        @for (c of competences; track c.id) {
+        <option [ngValue]="c">
+          {{ c.nom }}
+        </option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary mb-5">
+        Ajouter
+      </button>
+    </div>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Nom</td>
+        <td>Supprimer</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(c of formateur.competencesResponse; track c.id){
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.nom }}</td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            (click)="delete(c.id!)"
+            value="Supprimer"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
