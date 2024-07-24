@@ -41,12 +41,12 @@ export class FormateurService {
       id: formateur.id,
       nom: formateur.nom,
       prenom: formateur.prenom,
-      mail: formateur.mail,
       telephone: formateur.telephone,
-      idCompte: formateur.compteResponse?.id,
-      idOrdinateur: formateur.ordinateurResponse?.id,
-      idVideoProjecteur: formateur.videoprojecteurResponse?.id,
-      idFormation: formateur.videoprojecteurResponse?.id,
+      mail: formateur.mail,
+      compteId: formateur.compteResponse?.id,
+      ordinateurId: formateur.ordinateurResponse?.id,
+      videoProjecteurId: formateur.videoProjecteurResponse?.id,
+      competencesId: formateur.competencesResponse,
     };
     return obj;
   }

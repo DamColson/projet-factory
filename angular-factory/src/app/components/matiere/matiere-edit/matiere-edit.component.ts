@@ -56,7 +56,7 @@ export class MatiereEditComponent {
       });
     } else {
       this.matiereSrv.create(this.matiere).subscribe((matiere) => {
-        this.router.navigateByUrl('/smatiere?q=create&id=' + matiere.id);
+        this.router.navigateByUrl('/matiere?q=create&id=' + matiere.id);
       });
     }
   }

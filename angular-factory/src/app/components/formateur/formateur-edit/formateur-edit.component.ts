@@ -14,7 +14,7 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Ordinateur } from '../../../model/ordinateur';
 import { Formateur } from '../../../model/formateur';
 import { FormateurService } from '../../../services/formateur.service';
@@ -64,7 +64,6 @@ export class FormateurEditComponent {
     this.OrdinateurObservable = this.ordinateurSrv.getAll();
     this.VideoprojecteurObservable = this.videoprojecteurSrv.getAll();
     this.CompteObservable = this.compteSrv.getAllForm();
-
     this.CompetencesObservable = this.competenceSrv.getAll();
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {

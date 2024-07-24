@@ -13,8 +13,7 @@ export class Formateur {
     public mail?: string,
     public compteResponse?: Compte,
     public ordinateurResponse?: Ordinateur,
-    public blocsResponse?: Bloc[],
-    public videoprojecteurResponse?: Videoprojecteur,
+    public videoProjecteurResponse?: Videoprojecteur,
     public competencesResponse?: Competence[]
   ) {}
 }

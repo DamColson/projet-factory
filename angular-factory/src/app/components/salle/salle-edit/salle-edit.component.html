@@ -34,29 +34,6 @@
       }
     </div>
 
-    <div class="form-group mb-3">
-      <label for="videoprojecteur">Video projecteur :</label>
-      <select
-        [compareWith]="compareOn"
-        [(ngModel)]="salle.videoprojecteurResponse"
-        id="videoprojecteur"
-        class="form-control"
-        name="videoprojecteur"
-        required
-        #videoprojecteurCtrl="ngModel"
-      >
-        <option value="null">Aucun</option>
-        @for(o of VideoprojecteurObservable|async; track o.id){
-        <option [ngValue]="o">
-          {{ o.libelle }}
-        </option>
-        }
-      </select>
-      @if(videoprojecteurCtrl.invalid && videoprojecteurCtrl.dirty){
-      <div class="text-danger fst-italic">*obligatoire</div>
-      }
-    </div>
-
     <div class="form-group">
       <button
         type="submit"

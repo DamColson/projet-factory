@@ -88,10 +88,10 @@
       <label for="videoprojecteur">Vidéoprojecteur :</label>
       <select
         [compareWith]="compareVn"
-        [(ngModel)]="formateur.videoprojecteurResponse"
+        [(ngModel)]="formateur.videoProjecteurResponse"
         id="videoprojecteur"
         class="form-control"
-        name="videoprojecteur"
+        name="videoProjecteur"
         required
         #videoprojecteurCtrl="ngModel"
       >
@@ -117,7 +117,9 @@
         required
         #compteCtrl="ngModel"
       >
-        <option value="null">Aucun</option>
+        <option [ngValue]="formateur.compteResponse">
+          {{ formateur.compteResponse?.login }}
+        </option>
         @for(c of CompteObservable|async; track c.id){
         <option [ngValue]="c">
           {{ c.login }}

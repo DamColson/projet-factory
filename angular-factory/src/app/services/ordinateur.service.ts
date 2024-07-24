@@ -44,9 +44,9 @@ export class OrdinateurService {
       libelle: ordinateur.libelle,
       os: ordinateur.os,
       status: ordinateur.status,
-      salle: ordinateur.salleResponse?.id,
-      stagiaire: ordinateur.stagiaireResponse?.id,
+      salleId: ordinateur.salleResponse?.id,
     };
+    console.log(obj);
     return obj;
   }
 }

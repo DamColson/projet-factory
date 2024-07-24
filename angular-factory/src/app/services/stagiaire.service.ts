@@ -43,9 +43,9 @@ export class StagiaireService {
       prenom: stagiaire.prenom,
       mail: stagiaire.mail,
       telephone: stagiaire.telephone,
-      idCompte: stagiaire.compteResponse?.id,
-      idOrdinateur: stagiaire.ordinateurResponse?.id,
-      idFormation: stagiaire.formationResponse?.id,
+      compteId: stagiaire.compteResponse?.id,
+      ordinateurId: stagiaire.ordinateurResponse?.id,
+      formationId: stagiaire.formationResponse?.id,
     };
     return obj;
   }

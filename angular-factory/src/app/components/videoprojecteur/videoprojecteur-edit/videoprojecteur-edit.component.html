@@ -84,28 +84,6 @@
       <div class="text-danger fst-italic">*obligatoire</div>
       }
     </div>
-    <div class="form-group mb-3">
-      <label for="formateur">Formateur :</label>
-      <select
-        [compareWith]="compareFr"
-        [(ngModel)]="videoprojecteur.formateurResponse"
-        id="formateur"
-        class="form-control"
-        name="formateur"
-        required
-        #formateurCtrl="ngModel"
-      >
-        <option value="null">Aucun</option>
-        @for(f of FormateurObservable|async; track f.id){
-        <option [ngValue]="f">
-          {{ f.id }}
-        </option>
-        }
-      </select>
-      @if(formateurCtrl.invalid && formateurCtrl.dirty){
-      <div class="text-danger fst-italic">*obligatoire</div>
-      }
-    </div>
     <div class="form-group">
       <button
         type="submit"
@@ -115,7 +93,7 @@
         Enregistrer
       </button>
       <a
-        [routerLink]="['/ordinateur']"
+        [routerLink]="['/videoprojecteur']"
         routerLinkActive="router-link-active"
         class="btn btn-outline-warning m-2"
         >Retour</a

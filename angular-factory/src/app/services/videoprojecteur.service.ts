@@ -8,7 +8,7 @@ import { Videoprojecteur } from '../model/videoprojecteur';
   providedIn: 'root',
 })
 export class VideoprojecteurService {
-  url = 'http://localhost:8080/factory/api/videoprojecteur';
+  url = 'http://localhost:8080/factory/api/videoProjecteur';
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<Videoprojecteur[]> {
@@ -42,12 +42,11 @@ export class VideoprojecteurService {
   ): any {
     let obj = {
       id: videoprojecteur.id,
-      adresse_mac: videoprojecteur.adresseMac,
-      date_achat: videoprojecteur.dateAchat,
+      adresseMac: videoprojecteur.adresseMac,
+      dateAchat: videoprojecteur.dateAchat,
       libelle: videoprojecteur.libelle,
-      Status: videoprojecteur.status,
-      salle: videoprojecteur.salleResponse?.id,
-      formateur: videoprojecteur.formateurResponse?.id,
+      status: videoprojecteur.status,
+      salleId: videoprojecteur.salleResponse?.id,
     };
     return obj;
   }

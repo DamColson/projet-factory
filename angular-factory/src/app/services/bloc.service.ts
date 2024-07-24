@@ -39,11 +39,11 @@ export class BlocService {
       id: bloc.id,
       dateDebut: bloc.dateDebut,
       dateFin: bloc.dateFin,
-      matiere: bloc.matiereResponse?.id,
-      salle: bloc.salleResponse?.id,
-      formateur: bloc.formateurResponse?.id,
       code: bloc.code,
       objectif: bloc.objectif,
+      formateurId: bloc.formateurResponse?.id,
+      matiereId: bloc.matiereResponse?.id,
+      salleId: bloc.salleResponse?.id,
     };
     return obj;
   }

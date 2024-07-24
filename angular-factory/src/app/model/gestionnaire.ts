@@ -10,7 +10,6 @@ export class Gestionnaire {
     public telephone?: string,
     public mail?: string,
     public compteResponse?: Compte,
-    public ordinateurResponse?: Ordinateur,
-    public formationsResponse?: Formation[]
+    public ordinateurResponse?: Ordinateur
   ) {}
 }

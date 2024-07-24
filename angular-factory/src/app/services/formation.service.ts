@@ -42,7 +42,7 @@ export class FormationService {
       id: formation.id,
       debut: formation.debut,
       fin: formation.fin,
-      gestionnaire: formation.gestionnaireResponse,
+      gestionnaireId: formation.gestionnaireResponse?.id,
       prerequis: formation.prerequis,
       stagiaires: formation.stagiairesResponse,
       blocs: formation.blocsResponse,

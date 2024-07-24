@@ -41,10 +41,10 @@ export class TechnicienService {
       id: technicien.id,
       nom: technicien.nom,
       prenom: technicien.prenom,
-      mail: technicien.mail,
       telephone: technicien.telephone,
-      idCompte: technicien.compteResponse?.id,
-      idOrdinateur: technicien.ordinateurResponse?.id,
+      mail: technicien.mail,
+      ordinateurId: technicien.ordinateurResponse?.id,
+      compteId: technicien.compteResponse?.id,
     };
     return obj;
   }

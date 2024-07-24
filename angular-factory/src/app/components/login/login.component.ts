@@ -14,6 +14,10 @@ export class LoginComponent {
   login: string = '';
   password: string = '';
   error: boolean = false;
+  // Récupérer l'élément du localStorage
+  compteStr = localStorage.getItem('compte');
+
+  // Parser l'objet JSON pour obtenir l'objet JavaScript
 
   constructor(private authSrv: AuthService, private router: Router) {}
 
@@ -28,7 +32,11 @@ export class LoginComponent {
           window.btoa(this.login + ':' + this.password)
         );
         localStorage.setItem('compte', JSON.stringify(compte));
-        console.log(localStorage.getItem('compte') + this.login);
+        console.log(localStorage.getItem('compte'));
+        this.compteStr = localStorage.getItem('compte');
+        if (this.compteStr) {
+          console.log(JSON.parse(this.compteStr).id);
+        }
         this.router.navigateByUrl('/home');
       },
       error: (err) => {

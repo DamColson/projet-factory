@@ -7,10 +7,10 @@ export class Bloc {
     public id?: number,
     public dateDebut?: Date,
     public dateFin?: Date,
+    public code?: string,
+    public objectif?: string,
     public formateurResponse?: Formateur,
     public matiereResponse?: Matiere,
-    public salleResponse?: Salle,
-    public code?: string,
-    public objectif?: string
+    public salleResponse?: Salle
   ) {}
 }

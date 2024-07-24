@@ -43,9 +43,8 @@ export class GestionnaireService {
       prenom: gestionnaire.prenom,
       mail: gestionnaire.mail,
       telephone: gestionnaire.telephone,
-      idCompte: gestionnaire.compteResponse?.id,
-      idOrdinateur: gestionnaire.ordinateurResponse?.id,
-      formations: gestionnaire.formationsResponse,
+      compteId: gestionnaire.compteResponse?.id,
+      ordinateurId: gestionnaire.ordinateurResponse?.id,
     };
     return obj;
   }

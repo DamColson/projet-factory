@@ -78,7 +78,7 @@ export class GestionnaireEditComponent {
         .create(this.gestionnaire)
         .subscribe((gestionnaire) => {
           this.router.navigateByUrl(
-            '/formateur?q=create&id=' + gestionnaire.id
+            '/gestionnaire?q=create&id=' + gestionnaire.id
           );
         });
     }

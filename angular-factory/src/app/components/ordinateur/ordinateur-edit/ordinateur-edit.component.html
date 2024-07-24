@@ -98,28 +98,6 @@
       <div class="text-danger fst-italic">*obligatoire</div>
       }
     </div>
-    <div class="form-group mb-3">
-      <label for="stagiaire">Stagiaire :</label>
-      <select
-        [compareWith]="compareStn"
-        [(ngModel)]="ordinateur.stagiaireResponse"
-        id="stagiaire"
-        class="form-control"
-        name="stagiaire"
-        required
-        #stagiaireCtrl="ngModel"
-      >
-        <option value="null">Aucun</option>
-        @for(s of StagiaireObservable|async; track s.id){
-        <option [ngValue]="s">
-          {{ s.id }}
-        </option>
-        }
-      </select>
-      @if(stagiaireCtrl.invalid && stagiaireCtrl.dirty){
-      <div class="text-danger fst-italic">*obligatoire</div>
-      }
-    </div>
     <div class="form-group">
       <button
         type="submit"

@@ -39,9 +39,9 @@ export class MatiereService {
   private matiereToMatiereRequest(matiere: Matiere): any {
     let obj = {
       id: matiere.id,
-      contenu: matiere.contenu,
       titre: matiere.titre,
-      competences: matiere.competencesResponse,
+      contenu: matiere.contenu,
+      competencesId: matiere.competencesResponse,
     };
     return obj;
   }

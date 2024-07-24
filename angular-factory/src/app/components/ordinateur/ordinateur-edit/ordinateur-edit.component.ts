@@ -35,12 +35,10 @@ import { SalleService } from '../../../services/salle.service';
 export class OrdinateurEditComponent {
   form!: FormGroup;
   SalleObservable!: Observable<Salle[]>;
-  StagiaireObservable!: Observable<Stagiaire[]>;
 
   ordinateur: Ordinateur = new Ordinateur();
 
   constructor(
-    private stagiaireSrv: StagiaireService,
     private ordinateurSrv: OrdinateurService,
     private salleSrv: SalleService,
 
@@ -52,7 +50,6 @@ export class OrdinateurEditComponent {
     // this.filiereSrv.getAll().subscribe((filieres) => {
     //   this.filieres = filieres;
     // });
-    this.StagiaireObservable = this.stagiaireSrv.getAll();
     this.SalleObservable = this.salleSrv.getAll();
 
     this.activatedRoute.params.subscribe((params) => {
@@ -73,10 +70,6 @@ export class OrdinateurEditComponent {
         this.router.navigateByUrl('/ordinateur?q=create&id=' + ordinateur.id);
       });
     }
-  }
-
-  compareStn(st1: Stagiaire, st2: Stagiaire): boolean {
-    return st1 && st2 ? st1.id === st2.id : false;
   }
 
   compareSn(s1: Salle, s2: Salle): boolean {

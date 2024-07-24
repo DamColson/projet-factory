@@ -96,7 +96,6 @@
         required
         #matiereCtrl="ngModel"
       >
-        <option value="null">Aucun</option>
         @for(m of MatiereObservable|async; track m.id){
         <option [ngValue]="m">
           {{ m.titre }}
