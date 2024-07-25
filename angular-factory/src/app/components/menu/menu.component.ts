@@ -17,6 +17,11 @@ export class MenuComponent {
     return c.login!;
   }
 
+  get role(): string {
+    let c: Compte = JSON.parse(localStorage.getItem('compte')!);
+    return c.role!;
+  }
+
   logout() {
     localStorage.clear();
     this.router.navigateByUrl('/home');
