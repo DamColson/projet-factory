@@ -1,13 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ActivatedRoute,
   Router,
@@ -40,7 +33,6 @@ import { Competence } from '../../../model/competence';
   styleUrl: './formateur-edit.component.css',
 })
 export class FormateurEditComponent {
-  //filieres: Filiere[] = [];
   form!: FormGroup;
 
   OrdinateurObservable!: Observable<Ordinateur[]>;

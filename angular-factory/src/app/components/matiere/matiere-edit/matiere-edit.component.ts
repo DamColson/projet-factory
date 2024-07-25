@@ -37,10 +37,6 @@ export class MatiereEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
-
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.matiereSrv.getById(params['id']).subscribe((matiere) => {

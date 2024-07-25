@@ -1,11 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ActivatedRoute,
   Router,
@@ -34,7 +29,6 @@ import { CompteService } from '../../../services/compte.service';
   styleUrl: './gestionnaire-edit.component.css',
 })
 export class GestionnaireEditComponent {
-  //filieres: Filiere[] = [];
   form!: FormGroup;
   OrdinateurObservable!: Observable<Ordinateur[]>;
   CompteObservable!: Observable<Compte[]>;
@@ -50,9 +44,6 @@ export class GestionnaireEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.CompteObservable = this.compteSrv.getAllGest();
 

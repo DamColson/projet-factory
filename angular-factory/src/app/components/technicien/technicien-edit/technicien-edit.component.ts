@@ -51,9 +51,6 @@ export class TechnicienEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.CompteObservable = this.compteSrv.getAllTech();
 

@@ -14,19 +14,13 @@ export class LoginComponent {
   login: string = '';
   password: string = '';
   error: boolean = false;
-  // Récupérer l'élément du localStorage
   compteStr = localStorage.getItem('compte');
-
-  // Parser l'objet JSON pour obtenir l'objet JavaScript
 
   constructor(private authSrv: AuthService, private router: Router) {}
 
   connect() {
     this.authSrv.connect(this.login, this.password).subscribe({
-      //next=>on a une reponse
       next: (compte) => {
-        //on est sur que le couple login/password est correct
-        //je stocke le couple dans le localStorage
         localStorage.setItem(
           'token',
           window.btoa(this.login + ':' + this.password)

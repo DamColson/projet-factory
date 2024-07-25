@@ -37,7 +37,6 @@ import { CompteService } from '../../../services/compte.service';
   styleUrl: './stagiaire-edit.component.css',
 })
 export class StagiaireEditComponent {
-  //filieres: Filiere[] = [];
   form!: FormGroup;
   OrdinateurObservable!: Observable<Ordinateur[]>;
   FormationObservable!: Observable<Formation[]>;

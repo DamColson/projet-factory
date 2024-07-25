@@ -15,7 +15,6 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Compte } from '../../../model/compte';
 
@@ -62,11 +61,6 @@ export class CompteEditComponent {
   }
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
-    //this.OrdinateurObservable = this.ordinateurSrv.getAll();
-
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.compteSrv.getById(params['id']).subscribe((compte) => {

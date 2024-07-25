@@ -8,14 +8,8 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Compte } from '../../../model/compte';
-import { Formation } from '../../../model/formation';
 import { Ordinateur } from '../../../model/ordinateur';
-import { Stagiaire } from '../../../model/stagiaire';
-import { CompteService } from '../../../services/compte.service';
-import { FormationService } from '../../../services/formation.service';
 import { OrdinateurService } from '../../../services/ordinateur.service';
-import { StagiaireService } from '../../../services/stagiaire.service';
 import { Salle } from '../../../model/salle';
 import { SalleService } from '../../../services/salle.service';
 
@@ -49,9 +43,6 @@ export class OrdinateurEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.SalleObservable = this.salleSrv.getAll();
 
     this.activatedRoute.params.subscribe((params) => {

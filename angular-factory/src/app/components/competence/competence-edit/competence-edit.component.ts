@@ -24,7 +24,6 @@ import { CompetenceService } from '../../../services/competence.service';
   styleUrl: './competence-edit.component.css',
 })
 export class CompetenceEditComponent {
-  //filieres: Filiere[] = [];
   form!: FormGroup;
 
   competence: Competence = new Competence();
@@ -36,10 +35,6 @@ export class CompetenceEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
-
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.competenceSrv.getById(params['id']).subscribe((competence) => {

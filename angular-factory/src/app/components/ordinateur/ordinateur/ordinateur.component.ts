@@ -3,7 +3,6 @@ import { OrdinateurService } from '../../../services/ordinateur.service';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Ordinateur } from '../../../model/ordinateur';
-import id from '@angular/common/locales/id';
 
 @Component({
   selector: 'app-ordinateur',

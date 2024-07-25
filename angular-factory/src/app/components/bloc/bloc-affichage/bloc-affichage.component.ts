@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { Bloc } from '../../../model/bloc';
 import { BlocService } from '../../../services/bloc.service';
-import { SalleService } from '../../../services/salle.service';
 
 @Component({
   selector: 'app-bloc-affichage',

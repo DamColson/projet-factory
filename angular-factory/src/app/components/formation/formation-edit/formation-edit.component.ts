@@ -27,7 +27,6 @@ import { GestionnaireService } from '../../../services/gestionnaire.service';
   styleUrl: './formation-edit.component.css',
 })
 export class FormationEditComponent {
-  //filieres: Filiere[] = [];
   form!: FormGroup;
   GestionnaireObservable!: Observable<Gestionnaire[]>;
 
@@ -41,9 +40,6 @@ export class FormationEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.GestionnaireObservable = this.gestionnaireSrv.getAll();
 
     this.activatedRoute.params.subscribe((params) => {

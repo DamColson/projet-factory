@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { Bloc } from '../../model/bloc';
 import { BlocService } from '../../services/bloc.service';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { Formation } from '../../model/formation';
 import { FormationService } from '../../services/formation.service';
-import { Compte } from '../../model/compte';
 import { StagiaireService } from '../../services/stagiaire.service';
 
 @Component({
@@ -20,7 +18,6 @@ export class MaFormationComponent {
   formation: any = '';
 
   constructor(
-    private blocSrv: BlocService,
     private stagiaireSrv: StagiaireService,
     private formationSrv: FormationService
   ) {}

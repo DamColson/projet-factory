@@ -31,7 +31,6 @@ import { FormateurService } from '../../../services/formateur.service';
   styleUrl: './bloc-edit.component.css',
 })
 export class BlocEditComponent {
-  //filieres: Filiere[] = [];
   form!: FormGroup;
   SalleObservable!: Observable<Salle[]>;
   MatiereObservable!: Observable<Matiere[]>;
@@ -49,9 +48,6 @@ export class BlocEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.SalleObservable = this.salleSrv.getAll();
     this.MatiereObservable = this.matiereSrv.getAll();
     this.FormateurObservable = this.formateurSrv.getAll();

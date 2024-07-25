@@ -9,14 +9,6 @@ import {
 } from '@angular/router';
 import { Videoprojecteur } from '../../../model/videoprojecteur';
 import { Observable } from 'rxjs';
-import { Compte } from '../../../model/compte';
-import { Formation } from '../../../model/formation';
-import { Ordinateur } from '../../../model/ordinateur';
-import { Stagiaire } from '../../../model/stagiaire';
-import { CompteService } from '../../../services/compte.service';
-import { FormationService } from '../../../services/formation.service';
-import { OrdinateurService } from '../../../services/ordinateur.service';
-import { StagiaireService } from '../../../services/stagiaire.service';
 import { Salle } from '../../../model/salle';
 import { SalleService } from '../../../services/salle.service';
 import { VideoprojecteurService } from '../../../services/videoprojecteur.service';
