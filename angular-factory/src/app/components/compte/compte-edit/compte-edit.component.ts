@@ -78,13 +78,25 @@ export class CompteEditComponent {
   }
 
   submit() {
-    console.log(this.compte.id);
+    let resultLogin = '';
+    let resultRole = '';
+
+    if (this.form.get('role')?.value == '') {
+      resultRole = <string>this.compte.role;
+    } else {
+      resultRole = this.form.get('role')?.value;
+    }
+    if (this.form.get('login')?.value == '') {
+      resultLogin = <string>this.compte.login;
+    } else {
+      resultLogin = this.form.get('login')?.value;
+    }
     if (this.compte.id) {
       let obj = {
         id: this.compte.id,
-        login: this.form.get('login')?.value,
+        login: resultLogin,
         password: this.form.get('passwordGroup.password')?.value,
-        role: this.form.get('role')?.value,
+        role: resultRole,
       };
       this.compteSrv.update(obj).subscribe((compte) => {
         this.router.navigateByUrl('/compte?q=update&id=' + this.compte.id);

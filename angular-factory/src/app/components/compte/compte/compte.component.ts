@@ -36,7 +36,7 @@ export class CompteComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
         if (params['q'] == 'create') {
-          this.message = `Compte ${params['id']} crée `;
+          this.message = `Compte crée `;
           this.style = 'alert-success';
         } else if (params['q'] == 'update') {
           this.message = `Compte ${params['id']} mis à jour `;
