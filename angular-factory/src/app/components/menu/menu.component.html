@@ -30,7 +30,7 @@
             >Se connecter</a
           >
         </li>
-        }@else{
+        }@else{ @if( role == "ROLE_STAGIAIRE"){
         <li class="nav-item">
           <a
             class="nav-link"
@@ -40,6 +40,7 @@
             >Ma Formation</a
           >
         </li>
+        } @if( role == "ROLE_FORMATEUR"){
         <li class="nav-item">
           <a
             class="nav-link"
@@ -49,6 +50,7 @@
             >Mes Blocs</a
           >
         </li>
+        } @if( role == "ROLE_TECHNICIEN" || role == "ROLE_ADMIN"){
         <li class="nav-item">
           <a
             class="nav-link"
@@ -58,6 +60,7 @@
             >Ordinateurs</a
           >
         </li>
+
         <li class="nav-item">
           <a
             class="nav-link"
@@ -67,6 +70,7 @@
             >Vidéoprojecteurs</a
           >
         </li>
+        } @if( role == "ROLE_GESTIONNAIRE" || role == "ROLE_ADMIN"){
         <li class="nav-item">
           <a
             class="nav-link"
@@ -112,6 +116,7 @@
             >Salles</a
           >
         </li>
+        } @if(role == "ROLE_ADMIN"){
         <li class="nav-item">
           <a
             class="nav-link"
@@ -144,6 +149,7 @@
             </li>
           </ul>
         </li>
+        }
         <li class="nav-item">
           <a
             type="button"
