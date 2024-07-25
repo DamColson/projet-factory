@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import ajc.formation.projet_factory.model.Ordinateur;
 import ajc.formation.projet_factory.model.Salle;
 import ajc.formation.projet_factory.model.VideoProjecteur;
 import jakarta.transaction.Transactional;

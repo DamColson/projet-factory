@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.projet_factory.dto.request.VideoProjecteurRequest;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
-import ajc.formation.projet_factory.dto.response.OrdinateurResponse;
 import ajc.formation.projet_factory.dto.response.VideoProjecteurResponse;
 import ajc.formation.projet_factory.model.Salle;
 import ajc.formation.projet_factory.model.Status;
