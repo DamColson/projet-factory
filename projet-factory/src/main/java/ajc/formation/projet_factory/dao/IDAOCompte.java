@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import ajc.formation.projet_factory.model.Compte;
+import ajc.formation.projet_factory.model.Role;
 
 
 public interface IDAOCompte extends JpaRepository<Compte, Integer>{
@@ -24,5 +25,7 @@ public interface IDAOCompte extends JpaRepository<Compte, Integer>{
 	
 	@Query("select c from Compte c left join fetch c.stagiaire where c.role='ROLE_STAGIAIRE' and c.stagiaire is null")
 	public List<Compte> findFreeStagiaire();
+	
+	public List<Compte> findByRole(Role role);
 	
 }
