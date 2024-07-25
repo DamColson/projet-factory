@@ -14,6 +14,7 @@ export class Formateur {
     public compteResponse?: Compte,
     public ordinateurResponse?: Ordinateur,
     public videoProjecteurResponse?: Videoprojecteur,
-    public competencesResponse?: Competence[]
+    public competencesResponse?: Competence[],
+    public blocsResponse?: Bloc[]
   ) {}
 }

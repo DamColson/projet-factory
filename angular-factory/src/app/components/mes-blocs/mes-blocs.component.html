@@ -1,1 +1,31 @@
-<p>mes-blocs works!</p>
+<div class="container">
+  <h1>Mes Blocs</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Libelle</td>
+        <td>Date Début</td>
+        <td>Date Fin</td>
+        <td>Code</td>
+        <td>Objectif</td>
+        <td>Matiere</td>
+        <td>Salle</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(b of blocs; track b.id){
+      <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.libelle }}</td>
+        <td>{{ b.dateDebut | date : "dd/MM/yyyy" }}</td>
+        <td>{{ b.dateFin | date : "dd/MM/yyyy" }}</td>
+        <td>{{ b.code }}</td>
+        <td>{{ b.objectif }}</td>
+        <td>{{ b.matiereResponse?.titre }}</td>
+        <td>{{ b.salleResponse?.libelle }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
