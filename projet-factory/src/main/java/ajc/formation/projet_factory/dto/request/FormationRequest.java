@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class FormationRequest {
 
+	private String libelle;
 	private LocalDate debut;
 	private LocalDate fin;
 	private String prerequis;
@@ -62,6 +63,15 @@ public class FormationRequest {
 	public void setBlocsId(Set<Integer> blocsId) {
 		this.blocsId = blocsId;
 	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	
 	
 	
 	

@@ -37,11 +37,15 @@ export class MatiereService {
   }
 
   private matiereToMatiereRequest(matiere: Matiere): any {
+    let competencesId: number[] = [];
+    matiere.competencesResponse?.forEach((competence) =>
+      competencesId.push(competence.id!)
+    );
     let obj = {
       id: matiere.id,
       titre: matiere.titre,
       contenu: matiere.contenu,
-      competencesId: matiere.competencesResponse,
+      competencesId: competencesId,
     };
     return obj;
   }

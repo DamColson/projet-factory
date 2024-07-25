@@ -21,7 +21,8 @@ import jakarta.persistence.Table;
 public class Formation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id;	
+	private String libelle;
 	@Column(name = "debutFormation")
 	private LocalDate debut;
 	@Column(name = "finFormation")
@@ -45,17 +46,6 @@ public class Formation {
 	
 	public Formation() {
 		
-	}
-
-	public Formation(Integer id, LocalDate debut, LocalDate fin, String prerequis, Set<Stagiaire> stagiaires,
-			Set<Bloc> blocs, Gestionnaire gestionnaire) {
-		this.id = id;
-		this.debut = debut;
-		this.fin = fin;
-		this.prerequis = prerequis;
-		this.stagiaires = stagiaires;
-		this.blocs = blocs;
-		this.gestionnaire = gestionnaire;
 	}
 
 	public Integer getId() {
@@ -112,6 +102,14 @@ public class Formation {
 
 	public void setGestionnaire(Gestionnaire gestionnaire) {
 		this.gestionnaire = gestionnaire;
+	}
+	
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 	@Override

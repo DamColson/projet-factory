@@ -19,6 +19,7 @@ public class Bloc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String libelle;
 	@Column(name="date_debut")
 	private LocalDate dateDebut;
 	@Column(name="date_fin")
@@ -40,19 +41,6 @@ public class Bloc {
 
 	public Bloc() {
 
-	}
-
-	public Bloc(Integer id, LocalDate dateDebut, LocalDate dateFin, String code, String objectif, Formateur formateur,
-			Matiere matiere, Salle salle, Set<Formation> formations) {
-		this.id = id;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.code = code;
-		this.objectif = objectif;
-		this.formateur = formateur;
-		this.matiere = matiere;
-		this.salle = salle;
-		this.formations = formations;
 	}
 
 	public Integer getId() {
@@ -125,6 +113,14 @@ public class Bloc {
 
 	public void setFormations(Set<Formation> formations) {
 		this.formations = formations;
+	}
+	
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 	@Override

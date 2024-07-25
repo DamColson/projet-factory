@@ -16,6 +16,8 @@ public class BlocResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private Integer id;
 	@JsonView(CustomJsonViews.Common.class)
+	private String libelle;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate dateDebut;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate dateFin;
@@ -132,6 +134,15 @@ public class BlocResponse {
 	public void setFormationsResponse(Set<FormationResponse> formationsResponse) {
 		this.formationsResponse = formationsResponse;
 	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	
 	
 	
 }

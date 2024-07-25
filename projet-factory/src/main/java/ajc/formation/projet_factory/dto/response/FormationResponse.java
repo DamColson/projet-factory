@@ -15,6 +15,8 @@ public class FormationResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private Integer id;
 	@JsonView(CustomJsonViews.Common.class)
+	private String libelle;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate debut;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate fin;
@@ -107,6 +109,14 @@ public class FormationResponse {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 	
 	

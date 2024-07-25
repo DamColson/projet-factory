@@ -43,8 +43,6 @@ export class FormateurService {
       competencesId.push(competence.id!)
     );
 
-    console.log(competencesId);
-
     let obj = {
       nom: formateur.nom,
       prenom: formateur.prenom,

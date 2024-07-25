@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Formation } from '../model/formation';
-import { Form } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -38,14 +37,17 @@ export class FormationService {
   }
 
   private formationToFormationRequest(formation: Formation): any {
+    let blocsId: number[] = [];
+    formation.blocsResponse?.forEach((bloc) => blocsId.push(bloc.id!));
     let obj = {
       id: formation.id,
+      libelle: formation.libelle,
       debut: formation.debut,
       fin: formation.fin,
       gestionnaireId: formation.gestionnaireResponse?.id,
       prerequis: formation.prerequis,
       stagiaires: formation.stagiairesResponse,
-      blocs: formation.blocsResponse,
+      blocsId: blocsId,
     };
     return obj;
   }
