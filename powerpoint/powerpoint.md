@@ -125,6 +125,8 @@ Démonstration
 <!--_color: white -->
 ## Perspective d'amélioration
 
+quand la date de fin d'un bloc est attiente, archivé le bloc
+
 ---
 <!--_color: white -->
 # Rétrospective & F.A.Q
