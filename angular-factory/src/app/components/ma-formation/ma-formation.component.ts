@@ -36,6 +36,9 @@ export class MaFormationComponent {
     this.stagiaireSrv.getById(stagiaireId).subscribe((stagiaire) => {
       this.formation = stagiaire.formationResponse;
       this.formationSrv.getById(this.formation.id).subscribe((formation) => {
+        for (let index = 0; index < formation.blocsResponse?.length!; index++) {
+          this.blocs.push(formation.blocsResponse![index]);
+        }
         this.blocs != formation.blocsResponse;
       });
     });

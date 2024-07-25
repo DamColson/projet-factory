@@ -29,7 +29,9 @@ export class MesBlocsComponent {
     let formateurId = JSON.parse(localStorage.getItem('compte')!)
       .formateurResponse?.id;
     this.formateurSrv.getById(formateurId).subscribe((formateur) => {
-      this.formateur = formateur;
+      for (let index = 0; index < formateur.blocsResponse?.length!; index++) {
+        this.blocs.push(formateur.blocsResponse![index]);
+      }
       this.blocs != formateur.blocsResponse;
     });
   }

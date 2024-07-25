@@ -9,8 +9,6 @@
         <td>Date Fin</td>
         <td>Code</td>
         <td>Objectif</td>
-        <td>Matiere</td>
-        <td>Salle</td>
       </tr>
     </thead>
     <tbody>
@@ -22,8 +20,6 @@
         <td>{{ b.dateFin | date : "dd/MM/yyyy" }}</td>
         <td>{{ b.code }}</td>
         <td>{{ b.objectif }}</td>
-        <td>{{ b.matiereResponse?.titre }}</td>
-        <td>{{ b.salleResponse?.libelle }}</td>
       </tr>
       }
     </tbody>
