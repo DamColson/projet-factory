@@ -33,6 +33,7 @@ import { GestionnaireComponent } from './components/gestionnaire/gestionnaire/ge
 import { FormateurCompetencesEditComponent } from './components/formateur/formateur-competences-edit/formateur-competences-edit.component';
 import { MatiereCompetencesEditComponent } from './components/matiere/matiere-competences-edit/matiere-competences-edit.component';
 import { FormationBlocsEditComponent } from './components/formation/formation-blocs-edit/formation-blocs-edit.component';
+import { FormationStagiairesEditComponent } from './components/formation/formation-stagiaires-edit/formation-stagiaires-edit.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -112,6 +113,11 @@ export const routes: Routes = [
   {
     path: 'formation/:id/blocs',
     component: FormationBlocsEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'formation/:id/stagiaires',
+    component: FormationStagiairesEditComponent,
     canActivate: [authGuard],
   },
   { path: 'matiere', component: MatiereComponent, canActivate: [authGuard] },

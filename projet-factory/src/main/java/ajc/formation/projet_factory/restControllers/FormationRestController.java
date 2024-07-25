@@ -99,27 +99,30 @@ public class FormationRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Formation formation = new Formation();
+        Set<Stagiaire> stagiaires = new HashSet<>();
         BeanUtils.copyProperties(formationRequest, formation);
 
-        if(formationRequest.getStagiairesId() != null){
-            Set<Stagiaire> stagiaires = new HashSet<>();
+        if(formationRequest.getStagiairesId() != null){      
             stagiaires = formationRequest.getStagiairesId().stream().map(stagiaireId->stagiaireService.getById(stagiaireId)).collect(Collectors.toSet());
             formation.setStagiaires(stagiaires);
         }
-
         if(formationRequest.getBlocsId() != null){
             Set<Bloc> blocs = new HashSet<>();
             blocs = formationRequest.getBlocsId().stream().map(blocId->blocService.getById(blocId)).collect(Collectors.toSet());
             formation.setBlocs(blocs);
         }
-
         if(formationRequest.getGestionnaireId() != null){
             Gestionnaire gestionnaire = gestionnaireService.getById(formationRequest.getGestionnaireId());
             formation.setGestionnaire(gestionnaire);
         }
         
         formation.setId(id);
-
+          
+        stagiaires = stagiaires.stream().peek(stagiaire->{
+        	stagiaire.setFormation(formation);       	
+        	stagiaireService.update(stagiaire);
+        }).collect(Collectors.toSet());
+        
         return new FormationResponse(formationService.update(formation));
     }
 
