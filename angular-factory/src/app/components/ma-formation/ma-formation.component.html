@@ -16,6 +16,7 @@
     <thead>
       <tr>
         <td>Id</td>
+        <td>Libellé</td>
         <td>Date Début</td>
         <td>Date Fin</td>
         <td>Code</td>
@@ -29,6 +30,7 @@
       @for(b of blocs; track b.id){
       <tr>
         <td>{{ b.id }}</td>
+        <td>{{ b.libelle }}</td>
         <td>{{ b.dateDebut | date : "dd/MM/yyyy" }}</td>
         <td>{{ b.dateFin | date : "dd/MM/yyyy" }}</td>
         <td>{{ b.code }}</td>
