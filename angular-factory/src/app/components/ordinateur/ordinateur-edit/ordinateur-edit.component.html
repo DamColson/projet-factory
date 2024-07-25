@@ -74,24 +74,6 @@
       >
         <option ngValue="DISPONIBLE">DISPONIBLE</option>
         <option ngValue="INDISPONIBLE">INDISPONIBLE</option>
-        <!-- <option value="null">Aucun</option>
-      @for(s of SalleObservable|async; track s.id){
-      <option [ngValue]="s">
-        {{ s.id }}
-      </option>
-      } 
-      </select>
-      @if(salleCtrl.invalid && salleCtrl.dirty){
-      <div class="text-danger fst-italic">*obligatoire</div>
-      }
-      <input
-        id="status"
-        class="form-control"
-        [(ngModel)]="ordinateur.status"
-        name="satus"
-        required
-        #statusCtrl="ngModel"
-      /> -->
       </select>
       @if(statusCtrl.invalid && statusCtrl.dirty){
       <div class="text-danger fst-italic">*obligatoire</div>
@@ -110,7 +92,7 @@
         <option value="null">Aucun</option>
         @for(s of SalleObservable|async; track s.id){
         <option [ngValue]="s">
-          {{ s.id }}
+          {{ s.libelle }}
         </option>
         }
       </select>

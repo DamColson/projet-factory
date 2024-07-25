@@ -36,6 +36,17 @@ h1::first-letter {
   background-color: #f28c1c;
   color: white;
 }
+.btn-outline-success {
+  border: 1px solid #108736;
+  color: #108736;
+  width: 100%;
+}
+
+.btn-outline-success:hover {
+  border-color: #108736;
+  background-color: #108736;
+  color: white;
+}
 
 .btn-outline-danger {
   border: 1px solid #dc3545;

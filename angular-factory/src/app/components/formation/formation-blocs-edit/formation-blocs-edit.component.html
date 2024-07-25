@@ -15,9 +15,15 @@
       </select>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-outline-primary mb-5">
+      <button type="submit" class="btn btn-outline-primary mb-1">
         Ajouter
       </button>
+      <a
+        [routerLink]="['/formation']"
+        routerLinkActive="router-link-active"
+        class="btn btn-outline-success mb-2"
+        >Retour</a
+      >
     </div>
   </form>
 
@@ -33,7 +39,7 @@
         <td>Code</td>
         <td>Objectif</td>
         <td></td>
-        <td>Supprimer</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -47,10 +53,10 @@
         <td>{{ b.objectif }}</td>
         <td>
           <a
-            routerLink="/bloc/edit/{{ b.id }}"
+            routerLink="/bloc/details/{{ b.id }}"
             routerLinkActive="router-link-active"
             class="btn btn-outline-primary"
-            >Bloc</a
+            >Plus d'informations</a
           >
         </td>
         <td>

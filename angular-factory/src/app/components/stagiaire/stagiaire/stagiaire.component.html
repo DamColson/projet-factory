@@ -21,8 +21,8 @@
         <td>Ordinateur</td>
         <td>Compte</td>
         <td>Formation</td>
-        <td>Editer</td>
-        <td>Supprimer</td>
+        <td></td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -33,9 +33,9 @@
         <td>{{ s.nom }}</td>
         <td>{{ s.mail }}</td>
         <td>{{ s.telephone }}</td>
-        <td>{{ s.ordinateurResponse?.id }}</td>
+        <td>{{ s.ordinateurResponse?.libelle }}</td>
         <td>{{ s.compteResponse?.login }}</td>
-        <td>{{ s.formationResponse?.id }}</td>
+        <td>{{ s.formationResponse?.libelle }}</td>
         <td>
           <a
             routerLink="/stagiaire/edit/{{ s.id }}"

@@ -55,9 +55,6 @@ export class StagiaireEditComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.filiereSrv.getAll().subscribe((filieres) => {
-    //   this.filieres = filieres;
-    // });
     this.OrdinateurObservable = this.ordinateurSrv.getAllDisponible();
     this.FormationObservable = this.formationSrv.getAll();
     this.CompteObservable = this.compteSrv.getAllStag();

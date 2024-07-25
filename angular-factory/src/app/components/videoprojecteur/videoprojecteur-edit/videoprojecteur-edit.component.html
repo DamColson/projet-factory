@@ -78,7 +78,7 @@
         <option value="null">Aucun</option>
         @for(s of SalleObservable|async; track s.id){
         <option [ngValue]="s">
-          {{ s.id }}
+          {{ s.libelle }}
         </option>
         }
       </select>

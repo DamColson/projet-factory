@@ -70,7 +70,6 @@
         id="ordinateur"
         class="form-control"
         name="ordinateur"
-        required
         #ordinateurCtrl="ngModel"
       >
         <option value="null">Aucun</option>
@@ -96,13 +95,9 @@
         #formationCtrl="ngModel"
       >
         <option value="null">Aucun</option>
-        @if(stagiaire.id){
-        <option [ngValue]="stagiaire.ordinateurResponse">
-          {{ stagiaire.ordinateurResponse?.id }}
-        </option>
-        } @for(f of FormationObservable|async; track f.id){
+        @for(f of FormationObservable|async; track f.id){
         <option [ngValue]="f">
-          {{ f.id }}
+          {{ f.libelle }}
         </option>
         }
       </select>
@@ -121,11 +116,7 @@
         required
         #compteCtrl="ngModel"
       >
-        @if(stagiaire.id){
-        <option [ngValue]="stagiaire.compteResponse">
-          {{ stagiaire.compteResponse?.login }}
-        </option>
-        } @for(c of CompteObservable|async; track c.id){
+        @for(c of CompteObservable|async; track c.id){
         <option [ngValue]="c">
           {{ c.login }}
         </option>
@@ -144,7 +135,7 @@
         Enregistrer
       </button>
       <a
-        [routerLink]="['/technicien']"
+        [routerLink]="['/stagiaire']"
         routerLinkActive="router-link-active"
         class="btn btn-outline-warning m-2"
         >Retour</a

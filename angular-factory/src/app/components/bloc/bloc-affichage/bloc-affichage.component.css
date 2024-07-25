@@ -37,10 +37,17 @@ h1::first-letter {
   color: white;
 }
 
-.btn-outline-danger {
-  border: 1px solid #dc3545;
+.btn-outline-warning {
+  border: 1px solid #ffc107;
   width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
+
+.btn-outline-warning:hover {
+  color: white;
+}
+
 .card-pers {
   background-color: #f28c1c;
   color: white;

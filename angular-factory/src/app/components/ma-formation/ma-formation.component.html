@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>Ma Formation</h1>
-  <div class="card m-auto mt-5 mb-5" style="width: 18rem">
+  <h1>Ma Formation : {{ formation.libelle }}</h1>
+  <div class="card m-auto mt-5 mb-5 card-pers" style="width: 18rem">
     <div class="card-body">
       <p class="card-text"><b>Id :</b> {{ formation.id }}</p>
       <p class="card-text"><b>Libellé :</b> {{ formation.libelle }}</p>
@@ -22,9 +22,7 @@
         <td>Date Fin</td>
         <td>Code</td>
         <td>Objectif</td>
-        <td>Formateur</td>
-        <td>Matiere</td>
-        <td>Salle</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -36,10 +34,16 @@
         <td>{{ b.dateFin | date : "dd/MM/yyyy" }}</td>
         <td>{{ b.code }}</td>
         <td>{{ b.objectif }}</td>
-        <td>{{ b.formateurResponse?.nom }}</td>
-        <td>{{ b.matiereResponse?.titre }}</td>
-        <td>{{ b.salleResponse?.libelle }}</td>
+        <td>
+          <a
+            routerLink="/bloc/details/{{ b.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Plus d'informations</a
+          >
+        </td>
       </tr>
+
       }
     </tbody>
   </table>

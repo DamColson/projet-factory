@@ -70,15 +70,10 @@
         id="ordinateur"
         class="form-control"
         name="ordinateur"
-        required
         #ordinateurCtrl="ngModel"
       >
         <option value="null">Aucun</option>
-        @if(technicien.id){
-        <option [ngValue]="technicien.ordinateurResponse">
-          {{ technicien.ordinateurResponse?.id }}
-        </option>
-        } @for(o of OrdinateurObservable|async; track o.id){
+        @for(o of OrdinateurObservable|async; track o.id){
         <option [ngValue]="o">
           {{ o.libelle }}
         </option>
@@ -99,11 +94,7 @@
         required
         #compteCtrl="ngModel"
       >
-        @if(technicien.id){
-        <option [ngValue]="technicien.compteResponse">
-          {{ technicien.compteResponse?.login }}
-        </option>
-        } @for(c of CompteObservable|async; track c.id){
+        @for(c of CompteObservable|async; track c.id){
         <option [ngValue]="c">
           {{ c.login }}
         </option>

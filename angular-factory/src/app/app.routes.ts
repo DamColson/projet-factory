@@ -34,6 +34,7 @@ import { FormateurCompetencesEditComponent } from './components/formateur/format
 import { MatiereCompetencesEditComponent } from './components/matiere/matiere-competences-edit/matiere-competences-edit.component';
 import { FormationBlocsEditComponent } from './components/formation/formation-blocs-edit/formation-blocs-edit.component';
 import { FormationStagiairesEditComponent } from './components/formation/formation-stagiaires-edit/formation-stagiaires-edit.component';
+import { BlocAffichageComponent } from './components/bloc/bloc-affichage/bloc-affichage.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -74,6 +75,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'bloc', component: BlocComponent, canActivate: [authGuard] },
+  {
+    path: 'bloc/details/:id',
+    component: BlocAffichageComponent,
+    canActivate: [authGuard],
+  },
   { path: 'bloc/edit', component: BlocEditComponent, canActivate: [authGuard] },
   {
     path: 'bloc/edit/:id',
