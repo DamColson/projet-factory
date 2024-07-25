@@ -1,5 +1,7 @@
 package ajc.formation.projet_factory.dto.request;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class VideoProjecteurRequest {
@@ -9,7 +11,7 @@ public class VideoProjecteurRequest {
 	@NotBlank
 	private String adresseMac;
 	@NotBlank
-	private String dateAchat;
+	private LocalDate dateAchat;
 	private Integer salleId;
 	@NotBlank
 	private String status;
@@ -33,11 +35,11 @@ public class VideoProjecteurRequest {
 		this.adresseMac = adresseMac;
 	}
 
-	public String getDateAchat() {
+	public LocalDate getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(String dateAchat) {
+	public void setDateAchat(LocalDate dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 

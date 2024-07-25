@@ -1,5 +1,6 @@
 package ajc.formation.projet_factory.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -18,14 +19,12 @@ public class VideoProjecteur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private String libelle;
-	
-	@Column(name="adresse_mac")
-	private String adresseMac;
-	
-	@Column(name="date_achat")
-	private String dateAchat;
+	@Column(nullable=false)
+	private String libelle;	
+	@Column(name="adresse_mac",nullable=false,unique=true)
+	private String adresseMac;	
+	@Column(name="date_achat",nullable=false)
+	private LocalDate dateAchat;
 	
 	@OneToOne
 	private Salle salle;
@@ -37,19 +36,6 @@ public class VideoProjecteur {
 	private Status status;
 	
 	public VideoProjecteur() {
-	}
-
-	
-	public VideoProjecteur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle,
-			Formateur formateur, Status status) {
-		super();
-		this.id = id;
-		this.libelle = libelle;
-		this.adresseMac = adresseMac;
-		this.dateAchat = dateAchat;
-		this.salle = salle;
-		this.formateur = formateur;
-		this.status = status;
 	}
 
 	public String getLibelle() {
@@ -68,11 +54,11 @@ public class VideoProjecteur {
 		this.adresseMac = adresseMac;
 	}
 
-	public String getDateAchat() {
+	public LocalDate getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(String dateAchat) {
+	public void setDateAchat(LocalDate dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 

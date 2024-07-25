@@ -1,5 +1,6 @@
 package ajc.formation.projet_factory.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,8 +11,10 @@ public class TechnicienRequest {
 	private String nom;
 	@NotBlank
 	private String prenom;
+	@NotBlank
 	private String telephone;
 	@NotBlank
+	@Email
 	private String mail;	
 	private Integer ordinateurId;
 	@NotNull

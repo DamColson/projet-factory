@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,9 +25,13 @@ public class Formateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable=false)
     private String nom;
+    @Column(nullable=false)
     private String prenom;
+    @Column(nullable=false)
     private String telephone;
+    @Column(nullable=false,unique=true)
     private String mail;
     
     @OneToOne

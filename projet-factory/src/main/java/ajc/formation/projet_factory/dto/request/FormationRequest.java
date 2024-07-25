@@ -3,10 +3,16 @@ package ajc.formation.projet_factory.dto.request;
 import java.time.LocalDate;
 import java.util.Set;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+
 public class FormationRequest {
 
+	@NotBlank
 	private String libelle;
+	@Future
 	private LocalDate debut;
+	@Future
 	private LocalDate fin;
 	private String prerequis;
 	private Integer gestionnaireId;

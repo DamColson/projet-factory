@@ -1,8 +1,11 @@
 package ajc.formation.projet_factory.dto.response;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
 import ajc.formation.projet_factory.model.Ordinateur;
 
 
@@ -15,7 +18,7 @@ public class OrdinateurResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String adresseMac;
 	@JsonView(CustomJsonViews.Common.class)
-	private String dateAchat;
+	private LocalDate dateAchat;
 	@JsonView(CustomJsonViews.OrdinateurWithAttributes.class)
 	private SalleResponse salleResponse;
 	@JsonView(CustomJsonViews.Common.class)
@@ -84,11 +87,11 @@ public class OrdinateurResponse {
 		this.adresseMac = adresseMac;
 	}
 
-	public String getDateAchat() {
+	public LocalDate getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(String dateAchat) {
+	public void setDateAchat(LocalDate dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 

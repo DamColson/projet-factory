@@ -21,11 +21,12 @@ import jakarta.persistence.Table;
 public class Formation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;	
+	private Integer id;
+	@Column(nullable=false)
 	private String libelle;
-	@Column(name = "debutFormation")
+	@Column(name = "debutFormation",nullable=false)
 	private LocalDate debut;
-	@Column(name = "finFormation")
+	@Column(name = "finFormation",nullable=false)
 	private LocalDate fin;
 	private String prerequis;
 	
