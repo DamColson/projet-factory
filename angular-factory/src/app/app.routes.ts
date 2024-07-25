@@ -31,6 +31,8 @@ import { TechnicienComponent } from './components/technicien/technicien/technici
 import { GestionnaireEditComponent } from './components/gestionnaire/gestionnaire-edit/gestionnaire-edit.component';
 import { GestionnaireComponent } from './components/gestionnaire/gestionnaire/gestionnaire.component';
 import { FormateurCompetencesEditComponent } from './components/formateur/formateur-competences-edit/formateur-competences-edit.component';
+import { MatiereCompetencesEditComponent } from './components/matiere/matiere-competences-edit/matiere-competences-edit.component';
+import { FormationBlocsEditComponent } from './components/formation/formation-blocs-edit/formation-blocs-edit.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -107,6 +109,11 @@ export const routes: Routes = [
     component: FormationEditComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'formation/:id/blocs',
+    component: FormationBlocsEditComponent,
+    canActivate: [authGuard],
+  },
   { path: 'matiere', component: MatiereComponent, canActivate: [authGuard] },
   {
     path: 'matiere/edit',
@@ -116,6 +123,11 @@ export const routes: Routes = [
   {
     path: 'matiere/edit/:id',
     component: MatiereEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'matiere/:id/competences',
+    component: MatiereCompetencesEditComponent,
     canActivate: [authGuard],
   },
   { path: 'salle', component: SalleComponent, canActivate: [authGuard] },

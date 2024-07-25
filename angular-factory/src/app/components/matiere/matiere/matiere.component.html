@@ -17,6 +17,7 @@
         <td>Id</td>
         <td>Titre</td>
         <td>Contenu</td>
+        <td></td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -27,7 +28,14 @@
         <td>{{ m.id }}</td>
         <td>{{ m.titre }}</td>
         <td>{{ m.contenu }}</td>
-
+        <td>
+          <a
+            routerLink="/matiere/{{ m.id }}/competences"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Compétences</a
+          >
+        </td>
         <td>
           <a
             routerLink="/matiere/edit/{{ m.id }}"

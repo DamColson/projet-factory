@@ -5,6 +5,7 @@ import { Salle } from './salle';
 export class Bloc {
   constructor(
     public id?: number,
+    public libelle?: string,
     public dateDebut?: Date,
     public dateFin?: Date,
     public code?: string,

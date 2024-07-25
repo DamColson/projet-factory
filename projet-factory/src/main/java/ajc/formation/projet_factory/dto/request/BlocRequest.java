@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotNull;
 public class BlocRequest {
 
 	@NotNull
+	private String libelle;
+	@NotNull
 	private LocalDate dateDebut;
 	@NotNull
 	private LocalDate dateFin;
@@ -78,6 +80,14 @@ public class BlocRequest {
 
 	public void setMatiereId(Integer matiereId) {
 		this.matiereId = matiereId;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 	

@@ -37,6 +37,7 @@ export class BlocService {
   private blocToBlocRequest(bloc: Bloc): any {
     let obj = {
       id: bloc.id,
+      libelle: bloc.libelle,
       dateDebut: bloc.dateDebut,
       dateFin: bloc.dateFin,
       code: bloc.code,

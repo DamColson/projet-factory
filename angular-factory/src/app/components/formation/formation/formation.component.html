@@ -15,10 +15,12 @@
     <thead>
       <tr>
         <td>Id</td>
+        <td>Libelle</td>
         <td>Prérequis</td>
         <td>Date de début</td>
         <td>Date de fin</td>
         <td>Gestionnaire</td>
+        <td></td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -27,11 +29,20 @@
       @for(f of formations; track f.id){
       <tr>
         <td>{{ f.id }}</td>
+        <td>{{ f.libelle }}</td>
         <td>{{ f.prerequis }}</td>
         <td>{{ f.debut | date : "dd/MM/yyyy" }}</td>
         <td>{{ f.fin | date : "dd/MM/yyyy" }}</td>
         <td>{{ f.gestionnaireResponse?.nom }}</td>
 
+        <td>
+          <a
+            routerLink="/formation/{{ f.id }}/blocs"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Blocs</a
+          >
+        </td>
         <td>
           <a
             routerLink="/formation/edit/{{ f.id }}"

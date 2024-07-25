@@ -6,6 +6,21 @@
   }
   <form (ngSubmit)="save()" #form="ngForm">
     <div class="form-group mb-3">
+      <label for="libelle">Libelle :</label>
+      <input
+        id="libelle"
+        type="text"
+        class="form-control"
+        [(ngModel)]="bloc.libelle"
+        name="libelle"
+        required
+        #debutCtrl="ngModel"
+      />
+      @if(debutCtrl.invalid && debutCtrl.dirty){
+      <div class="text-danger fst-italic">*obligatoire</div>
+      }
+    </div>
+    <div class="form-group mb-3">
       <label for="date_debut">Date de début :</label>
       <input
         id="date_debut"

@@ -1,16 +1,28 @@
 <div class="container">
-  <h1>Liste des blocs</h1>
-  <a
-    class="nav-link active"
-    aria-current="page"
-    [routerLink]="['/bloc/edit']"
-    routerLinkActive="router-link-active"
-    class="btn btn-primary m-3"
-    >Création d'un bloc</a
-  >
+  <h1>Liste des Blocs</h1>
   @if(showMessage){
   <div class="alert {{ style }}">{{ message }}</div>
   }
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group mb-3">
+      <label for="bloc">Blocs:</label>
+      <select [(ngModel)]="bloc" id="bloc" class="form-control" name="bloc">
+        @for (b of blocsObservable|async; track b.id) {
+        <option [ngValue]="b">
+          {{ b.libelle }}
+        </option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary mb-5">
+        Ajouter
+      </button>
+    </div>
+  </form>
+
+  @if(formation.blocsResponse?.length != 0){
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -23,12 +35,11 @@
         <td>Formateur</td>
         <td>Matiere</td>
         <td>Salle</td>
-        <td>Editer</td>
         <td>Supprimer</td>
       </tr>
     </thead>
     <tbody>
-      @for(b of blocs; track b.id){
+      @for(b of formation.blocsResponse; track b.id){
       <tr>
         <td>{{ b.id }}</td>
         <td>{{ b.libelle }}</td>
@@ -39,14 +50,6 @@
         <td>{{ b.formateurResponse?.nom }}</td>
         <td>{{ b.matiereResponse?.titre }}</td>
         <td>{{ b.salleResponse?.libelle }}</td>
-        <td>
-          <a
-            routerLink="/bloc/edit/{{ b.id }}"
-            routerLinkActive="router-link-active"
-            class="btn btn-outline-primary"
-            >Editer</a
-          >
-        </td>
         <td>
           <button
             class="btn btn-outline-danger"
@@ -60,4 +63,5 @@
       }
     </tbody>
   </table>
+  }
 </div>
