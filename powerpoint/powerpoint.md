@@ -77,7 +77,7 @@ Rôles: Administrateur, Gestionnaire de planning, Formateur, Technicien.
 <!--_color: white -->
 ## Les techno utilisées
 
-![](images/technologielafactory.png "Les technologies & logiciels utilisées")
+![w:950](images/technologielafactory.png "Les technologies & logiciels utilisées")
 
 <!-- 
 **Points importants**
@@ -94,7 +94,7 @@ Rôles: Administrateur, Gestionnaire de planning, Formateur, Technicien.
 ---
 <!--_color: white -->
 ## Diagramme de classe
-![Diagramme de classe](images/diagramme_de_classe.png "diagramme de classe")
+![w:900](images/diagramme_de_classe.png "diagramme de classe")
 
 <!-- Le diagramme de classe final, avec l'avancement du projet le diagramme initial à dû etre modifié. -->
 
