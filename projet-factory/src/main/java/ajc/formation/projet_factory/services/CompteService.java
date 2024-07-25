@@ -62,6 +62,10 @@ public class CompteService implements UserDetailsService{
 		return daoCompte.findFreeStagiaire();
 	}
 	
+	public List<Compte> getByRole(Role role){
+		return daoCompte.findByRole(role);
+	}
+	
 	public Compte insert(Compte compte) {
 		if(compte.getLogin()==null||compte.getLogin().isBlank()||daoCompte.findByLogin(compte.getLogin()).isPresent()) {
 			throw new CompteException("probleme login");
