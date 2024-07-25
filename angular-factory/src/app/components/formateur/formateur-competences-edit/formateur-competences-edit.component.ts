@@ -75,14 +75,22 @@ export class FormateurCompetencesEditComponent {
   }
 
   save() {
+    let test: Boolean = false;
     this.competenceSrv.getById(this.competence.id!).subscribe((competence) => {
-      this.formateur.competencesResponse?.push(competence);
-      if (this.formateur.id) {
-        this.formateurSrv.update(this.formateur).subscribe((formateur) => {
-          this.router.navigateByUrl(
-            '/formateur/' + formateur.id + '/competences'
-          );
-        });
+      for (let comp of this.formateur.competencesResponse!) {
+        if (comp.id == this.competence.id) {
+          test = true;
+        }
+      }
+      if (test == false) {
+        this.formateur.competencesResponse?.push(competence);
+        if (this.formateur.id) {
+          this.formateurSrv.update(this.formateur).subscribe((formateur) => {
+            this.router.navigateByUrl(
+              '/formateur/' + formateur.id + '/competences'
+            );
+          });
+        }
       }
     });
   }
