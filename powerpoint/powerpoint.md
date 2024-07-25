@@ -10,7 +10,7 @@ style: img {width:90%;} td, th {border: none!important ;} a { color : white!impo
 footer: '![w:150](../angular-factory/public/logo-texte.png)'
 ---
 <!--_backgroundColor: white-->
-![bg left:40% 50%](../angular-factory/public/logo.png)
+![bg left:40% 80%](../angular-factory/public/logo.png)
 
 
 *Système de Gestion des Cursus de Formation*
