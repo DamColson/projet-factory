@@ -26,7 +26,7 @@ public class CustomJsonViews {
 		
 	}
 	
-	public static class FormationWithAttributes extends BlocWithAttributes{
+	public static class FormationWithAttributes extends Common{
 		
 	}
 	

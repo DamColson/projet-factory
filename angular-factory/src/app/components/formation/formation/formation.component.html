@@ -21,6 +21,7 @@
         <td>Date de fin</td>
         <td>Gestionnaire</td>
         <td></td>
+        <td></td>
         <td>Editer</td>
         <td>Supprimer</td>
       </tr>
@@ -35,6 +36,14 @@
         <td>{{ f.fin | date : "dd/MM/yyyy" }}</td>
         <td>{{ f.gestionnaireResponse?.nom }}</td>
 
+        <td>
+          <a
+            routerLink="/formation/{{ f.id }}/stagiaires"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Stagiaires</a
+          >
+        </td>
         <td>
           <a
             routerLink="/formation/{{ f.id }}/blocs"

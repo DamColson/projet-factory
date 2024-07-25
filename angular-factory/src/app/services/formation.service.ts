@@ -38,7 +38,11 @@ export class FormationService {
 
   private formationToFormationRequest(formation: Formation): any {
     let blocsId: number[] = [];
+    let stagiairesId: number[] = [];
     formation.blocsResponse?.forEach((bloc) => blocsId.push(bloc.id!));
+    formation.stagiairesResponse?.forEach((stagiaire) =>
+      stagiairesId.push(stagiaire.id!)
+    );
     let obj = {
       id: formation.id,
       libelle: formation.libelle,
@@ -46,7 +50,7 @@ export class FormationService {
       fin: formation.fin,
       gestionnaireId: formation.gestionnaireResponse?.id,
       prerequis: formation.prerequis,
-      stagiaires: formation.stagiairesResponse,
+      stagiairesId: stagiairesId,
       blocsId: blocsId,
     };
     return obj;

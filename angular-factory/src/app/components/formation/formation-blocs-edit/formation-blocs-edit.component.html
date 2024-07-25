@@ -32,9 +32,7 @@
         <td>Date Fin</td>
         <td>Code</td>
         <td>Objectif</td>
-        <td>Formateur</td>
-        <td>Matiere</td>
-        <td>Salle</td>
+        <td></td>
         <td>Supprimer</td>
       </tr>
     </thead>
@@ -47,9 +45,14 @@
         <td>{{ b.dateFin | date : "dd/MM/yyyy" }}</td>
         <td>{{ b.code }}</td>
         <td>{{ b.objectif }}</td>
-        <td>{{ b.formateurResponse?.nom }}</td>
-        <td>{{ b.matiereResponse?.titre }}</td>
-        <td>{{ b.salleResponse?.libelle }}</td>
+        <td>
+          <a
+            routerLink="/bloc/edit/{{ b.id }}"
+            routerLinkActive="router-link-active"
+            class="btn btn-outline-primary"
+            >Bloc</a
+          >
+        </td>
         <td>
           <button
             class="btn btn-outline-danger"
