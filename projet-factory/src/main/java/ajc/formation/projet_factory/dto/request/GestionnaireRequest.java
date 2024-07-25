@@ -2,6 +2,7 @@ package ajc.formation.projet_factory.dto.request;
 
 
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,6 +15,7 @@ public class GestionnaireRequest {
 	@NotBlank
 	private String telephone;
 	@NotBlank
+	@Email
 	private String mail;
 	@NotNull
 	private Integer compteId;

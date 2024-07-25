@@ -62,7 +62,7 @@ public class SpringTest {
 	salle.setSuperficie(12);
 	
 	ordinateur.setAdresseMac("mac");
-	ordinateur.setDateAchat(LocalDate.now().toString());	
+	ordinateur.setDateAchat(LocalDate.now());	
 	ordinateurs.add(ordinateur);
 	ordinateur.setSalle(salle);
 	

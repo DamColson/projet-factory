@@ -1,6 +1,9 @@
 package ajc.formation.projet_factory.dto.request;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class OrdinateurRequest {
 
@@ -8,8 +11,8 @@ public class OrdinateurRequest {
 	private String libelle;
 	@NotBlank
 	private String adresseMac;
-	@NotBlank
-	private String dateAchat;
+	@NotNull
+	private LocalDate dateAchat;
 	private Integer salleId;
 	@NotBlank
 	private String status;
@@ -35,11 +38,11 @@ public class OrdinateurRequest {
 		this.adresseMac = adresseMac;
 	}
 
-	public String getDateAchat() {
+	public LocalDate getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(String dateAchat) {
+	public void setDateAchat(LocalDate dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 

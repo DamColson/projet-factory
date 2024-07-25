@@ -2,6 +2,7 @@ package ajc.formation.projet_factory.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,17 +18,18 @@ public class Stagiaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable=false)
     private String nom;
+    @Column(nullable=false)
     private String prenom;
+    @Column(nullable=false)
     private String telephone;
+    @Column(nullable=false,unique=true)
     private String mail;
-    
     @OneToOne
     private Compte compte;
-    
     @OneToOne
     private Ordinateur ordinateur;
-    
     @ManyToOne
     private Formation formation;
 

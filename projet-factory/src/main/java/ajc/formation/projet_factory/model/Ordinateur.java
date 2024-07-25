@@ -1,5 +1,6 @@
 package ajc.formation.projet_factory.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -20,14 +21,12 @@ public class Ordinateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private String libelle;
-	
-	@Column(name="adresse_mac")
+	@Column(nullable=false)
+	private String libelle;	
+	@Column(name="adresse_mac",nullable=false,unique=true)
 	private String adresseMac;
-
-	@Column(name="date_achat")
-	private String dateAchat;
+	@Column(name="date_achat",nullable=false)
+	private LocalDate dateAchat;
 	
 	@ManyToOne
 	private Salle salle;
@@ -52,22 +51,6 @@ public class Ordinateur {
 	public Ordinateur() {
 	}
 
-	public Ordinateur(Integer id, String libelle, String adresseMac, String dateAchat, Salle salle, Status status,
-			Formateur formateur, Stagiaire stagiaire, Gestionnaire gestionnaire, Technicien technicien, String os) {
-		super();
-		this.id = id;
-		this.libelle = libelle;
-		this.adresseMac = adresseMac;
-		this.dateAchat = dateAchat;
-		this.salle = salle;
-		this.status = status;
-		this.formateur = formateur;
-		this.stagiaire = stagiaire;
-		this.gestionnaire = gestionnaire;
-		this.technicien = technicien;
-		this.os = os;
-	}
-
 	public String getLibelle() {
 		return libelle;
 	}
@@ -84,11 +67,11 @@ public class Ordinateur {
 		this.adresseMac = adresseMac;
 	}
 
-	public String getDateAchat() {
+	public LocalDate getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(String dateAchat) {
+	public void setDateAchat(LocalDate dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 

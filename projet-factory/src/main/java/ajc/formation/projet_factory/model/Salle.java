@@ -3,6 +3,7 @@ package ajc.formation.projet_factory.model;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,17 +18,14 @@ public class Salle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+	@Column(nullable=false)
 	private String libelle;
-	
-	private Integer superficie;
-	
+	@Column(nullable=false)
+	private Integer superficie;	
 	@OneToMany(mappedBy="salle")
 	private Set<Ordinateur> ordinateurs;
-	
 	@OneToMany(mappedBy="salle")
 	private Set<Bloc> blocs;
-	
 	@OneToOne(mappedBy="salle")
 	private VideoProjecteur videoProjecteur;
 	

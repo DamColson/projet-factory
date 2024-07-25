@@ -2,6 +2,7 @@ package ajc.formation.projet_factory.dto.request;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,8 +12,10 @@ public class BlocRequest {
 	@NotNull
 	private String libelle;
 	@NotNull
+	@Future
 	private LocalDate dateDebut;
 	@NotNull
+	@Future
 	private LocalDate dateFin;
 	@NotBlank
 	private String code;

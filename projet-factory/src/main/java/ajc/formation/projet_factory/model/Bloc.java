@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,11 +21,14 @@ public class Bloc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(nullable=false)
 	private String libelle;
-	@Column(name="date_debut")
+	@Column(name="date_debut",nullable=false)
 	private LocalDate dateDebut;
-	@Column(name="date_fin")
+	@Column(name="date_fin",nullable=false)
 	private LocalDate dateFin;
+	@Column(nullable=false,unique=true)
+	@Length(min=4,max=4)
 	private String code;
 	private String objectif;
 	
