@@ -33,6 +33,7 @@ import ajc.formation.projet_factory.services.CompteService;
 import ajc.formation.projet_factory.services.FormateurService;
 import ajc.formation.projet_factory.services.OrdinateurService;
 import ajc.formation.projet_factory.services.VideoProjecteurService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/api/formateur")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class FormateurRestController {
     @Autowired
     private FormateurService formateurService;

@@ -34,11 +34,13 @@ import ajc.formation.projet_factory.services.BlocService;
 import ajc.formation.projet_factory.services.FormationService;
 import ajc.formation.projet_factory.services.GestionnaireService;
 import ajc.formation.projet_factory.services.StagiaireService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/formation")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class FormationRestController {
     
     @Autowired
@@ -100,6 +102,7 @@ public class FormationRestController {
         }
         Formation formation = new Formation();
         Set<Stagiaire> stagiaires = new HashSet<>();
+        Set<Stagiaire> allStagiaireFormation = formationService.getById(id).getStagiaires();
         BeanUtils.copyProperties(formationRequest, formation);
 
         if(formationRequest.getStagiairesId() != null){      
@@ -117,7 +120,12 @@ public class FormationRestController {
         }
         
         formation.setId(id);
-          
+        
+        allStagiaireFormation.removeAll(stagiaires);
+        allStagiaireFormation.stream().peek(stagiaire->{
+        	stagiaireService.setFormationNull(formation,stagiaire.getId());
+        }).collect(Collectors.toSet());
+        
         stagiaires = stagiaires.stream().peek(stagiaire->{
         	stagiaire.setFormation(formation);       	
         	stagiaireService.update(stagiaire);

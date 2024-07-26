@@ -30,11 +30,13 @@ import ajc.formation.projet_factory.model.Technicien;
 import ajc.formation.projet_factory.services.CompteService;
 import ajc.formation.projet_factory.services.OrdinateurService;
 import ajc.formation.projet_factory.services.TechnicienService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/technicien")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class TechnicienRestController {
 	
 	@Autowired

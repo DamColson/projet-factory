@@ -32,11 +32,13 @@ import ajc.formation.projet_factory.services.CompteService;
 import ajc.formation.projet_factory.services.FormationService;
 import ajc.formation.projet_factory.services.OrdinateurService;
 import ajc.formation.projet_factory.services.StagiaireService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/stagiaire")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class StagiaireRestController {
     @Autowired
     private StagiaireService stagiaireService;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ajc.formation.projet_factory.dao.IDAOOrdinateur;
 import ajc.formation.projet_factory.dao.IDAOStagiaire;
+import ajc.formation.projet_factory.model.Formation;
 import ajc.formation.projet_factory.model.Stagiaire;
 
 @Service
@@ -25,6 +26,13 @@ public class StagiaireService {
         return daoStagiaire.findById(id).orElseThrow();
     }
 
+    public void setFormationNull(Formation formation,Integer id) {
+    	daoStagiaire.setFormationNull(formation,id);
+    }
+    
+    public List<Stagiaire> getByFormation(Formation formation){
+    	return daoStagiaire.findByFormation(formation);
+    }
     public Stagiaire insert(Stagiaire stagiaire){
         return daoStagiaire.save(stagiaire);
     }

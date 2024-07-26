@@ -29,11 +29,13 @@ import ajc.formation.projet_factory.model.Salle;
 import ajc.formation.projet_factory.model.Status;
 import ajc.formation.projet_factory.services.OrdinateurService;
 import ajc.formation.projet_factory.services.SalleService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/ordinateur")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class OrdinateurRestController {
     @Autowired
     private OrdinateurService ordinateurService;

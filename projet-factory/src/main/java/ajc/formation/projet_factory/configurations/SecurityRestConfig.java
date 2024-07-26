@@ -27,8 +27,24 @@ public class SecurityRestConfig {
 		http.csrf(csrf->csrf.disable());
 		http.authorizeHttpRequests(auth->{
 			auth.requestMatchers("/swagger-ui/**","/swagger-ui.html","/v3/**").permitAll()
-			.requestMatchers(HttpMethod.GET).authenticated()
-			.anyRequest().permitAll();
+			.requestMatchers(HttpMethod.OPTIONS).permitAll()
+			.requestMatchers(HttpMethod.GET,"/api/auth").authenticated()
+			//Technicien
+			.requestMatchers(HttpMethod.GET,"/api/ordinateur","/api/ordinateur/*","/api/videoProjecteur","/api/videoProjecteur/*","/api/salle","/api/salle/*").hasAnyAuthority("ROLE_GESTIONNAIRE","ROLE_TECHNICIEN","ROLE_ADMIN")
+			.requestMatchers(HttpMethod.POST,"/api/ordinateur","/api/videoProjecteur").hasAnyAuthority("ROLE_TECHNICIEN","ROLE_ADMIN")
+			.requestMatchers(HttpMethod.PUT,"/api/ordinateur/*","/api/videoProjecteur/*").hasAnyAuthority("ROLE_TECHNICIEN","ROLE_ADMIN")
+			.requestMatchers(HttpMethod.DELETE,"/api/ordinateur/*","/api/videoProjecteur/*").hasAnyAuthority("ROLE_TECHNICIEN","ROLE_ADMIN")
+			//gestionnaire
+			.requestMatchers(HttpMethod.POST,"/api/matiere","/api/bloc","/api/competence","/api/formation","/api/salle").hasAnyAuthority("ROLE_GESTIONNAIRE","ROLE_ADMIN")
+			.requestMatchers(HttpMethod.PUT,"/api/stagiaire/*","/api/matiere/*","/api/bloc/*","/api/competence/*","/api/formation/*","/api/salle/*").hasAnyAuthority("ROLE_GESTIONNAIRE","ROLE_ADMIN")
+			.requestMatchers(HttpMethod.DELETE,"/api/matiere/*","/api/bloc/*","/api/competence/*","/api/formation/*","/api/salle/*").hasAnyAuthority("ROLE_GESTIONNAIRE","ROLE_ADMIN")
+			//stagiaire
+			.requestMatchers(HttpMethod.GET,"/api/formation/*","/api/bloc/*","/api/stagiaire/*").hasAnyAuthority("ROLE_ADMIN","ROLE_STAGIAIRE","ROLE_FORMATEUR","ROLE_GESTIONNAIRE")
+			//formateur
+			.requestMatchers(HttpMethod.GET,"/api/formateur","/api/formateur/*").hasAnyAuthority("ROLE_FORMATEUR","ROLE_GESTIONNAIRE","ROLE_ADMIN")
+			.requestMatchers(HttpMethod.GET,"/api/*","/api/*/*").hasAnyAuthority("ROLE_GESTIONNAIRE","ROLE_ADMIN")
+			.anyRequest().hasAnyAuthority("ROLE_ADMIN")
+			;
 	});
 	http.sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 	

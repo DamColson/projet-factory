@@ -26,12 +26,14 @@ import ajc.formation.projet_factory.dto.response.CompetenceResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.services.CompetenceService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 
 @RestController
 @RequestMapping("/api/competence")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class CompetenceRestController {
     
     @Autowired
