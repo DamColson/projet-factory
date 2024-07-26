@@ -26,11 +26,13 @@ import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.dto.response.SalleResponse;
 import ajc.formation.projet_factory.model.Salle;
 import ajc.formation.projet_factory.services.SalleService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/salle")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class SalleRestController {
     @Autowired
     private SalleService salleService;

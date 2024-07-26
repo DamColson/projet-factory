@@ -11,10 +11,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import ajc.formation.projet_factory.dto.response.CompteResponse;
 import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Compte;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/auth")
+@SecurityRequirement(name = "basicAuth")
 public class AuthRestController {
 
 	@JsonView(CustomJsonViews.CompteWithPerson.class)

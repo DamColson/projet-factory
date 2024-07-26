@@ -3,6 +3,7 @@ package ajc.formation.projet_factory.dto.request;
 import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class VideoProjecteurRequest {
 
@@ -10,7 +11,7 @@ public class VideoProjecteurRequest {
 	private String libelle;
 	@NotBlank
 	private String adresseMac;
-	@NotBlank
+	@NotNull
 	private LocalDate dateAchat;
 	private Integer salleId;
 	@NotBlank

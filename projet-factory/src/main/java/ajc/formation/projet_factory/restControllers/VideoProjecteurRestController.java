@@ -29,11 +29,13 @@ import ajc.formation.projet_factory.model.Status;
 import ajc.formation.projet_factory.model.VideoProjecteur;
 import ajc.formation.projet_factory.services.SalleService;
 import ajc.formation.projet_factory.services.VideoProjecteurService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/videoProjecteur")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class VideoProjecteurRestController {
     @Autowired
     private VideoProjecteurService videoProjecteurService;

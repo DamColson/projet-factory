@@ -32,11 +32,13 @@ import ajc.formation.projet_factory.services.BlocService;
 import ajc.formation.projet_factory.services.FormateurService;
 import ajc.formation.projet_factory.services.MatiereService;
 import ajc.formation.projet_factory.services.SalleService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/bloc")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class BlocRestController {
     
     @Autowired

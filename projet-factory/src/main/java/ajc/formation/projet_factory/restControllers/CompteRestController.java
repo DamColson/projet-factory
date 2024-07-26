@@ -21,6 +21,7 @@ import ajc.formation.projet_factory.dto.response.CustomJsonViews;
 import ajc.formation.projet_factory.model.Compte;
 import ajc.formation.projet_factory.model.Role;
 import ajc.formation.projet_factory.services.CompteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/api/compte")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class CompteRestController {
 
     @Autowired

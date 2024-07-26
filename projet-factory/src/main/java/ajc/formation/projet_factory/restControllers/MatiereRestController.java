@@ -30,11 +30,13 @@ import ajc.formation.projet_factory.model.Competence;
 import ajc.formation.projet_factory.model.Matiere;
 import ajc.formation.projet_factory.services.CompetenceService;
 import ajc.formation.projet_factory.services.MatiereService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/matiere")
 @CrossOrigin("*")
+@SecurityRequirement(name = "basicAuth")
 public class MatiereRestController {
     @Autowired
     private MatiereService matiereService;
